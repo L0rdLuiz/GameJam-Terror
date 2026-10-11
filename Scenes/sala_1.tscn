@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cicknxq6ics0h"]
+
+[ext_resource type="Script" uid="uid://whcnaobioi86" path="res://Scripts/Sala1.cs" id="1_kcv01"]
+[ext_resource type="Texture2D" uid="uid://dl1ghcr1lu1oj" path="res://Art/download.png" id="2_2230e"]
+[ext_resource type="Script" uid="uid://bwhxi7eksbs8t" path="res://Scenes/Botao.cs" id="3_lp7ft"]
+[ext_resource type="Texture2D" uid="uid://kl5yk2ngmbsm" path="res://Art/download-_2_.png" id="4_ol3of"]
+
+[node name="Sala1" type="Node2D" unique_id=159072724]
+script = ExtResource("1_kcv01")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1881920162]
+position = Vector2(572, 324)
+texture = ExtResource("2_2230e")
+
+[node name="Botao" type="Button" parent="." unique_id=1002927502]
+offset_left = 513.0
+offset_top = 367.0
+offset_right = 572.0
+offset_bottom = 389.0
+text = "MUDAR DE SALA
+"
+script = ExtResource("3_lp7ft")
+
+[node name="Fundo2" type="Sprite2D" parent="." unique_id=913591866]
+visible = false
+position = Vector2(576, 325)
+texture = ExtResource("4_ol3of")
+
+[node name="BotaoVoltar" type="Button" parent="." unique_id=434730484]
+offset_left = 219.0
+offset_top = 87.0
+offset_right = 273.0
+offset_bottom = 118.0
+text = "voltar
+"
