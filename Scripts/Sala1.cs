@@ -15,6 +15,7 @@ public override void _Ready()
 		GetNode<Sprite2D>("Fundo2").Hide();
 		GetNode<Sprite2D>("Sprite2D").Show();
 	};
+	
 }
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
