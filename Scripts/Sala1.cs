@@ -20,7 +20,6 @@ public partial class Sala1 : Node2D
 		{
 			OnButtonPressed();
 		};
-		
 	}
 
 	private void OnButtonPressed()
