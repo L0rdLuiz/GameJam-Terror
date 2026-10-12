@@ -15,7 +15,6 @@ public partial class GameState : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GD.Print("Day: " + Day);
 	}
 
 	private Dictionary<int, List<string>> tarefasDoDia = new Dictionary<int, List<string>>
@@ -28,5 +27,9 @@ public partial class GameState : Node
 	};
 
 	private HashSet<string> tarefasConcluidas = new HashSet<string>();
+
+	public void ConcluirTarefa(string nomeTarefa) {
+      tarefasConcluidas.Add(nomeTarefa);
+	}
 
 }
