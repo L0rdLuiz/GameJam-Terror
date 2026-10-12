@@ -13,10 +13,7 @@ config_version=5
 config/name="Novo Projeto de Jogo"
 run/main_scene="res://Scenes/sala_1.tscn"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-
-[autoload]
-
-GameState="*uid://dif0k1l5c71bf"
+config/icon="res://icon.svg"
 
 [display]
 

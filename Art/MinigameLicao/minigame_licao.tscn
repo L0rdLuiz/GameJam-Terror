@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cfqokpxguq37k"]
+
+[ext_resource type="Texture2D" uid="uid://cq40y03mdr1cq" path="res://Art/MinigameLicao/download (3).png" id="1_mterq"]
+[ext_resource type="Script" uid="uid://dcoo1x835d5bn" path="res://Art/MinigameLicao/Sprite2d.cs" id="2_mterq"]
+[ext_resource type="Texture2D" uid="uid://x7d7or8j8o70" path="res://Art/MinigameLicao/p2.png" id="3_263s5"]
+
+[node name="MinigameLicao" type="Node2D" unique_id=1578077356]
+
+[node name="Pagina1" type="Sprite2D" parent="." unique_id=1649921076]
+position = Vector2(572, 324)
+texture = ExtResource("1_mterq")
+script = ExtResource("2_mterq")
+
+[node name="resposta" type="LineEdit" parent="Pagina1" unique_id=627243818]
+offset_left = 43.0
+offset_top = -91.0
+offset_right = 111.5
+offset_bottom = -60.0
+
+[node name="Label" type="Label" parent="Pagina1" unique_id=924312371]
+offset_left = -102.0
+offset_top = -123.0
+offset_right = -52.0
+offset_bottom = -74.0
+text = "2+2
+"
+
+[node name="Confirmar" type="Button" parent="Pagina1" unique_id=1325611053]
+offset_left = 17.0
+offset_top = 198.0
+offset_right = 140.0
+offset_bottom = 233.0
+text = "Confirmar
+"
+
+[node name="resposta2" type="LineEdit" parent="Pagina1" unique_id=1146085599]
+offset_left = 49.0
+offset_top = 17.0
+offset_right = 117.5
+offset_bottom = 48.0
+
+[node name="resposta3" type="LineEdit" parent="Pagina1" unique_id=1043288212]
+offset_left = 49.0
+offset_top = 125.0
+offset_right = 117.5
+offset_bottom = 156.0
+
+[node name="Pagina2" type="Sprite2D" parent="." unique_id=52156623]
+visible = false
+position = Vector2(584, 317)
+texture = ExtResource("3_263s5")
+
+[node name="Label" type="Label" parent="Pagina2" unique_id=1618890290]
+offset_left = 45.0
+offset_top = -80.0
+offset_right = 137.0
+offset_bottom = -57.0

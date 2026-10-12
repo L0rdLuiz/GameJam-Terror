@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cicknxq6ics0h"]
 
 [ext_resource type="Script" uid="uid://whcnaobioi86" path="res://Scripts/Sala1.cs" id="1_kcv01"]
-[ext_resource type="Texture2D" uid="uid://dl1ghcr1lu1oj" path="res://Art/download.png" id="2_2230e"]
+[ext_resource type="Texture2D" uid="uid://dl1ghcr1lu1oj" path="res://Art/Ambientes/download.png" id="2_2230e"]
 [ext_resource type="Script" uid="uid://bwhxi7eksbs8t" path="res://Scenes/Botao.cs" id="3_lp7ft"]
-[ext_resource type="Texture2D" uid="uid://kl5yk2ngmbsm" path="res://Art/download-_2_.png" id="4_ol3of"]
+[ext_resource type="Texture2D" uid="uid://kl5yk2ngmbsm" path="res://Art/Ambientes/download-_2_.png" id="4_ol3of"]
 
 [node name="Sala1" type="Node2D" unique_id=159072724]
 script = ExtResource("1_kcv01")
