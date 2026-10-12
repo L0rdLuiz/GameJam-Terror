@@ -33,3 +33,10 @@ offset_right = 273.0
 offset_bottom = 118.0
 text = "voltar
 "
+
+[node name="NextDay" type="Button" parent="." unique_id=2092149299]
+offset_left = 817.0
+offset_top = 89.0
+offset_right = 920.0
+offset_bottom = 120.0
+text = "Próximo Dia"
