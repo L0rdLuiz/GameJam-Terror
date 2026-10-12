@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq40y03mdr1cq"
-path="res://.godot/imported/download (3).png-a550346581d34119d68027aa2612e898.ctex"
+path="res://.godot/imported/p1.png-918b0b1b383e9bf297bbcc503d23e7b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/MinigameLicao/download (3).png"
-dest_files=["res://.godot/imported/download (3).png-a550346581d34119d68027aa2612e898.ctex"]
+source_file="res://Scenes/MinigameLicao/p1.png"
+dest_files=["res://.godot/imported/p1.png-918b0b1b383e9bf297bbcc503d23e7b1.ctex"]
 
 [params]
 
