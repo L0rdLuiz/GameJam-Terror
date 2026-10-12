@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq40y03mdr1cq"
-path="res://.godot/imported/download (3).png-8dc6881d63a15570a60780d9845c4055.ctex"
+uid="uid://x7d7or8j8o70"
+path="res://.godot/imported/p2.png-259054dbf0658ecf8cccf85a2ad92178.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/MinigameLicao/download (3).png"
-dest_files=["res://.godot/imported/download (3).png-8dc6881d63a15570a60780d9845c4055.ctex"]
+source_file="res://Scenes/MinigameLicao/p2.png"
+dest_files=["res://.godot/imported/p2.png-259054dbf0658ecf8cccf85a2ad92178.ctex"]
 
 [params]
 

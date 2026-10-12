@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cfqokpxguq37k"]
 
-[ext_resource type="Texture2D" uid="uid://cq40y03mdr1cq" path="res://Art/MinigameLicao/download (3).png" id="1_mterq"]
-[ext_resource type="Script" uid="uid://dcoo1x835d5bn" path="res://Art/MinigameLicao/Sprite2d.cs" id="2_mterq"]
-[ext_resource type="Texture2D" uid="uid://x7d7or8j8o70" path="res://Art/MinigameLicao/p2.png" id="3_263s5"]
+[ext_resource type="Texture2D" uid="uid://cq40y03mdr1cq" path="res://Scenes/MinigameLicao/download (3).png" id="1_mterq"]
+[ext_resource type="Script" uid="uid://dcoo1x835d5bn" path="res://Scenes/MinigameLicao/Sprite2d.cs" id="2_mterq"]
+[ext_resource type="Texture2D" uid="uid://x7d7or8j8o70" path="res://Scenes/MinigameLicao/p2.png" id="3_263s5"]
 
 [node name="MinigameLicao" type="Node2D" unique_id=1578077356]
 
