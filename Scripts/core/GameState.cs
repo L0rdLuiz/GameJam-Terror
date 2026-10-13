@@ -37,4 +37,13 @@ public partial class GameState : Node
 		return tarefasConcluidas.Contains(nomeTarefa);
 	}
 
+	public List<string> PegarTarefasDoDia()
+	{
+		if (tarefasDoDia.TryGetValue(Day, out List<string> lista))
+		{
+			return lista;
+		}
+    	return new List<string>();
+	}
+
 }
