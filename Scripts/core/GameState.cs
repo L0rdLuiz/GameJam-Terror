@@ -9,6 +9,7 @@ public partial class GameState : Node
 
 	public void NextDay()
 	{
+		tarefasConcluidas.Clear();
 		Day++;
 		GD.Print("Day: " + Day);
 	}
