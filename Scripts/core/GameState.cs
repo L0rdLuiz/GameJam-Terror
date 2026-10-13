@@ -32,4 +32,9 @@ public partial class GameState : Node
       tarefasConcluidas.Add(nomeTarefa);
 	}
 
+	public bool TarefaEstaFeita(string nomeTarefa)
+	{
+		return tarefasConcluidas.Contains(nomeTarefa);
+	}
+
 }
