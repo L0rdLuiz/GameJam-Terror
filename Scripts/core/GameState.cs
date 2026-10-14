@@ -30,8 +30,10 @@ public partial class GameState : Node
 
 	private HashSet<string> tarefasConcluidas = new HashSet<string>();
 
-	public void ConcluirTarefa(string nomeTarefa) {
-      tarefasConcluidas.Add(nomeTarefa);
+	public void ConcluirTarefa(string nomeTarefa) 
+	{
+		tarefasConcluidas.Add(nomeTarefa);
+		EmitSignal(SignalName.TarefaConcluida, nomeTarefa);
 	}
 
 	public bool TarefaEstaFeita(string nomeTarefa)
@@ -80,5 +82,8 @@ public partial class GameState : Node
 
 	[Signal]
 	public delegate void DiaMudouEventHandler(int novoDia);
+	
+	[Signal]
+	public delegate void TarefaConcluidaEventHandler(string nomeTarefa);
 
 }
