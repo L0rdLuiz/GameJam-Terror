@@ -18,7 +18,7 @@ public partial class Sala1 : Node2D
 
 		GetNode<Button>("NextDay").Pressed += () =>
 		{
-			OnButtonPressed();
+			OnButtonPressed();;
 		};
 	}
 
