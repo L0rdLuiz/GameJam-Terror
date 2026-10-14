@@ -47,4 +47,22 @@ public partial class GameState : Node
     	return new List<string>();
 	}
 
+	public bool DiaCompleto()
+	{
+		var tarefasDoDiaAtual = PegarTarefasDoDia();
+		return tarefasDoDiaAtual.All(tarefasConcluidas => TarefaEstaFeita(tarefasConcluidas));
+	}
+
+	public bool PossoFinalizarDia()
+	{
+		foreach (var tarefa in PegarTarefasDoDia())
+		{
+			if (!TarefaEstaFeita(tarefa) && tarefa != "finalizar_dia")
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
