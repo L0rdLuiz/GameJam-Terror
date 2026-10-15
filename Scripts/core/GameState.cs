@@ -7,6 +7,19 @@ public partial class GameState : Node
 {
 	public int Day { get; private set; } = 1;
 
+	//Tarefas
+	public const string Almoco = "almoco";
+	public const string DobrarRoupa = "dobrar_roupa";
+	public const string Janta = "janta";
+	public const string TarefaEscolar = "tarefa_escolar";
+	public const string FinalizarDia = "finalizar_dia";
+	public const string LevarLixo = "levar_lixo";
+	public const string Brincar = "brincar";
+	public const string AjeitarBrinquedos = "ajeitar_brinquedos";
+	public const string BuscarRemedio = "buscar_remedio";
+
+
+
 	public void NextDay()
 	{
 		tarefasConcluidas.Clear();
@@ -21,19 +34,21 @@ public partial class GameState : Node
 
 	private Dictionary<int, List<string>> tarefasDoDia = new Dictionary<int, List<string>>
 	{
-		{ 1, new List<string> { "almoco", "dobrar_roupa", "janta", "tarefa_escolar", "finalizar_dia" } },
-		{ 2, new List<string> { "almoco", "levar_lixo", "janta", "brincar", "finalizar_dia" } },
-		{ 3, new List<string> { "almoco", "ajeitar_brinquedos", "janta", "tarefa_escolar", "finalizar_dia" } },
-		{ 4, new List<string> { "almoco", "levar_lixo", "janta","buscar_remedio", "brincar", "finalizar_dia" } },
-		{ 5, new List<string> { "almoco", "ajeitar_brinquedos", "janta", "tarefa_escolar", "finalizar_dia" } },
+		{ 1, new List<string> { Almoco, DobrarRoupa, Janta, TarefaEscolar, FinalizarDia } },
+		{ 2, new List<string> { Almoco, LevarLixo, Janta, Brincar, FinalizarDia } },
+		{ 3, new List<string> { Almoco, AjeitarBrinquedos, Janta, TarefaEscolar, FinalizarDia } },
+		{ 4, new List<string> { Almoco, LevarLixo, Janta,BuscarRemedio, Brincar, FinalizarDia } },
+		{ 5, new List<string> { Almoco, AjeitarBrinquedos, Janta, TarefaEscolar, FinalizarDia } },
 	};
 
 	private HashSet<string> tarefasConcluidas = new HashSet<string>();
 
 	public void ConcluirTarefa(string nomeTarefa) 
 	{
-		tarefasConcluidas.Add(nomeTarefa);
-		EmitSignal(SignalName.TarefaConcluida, nomeTarefa);
+		if (tarefasConcluidas.Add(nomeTarefa)) 
+		{
+			EmitSignal(SignalName.TarefaConcluida, nomeTarefa);
+		}
 	}
 
 	public bool TarefaEstaFeita(string nomeTarefa)
@@ -60,7 +75,7 @@ public partial class GameState : Node
 	{
 		foreach (var tarefa in PegarTarefasDoDia())
 		{
-			if (!TarefaEstaFeita(tarefa) && tarefa != "finalizar_dia")
+			if (!TarefaEstaFeita(tarefa) && tarefa != FinalizarDia)
 			{
 				return false;
 			}
