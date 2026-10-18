@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cvwuo2dwfqlbh"]
+
+[ext_resource type="Script" uid="uid://vsgf6ely3kmt" path="res://Scripts/DebugTarefas.cs" id="1_x1xr2"]
+
+[node name="DebugTarefas" type="Node2D" unique_id=1808093141]
+script = ExtResource("1_x1xr2")
