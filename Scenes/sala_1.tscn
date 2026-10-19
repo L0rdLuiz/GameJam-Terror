@@ -1,52 +1,114 @@
 [gd_scene format=3 uid="uid://cicknxq6ics0h"]
 
 [ext_resource type="Script" uid="uid://whcnaobioi86" path="res://Scripts/Sala1.cs" id="1_kcv01"]
-[ext_resource type="Texture2D" uid="uid://dl1ghcr1lu1oj" path="res://Art/Ambientes/download.png" id="2_2230e"]
+[ext_resource type="Texture2D" uid="uid://j8mlca3gg6rs" path="res://Art/Ambientes/quarto.jpg" id="2_ol3of"]
 [ext_resource type="Script" uid="uid://bwhxi7eksbs8t" path="res://Scenes/Botao.cs" id="3_lp7ft"]
-[ext_resource type="Texture2D" uid="uid://kl5yk2ngmbsm" path="res://Art/Ambientes/download-_2_.png" id="4_ol3of"]
+[ext_resource type="Texture2D" uid="uid://7o21tdrqd3r5" path="res://Art/Ambientes/banheiro9.jpg" id="4_drrmx"]
 [ext_resource type="PackedScene" uid="uid://cvwuo2dwfqlbh" path="res://Scenes/debug_tarefas.tscn" id="5_ol3of"]
+[ext_resource type="Script" uid="uid://qfe7dbid0v7b" path="res://Scripts/SalaDeEstar.cs" id="6_dpcyj"]
+[ext_resource type="Texture2D" uid="uid://clkkhjnqdcob8" path="res://Art/Ambientes/SalaDeEstar.jpg" id="7_vq66k"]
+[ext_resource type="Script" uid="uid://ct3fhu1cfs45t" path="res://Scenes/TelaPintura.cs" id="8_vq66k"]
 
 [node name="Sala1" type="Node2D" unique_id=159072724]
 script = ExtResource("1_kcv01")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1881920162]
-position = Vector2(572, 324)
-texture = ExtResource("2_2230e")
+position = Vector2(571, 315)
+texture = ExtResource("2_ol3of")
 
 [node name="Botao" type="Button" parent="." unique_id=1002927502]
-offset_left = 513.0
-offset_top = 367.0
-offset_right = 572.0
-offset_bottom = 389.0
-text = "MUDAR DE SALA
-"
+offset_left = -91.0
+offset_top = 357.0
+offset_right = 44.0
+offset_bottom = 388.0
+flat = true
 script = ExtResource("3_lp7ft")
 
 [node name="Fundo2" type="Sprite2D" parent="." unique_id=913591866]
-visible = false
-position = Vector2(576, 325)
-texture = ExtResource("4_ol3of")
+position = Vector2(562.5, 319.5)
+scale = Vector2(1.0196221, 1.0143229)
+texture = ExtResource("4_drrmx")
 
 [node name="BotaoVoltar" type="Button" parent="." unique_id=434730484]
-offset_left = 219.0
-offset_top = 87.0
-offset_right = 273.0
-offset_bottom = 118.0
-text = "voltar
+offset_left = 1113.0
+offset_top = 336.0
+offset_right = 1235.0
+offset_bottom = 388.0
+text = "
 "
+flat = true
 
 [node name="NextDay" type="Button" parent="." unique_id=2092149299]
-offset_left = 817.0
-offset_top = 89.0
-offset_right = 920.0
-offset_bottom = 120.0
-text = "Próximo Dia"
+offset_left = 436.0
+offset_top = 291.0
+offset_right = 986.0
+offset_bottom = 575.0
+flat = true
+
+[node name="TextoNextDay" type="Label" parent="NextDay" unique_id=864835203]
+visible = false
+layout_mode = 0
+offset_left = 189.0
+offset_top = 93.0
+offset_right = 490.0
+offset_bottom = 155.0
+text = "NEXT DAY"
 
 [node name="TarefaEscolar" type="Button" parent="." unique_id=1799756811]
-offset_left = 218.0
-offset_top = 197.0
-offset_right = 347.0
-offset_bottom = 228.0
+offset_left = 103.0
+offset_top = 415.0
+offset_right = 232.0
+offset_bottom = 446.0
 text = "Minigame Lição"
 
 [node name="DebugTarefas" parent="." unique_id=1808093141 instance=ExtResource("5_ol3of")]
+
+[node name="SalaDeEstar" type="Node2D" parent="." unique_id=1768652451]
+script = ExtResource("6_dpcyj")
+
+[node name="fundosala" type="Sprite2D" parent="SalaDeEstar" unique_id=1972275669]
+position = Vector2(575, 326)
+texture = ExtResource("7_vq66k")
+
+[node name="Cavalete" type="Button" parent="SalaDeEstar" unique_id=298456499]
+offset_left = 481.0
+offset_top = 194.0
+offset_right = 584.0
+offset_bottom = 319.0
+tooltip_text = "
+"
+flat = true
+
+[node name="TextoPintar" type="Label" parent="SalaDeEstar/Cavalete" unique_id=655184521]
+visible = false
+layout_mode = 0
+offset_left = 34.0
+offset_top = 104.0
+offset_right = 81.0
+offset_bottom = 127.0
+text = "Pintar"
+
+[node name="TelaPintura" type="CanvasLayer" parent="SalaDeEstar" unique_id=1640934503]
+script = ExtResource("8_vq66k")
+
+[node name="Fundo" type="ColorRect" parent="SalaDeEstar/TelaPintura" unique_id=1709692004]
+offset_left = -129.0
+offset_top = -65.0
+offset_right = 1266.0
+offset_bottom = 697.0
+color = Color(0, 0, 0, 1)
+
+[node name="Tela" type="TextureRect" parent="SalaDeEstar/TelaPintura" unique_id=1124441378]
+custom_minimum_size = Vector2(513, 513)
+offset_left = -279.0
+offset_top = -65.0
+offset_right = 758.0
+offset_bottom = 935.0
+stretch_mode = 2
+
+[node name="Salaestar" type="Button" parent="." unique_id=934614542]
+offset_left = 1103.0
+offset_top = 338.0
+offset_right = 1247.0
+offset_bottom = 388.0
+flat = true
