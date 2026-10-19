@@ -16,6 +16,13 @@ script = ExtResource("1_kcv01")
 position = Vector2(571, 315)
 texture = ExtResource("2_ol3of")
 
+[node name="Label" type="Label" parent="Sprite2D" unique_id=158011588]
+offset_left = -528.0
+offset_top = -78.0
+offset_right = 412.0
+offset_bottom = 23.0
+text = "OOOOOOOOOOOOOOOOOOOOOIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+
 [node name="Botao" type="Button" parent="." unique_id=1002927502]
 offset_left = -91.0
 offset_top = 357.0
@@ -112,3 +119,9 @@ offset_top = 338.0
 offset_right = 1247.0
 offset_bottom = 388.0
 flat = true
+
+[node name="VoltarSalaQuarto" type="Button" parent="." unique_id=1619023514]
+offset_left = -135.0
+offset_top = 325.0
+offset_right = 79.0
+offset_bottom = 413.0
