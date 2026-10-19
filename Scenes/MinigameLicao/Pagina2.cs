@@ -2,6 +2,9 @@ using Godot;
 
 public partial class Pagina2 : Sprite2D
 {
+
+	GameState gameState;
+
 	public override void _Ready()
 	{
 		GetNode<Button>("Confirmar").Pressed += () =>
@@ -13,7 +16,10 @@ public partial class Pagina2 : Sprite2D
 			if (r1 == 3 && r2 == 9 && r3 == 2)
 			{
 				GD.Print("ACERTOU");
+				gameState = GetNode<GameState>("/root/GameState");
+				gameState.ConcluirTarefa(GameState.TarefaEscolar);
 				GetNode<Sprite2D>("../LicaoConcluida").Show();
+				
 			}
 			else
 			{
