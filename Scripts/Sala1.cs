@@ -25,6 +25,11 @@ public partial class Sala1 : Node2D
 
 		GetNode<Button>("TarefaEscolar").Pressed += () =>
 		{
+			if (!GetNode<GameState>("/root/GameState").PossoFazerATarefa(GameState.TarefaEscolar))
+			{
+				GD.Print("Não pode fazer a tarefa escolar ainda!");
+				return;
+			}
 			PackedScene tarefaEscolarScene = GD.Load<PackedScene>("res://Scenes/MinigameLicao/minigame_licao.tscn");
 			Node tarefaEscolarInstance = tarefaEscolarScene.Instantiate();
 			GetTree().Root.AddChild(tarefaEscolarInstance);

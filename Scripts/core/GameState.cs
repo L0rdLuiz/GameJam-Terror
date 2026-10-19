@@ -95,6 +95,30 @@ public partial class GameState : Node
 		}
 	}
 
+	public bool PossoFazerATarefa(string nomeTarefa)
+	{
+		List<string> tarefas = PegarTarefasDoDia();
+		int posicao = tarefas.IndexOf(nomeTarefa);
+
+		if (posicao == -1)
+		{
+			return false;
+		}
+		if (TarefaEstaFeita(tarefas[posicao]))
+		{
+			return false;
+		}
+
+		for (int i = 0; i < posicao; i++)
+		{
+			if (!TarefaEstaFeita(tarefas[i]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	[Signal]
 	public delegate void DiaMudouEventHandler(int novoDia);
 	
