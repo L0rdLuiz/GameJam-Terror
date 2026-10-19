@@ -23,6 +23,15 @@ public partial class Sala1 : Node2D
 			OnButtonPressed();;
 		};
 
+		GetNode<Button>("TarefaEscolar").Pressed += () =>
+		{
+			PackedScene tarefaEscolarScene = GD.Load<PackedScene>("res://Scenes/MinigameLicao/minigame_licao.tscn");
+			Node tarefaEscolarInstance = tarefaEscolarScene.Instantiate();
+			GetTree().Root.AddChild(tarefaEscolarInstance);
+			Hide();
+			tarefaEscolarInstance.TreeExited += () => Show();
+		};
+
 		gameState = GetNode<GameState>("/root/GameState");
 		gameState.DiaMudou += AoDiaMudar;
 	}

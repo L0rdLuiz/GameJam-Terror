@@ -40,3 +40,10 @@ offset_top = 89.0
 offset_right = 920.0
 offset_bottom = 120.0
 text = "Próximo Dia"
+
+[node name="TarefaEscolar" type="Button" parent="." unique_id=1799756811]
+offset_left = 218.0
+offset_top = 197.0
+offset_right = 347.0
+offset_bottom = 228.0
+text = "Minigame Lição"
