@@ -18,7 +18,6 @@ public partial class Sala1 : Node2D
 		GetNode<Button>("Botao").Show();
 		GetNode<Button>("Salaestar").Show();
 		GetNode<Button>("BotaoVoltar").Hide();
-		GetNode<Button>("TarefaEscolar").Hide();
 		GetNode<Button>("VoltarSalaQuarto").Hide();
 
 		// Botao: sala 1 -> sala 2
@@ -28,10 +27,9 @@ public partial class Sala1 : Node2D
 			GetNode<Node2D>("SalaDeEstar").Hide();
 			GetNode<Sprite2D>("Fundo2").Show();
 
-			GetNode<Button>("Botao").Hide();               
+			GetNode<Button>("Botao").Hide();
 			GetNode<Button>("Salaestar").Hide();
 			GetNode<Button>("BotaoVoltar").Show();
-			GetNode<Button>("TarefaEscolar").Hide();
 			GetNode<Button>("VoltarSalaQuarto").Hide();
 		};
 
@@ -42,14 +40,10 @@ public partial class Sala1 : Node2D
 			GetNode<Node2D>("SalaDeEstar").Hide();
 			GetNode<Sprite2D>("Sprite2D").Show();
 
-			GetNode<Button>("TarefaEscolar").Hide();
 			GetNode<Button>("BotaoVoltar").Hide();
 			GetNode<Button>("VoltarSalaQuarto").Hide();
-			GetNode<Button>("Botao").Show();              
+			GetNode<Button>("Botao").Show();
 			GetNode<Button>("Salaestar").Show();
-			
-
-
 		};
 
 		// Salaestar: sala 1 -> sala de estar
@@ -59,10 +53,9 @@ public partial class Sala1 : Node2D
 			GetNode<Sprite2D>("Fundo2").Hide();
 			GetNode<Node2D>("SalaDeEstar").Show();
 
-			GetNode<Button>("Salaestar").Hide();         
+			GetNode<Button>("Salaestar").Hide();
 			GetNode<Button>("Botao").Hide();
 			GetNode<Button>("BotaoVoltar").Hide();
-			GetNode<Button>("TarefaEscolar").Show();
 			GetNode<Button>("VoltarSalaQuarto").Show();
 		};
 
@@ -73,11 +66,10 @@ public partial class Sala1 : Node2D
 			GetNode<Sprite2D>("Fundo2").Hide();
 			GetNode<Sprite2D>("Sprite2D").Show();
 
-			GetNode<Button>("VoltarSalaQuarto").Hide();    
-			GetNode<Button>("TarefaEscolar").Hide();       
+			GetNode<Button>("VoltarSalaQuarto").Hide();
 			GetNode<Button>("BotaoVoltar").Hide();
 			GetNode<Button>("Botao").Show();
-			GetNode<Button>("Salaestar").Show();           
+			GetNode<Button>("Salaestar").Show();
 		};
 
 		// Próximo dia
@@ -90,8 +82,8 @@ public partial class Sala1 : Node2D
 		nextDay.MouseExited += () => textoNextDay.Hide();
 		nextDay.Pressed += OnButtonPressed;
 
-		// Tarefa escolar
-		GetNode<Button>("TarefaEscolar").Pressed += () =>
+		// Tarefa escolar (fica dentro da SalaDeEstar)
+		GetNode<Button>("SalaDeEstar/TarefaEscolar").Pressed += () =>
 		{
 			if (!gameState.PossoFazerATarefa(GameState.TarefaEscolar))
 			{

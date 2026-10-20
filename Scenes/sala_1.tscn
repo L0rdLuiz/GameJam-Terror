@@ -16,14 +16,8 @@ script = ExtResource("1_kcv01")
 position = Vector2(571, 315)
 texture = ExtResource("2_ol3of")
 
-[node name="Label" type="Label" parent="Sprite2D" unique_id=158011588]
-offset_left = -528.0
-offset_top = -78.0
-offset_right = 412.0
-offset_bottom = 23.0
-text = "OOOOOOOOOOOOOOOOOOOOOIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
-
 [node name="Botao" type="Button" parent="." unique_id=1002927502]
+visible = false
 offset_left = -91.0
 offset_top = 357.0
 offset_right = 44.0
@@ -32,11 +26,13 @@ flat = true
 script = ExtResource("3_lp7ft")
 
 [node name="Fundo2" type="Sprite2D" parent="." unique_id=913591866]
+visible = false
 position = Vector2(562.5, 319.5)
 scale = Vector2(1.0196221, 1.0143229)
 texture = ExtResource("4_drrmx")
 
 [node name="BotaoVoltar" type="Button" parent="." unique_id=434730484]
+visible = false
 offset_left = 1113.0
 offset_top = 336.0
 offset_right = 1235.0
@@ -46,6 +42,7 @@ text = "
 flat = true
 
 [node name="NextDay" type="Button" parent="." unique_id=2092149299]
+visible = false
 offset_left = 436.0
 offset_top = 291.0
 offset_right = 986.0
@@ -61,16 +58,11 @@ offset_right = 490.0
 offset_bottom = 155.0
 text = "NEXT DAY"
 
-[node name="TarefaEscolar" type="Button" parent="." unique_id=1799756811]
-offset_left = 103.0
-offset_top = 415.0
-offset_right = 232.0
-offset_bottom = 446.0
-text = "Minigame Lição"
-
 [node name="DebugTarefas" parent="." unique_id=1808093141 instance=ExtResource("5_ol3of")]
+visible = false
 
 [node name="SalaDeEstar" type="Node2D" parent="." unique_id=1768652451]
+visible = false
 script = ExtResource("6_dpcyj")
 
 [node name="fundosala" type="Sprite2D" parent="SalaDeEstar" unique_id=1972275669]
@@ -96,6 +88,7 @@ offset_bottom = 127.0
 text = "Pintar"
 
 [node name="TelaPintura" type="CanvasLayer" parent="SalaDeEstar" unique_id=1640934503]
+visible = false
 script = ExtResource("8_vq66k")
 
 [node name="Fundo" type="ColorRect" parent="SalaDeEstar/TelaPintura" unique_id=1709692004]
@@ -112,6 +105,10 @@ offset_top = -65.0
 offset_right = 758.0
 offset_bottom = 935.0
 stretch_mode = 2
+
+[node name="TarefaEscolar" type="Button" parent="SalaDeEstar" unique_id=1886178899]
+offset_right = 153.0
+offset_bottom = 45.0
 
 [node name="Salaestar" type="Button" parent="." unique_id=934614542]
 offset_left = 1103.0
