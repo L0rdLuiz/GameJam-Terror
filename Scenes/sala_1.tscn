@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://qfe7dbid0v7b" path="res://Scripts/SalaDeEstar.cs" id="6_dpcyj"]
 [ext_resource type="Texture2D" uid="uid://clkkhjnqdcob8" path="res://Art/Ambientes/SalaDeEstar.jpg" id="7_vq66k"]
 [ext_resource type="Script" uid="uid://ct3fhu1cfs45t" path="res://Scenes/TelaPintura.cs" id="8_vq66k"]
+[ext_resource type="Texture2D" uid="uid://cby34a1jk6eg" path="res://Art/Ambientes/Fundoespelho.jpg" id="9_vw5l1"]
+[ext_resource type="Texture2D" uid="uid://c4kh2m85ohbc6" path="res://Art/Ambientes/Menu.jpg" id="10_0dbmu"]
 
 [node name="Sala1" type="Node2D" unique_id=159072724]
 script = ExtResource("1_kcv01")
@@ -26,13 +28,27 @@ flat = true
 script = ExtResource("3_lp7ft")
 
 [node name="Fundo2" type="Sprite2D" parent="." unique_id=913591866]
-visible = false
 position = Vector2(562.5, 319.5)
 scale = Vector2(1.0196221, 1.0143229)
 texture = ExtResource("4_drrmx")
 
-[node name="BotaoVoltar" type="Button" parent="." unique_id=434730484]
+[node name="Espelho" type="Button" parent="." unique_id=1669714090]
+offset_left = 163.0
+offset_top = 37.0
+offset_right = 446.0
+offset_bottom = 462.0
+flat = true
+
+[node name="TextoEspelho" type="Label" parent="Espelho" unique_id=1052165683]
 visible = false
+layout_mode = 0
+offset_left = 72.0
+offset_top = 228.0
+offset_right = 457.0
+offset_bottom = 276.0
+text = "Se olhar no espelho"
+
+[node name="BotaoVoltar" type="Button" parent="." unique_id=434730484]
 offset_left = 1113.0
 offset_top = 336.0
 offset_right = 1235.0
@@ -42,7 +58,6 @@ text = "
 flat = true
 
 [node name="NextDay" type="Button" parent="." unique_id=2092149299]
-visible = false
 offset_left = 436.0
 offset_top = 291.0
 offset_right = 986.0
@@ -59,10 +74,8 @@ offset_bottom = 155.0
 text = "NEXT DAY"
 
 [node name="DebugTarefas" parent="." unique_id=1808093141 instance=ExtResource("5_ol3of")]
-visible = false
 
 [node name="SalaDeEstar" type="Node2D" parent="." unique_id=1768652451]
-visible = false
 script = ExtResource("6_dpcyj")
 
 [node name="fundosala" type="Sprite2D" parent="SalaDeEstar" unique_id=1972275669]
@@ -79,7 +92,6 @@ tooltip_text = "
 flat = true
 
 [node name="TextoPintar" type="Label" parent="SalaDeEstar/Cavalete" unique_id=655184521]
-visible = false
 layout_mode = 0
 offset_left = 34.0
 offset_top = 104.0
@@ -88,7 +100,6 @@ offset_bottom = 127.0
 text = "Pintar"
 
 [node name="TelaPintura" type="CanvasLayer" parent="SalaDeEstar" unique_id=1640934503]
-visible = false
 script = ExtResource("8_vq66k")
 
 [node name="Fundo" type="ColorRect" parent="SalaDeEstar/TelaPintura" unique_id=1709692004]
@@ -106,9 +117,10 @@ offset_right = 758.0
 offset_bottom = 935.0
 stretch_mode = 2
 
-[node name="TarefaEscolar" type="Button" parent="SalaDeEstar" unique_id=1886178899]
-offset_right = 153.0
-offset_bottom = 45.0
+[node name="FecharPintura" type="Button" parent="SalaDeEstar/TelaPintura" unique_id=257490273]
+offset_right = 93.0
+offset_bottom = 73.0
+text = "X"
 
 [node name="Salaestar" type="Button" parent="." unique_id=934614542]
 offset_left = 1103.0
@@ -118,7 +130,82 @@ offset_bottom = 388.0
 flat = true
 
 [node name="VoltarSalaQuarto" type="Button" parent="." unique_id=1619023514]
+visible = false
 offset_left = -135.0
 offset_top = 325.0
 offset_right = 79.0
 offset_bottom = 413.0
+flat = true
+
+[node name="VoltarSalaQuarto2" type="Button" parent="." unique_id=1273043196]
+visible = false
+offset_left = -80.0
+offset_top = -6.0
+offset_right = 134.0
+offset_bottom = 82.0
+text = "x"
+
+[node name="TarefaEscolar" type="Button" parent="." unique_id=1886817882]
+offset_left = 121.0
+offset_top = 367.0
+offset_right = 250.0
+offset_bottom = 445.0
+flat = true
+
+[node name="TextoTarefaEscolar" type="Label" parent="TarefaEscolar" unique_id=1163996469]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 62.0
+offset_right = 114.0
+offset_bottom = 111.0
+text = "Fazer tarefa
+"
+
+[node name="FundoEspelho" type="Sprite2D" parent="." unique_id=366888220]
+position = Vector2(556, 320)
+texture = ExtResource("9_vw5l1")
+
+[node name="Menu" type="Sprite2D" parent="." unique_id=700997057]
+position = Vector2(557, 319)
+scale = Vector2(1.0145348, 1.0078125)
+texture = ExtResource("10_0dbmu")
+
+[node name="Comecar" type="Button" parent="." unique_id=4178540]
+offset_left = 308.0
+offset_top = 265.0
+offset_right = 813.0
+offset_bottom = 408.0
+text = "Start"
+
+[node name="SairEspelho" type="Button" parent="." unique_id=99884292]
+offset_left = 10.0
+offset_top = -4.0
+offset_right = 99.0
+offset_bottom = 79.0
+text = "X"
+
+[node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
+visible = false
+
+[node name="Caixa" type="Panel" parent="Dialogo" unique_id=732848754]
+offset_left = 6.0
+offset_top = 471.0
+offset_right = 1152.0
+offset_bottom = 653.0
+
+[node name="Texto" type="Label" parent="Dialogo/Caixa" unique_id=1320008937]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 46.0
+offset_right = 250.0
+offset_bottom = 69.0
+text = "OOOOOOOOOOOOOOOOI"
+autowrap_mode = 2
+
+[node name="Avancar" type="Button" parent="Dialogo/Caixa" unique_id=1941039050]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 4.0
+offset_right = 1149.0
+offset_bottom = 179.0
+flat = true

@@ -15,6 +15,8 @@ public partial class SalaDeEstar : Node2D
 	cavalete.MouseExited += () => texto.Hide();
 	cavalete.Pressed += () => telaPintura.Show();
 
+	
+
 }
 	public override void _Process(double delta)
 	{

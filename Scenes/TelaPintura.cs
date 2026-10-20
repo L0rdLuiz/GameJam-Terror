@@ -16,6 +16,7 @@ public partial class TelaPintura : CanvasLayer
 
 	public override void _Ready()
 	{
+		
 		_tela = GetNode<TextureRect>("Tela");
 		Control fundo = GetNode<Control>("Fundo");
 
@@ -41,6 +42,13 @@ public partial class TelaPintura : CanvasLayer
 		//convertendo a imagem em uma textura para conseguir exibir na tela
 		_textura = ImageTexture.CreateFromImage(_imagem);
 		_tela.Texture = _textura;
+
+
+		GetNode<Button>("FecharPintura").Pressed += () =>
+		{
+			Hide();
+		};
+
 	}
 
 	public override void _Process(double delta)

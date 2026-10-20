@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl1ghcr1lu1oj"
-path="res://.godot/imported/download.png-0ec8d11aae2c611474a54f3e6d5a348f.ctex"
+uid="uid://cby34a1jk6eg"
+path="res://.godot/imported/Fundoespelho.jpg-99f4053fd51623e84878e560ca4425b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Ambientes/download.png"
-dest_files=["res://.godot/imported/download.png-0ec8d11aae2c611474a54f3e6d5a348f.ctex"]
+source_file="res://Art/Ambientes/Fundoespelho.jpg"
+dest_files=["res://.godot/imported/Fundoespelho.jpg-99f4053fd51623e84878e560ca4425b8.ctex"]
 
 [params]
 
