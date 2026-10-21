@@ -56,24 +56,24 @@ public partial class Sala1 : Node2D
 		//somDialogo = GetNode<AudioStreamPlayer2D>("somDialogo");
 
 		// estado inicial: começa no menu
-		GetNode<Sprite2D>("Menu").Show();
+		GetNode<Sprite2D>("FundoMenu").Show();
 		GetNode<Button>("SairEspelho").Hide();
-		GetNode<Sprite2D>("Sprite2D").Hide();
-		GetNode<Sprite2D>("Fundo2").Hide();
+		GetNode<Sprite2D>("Quarto").Hide();
+		GetNode<Sprite2D>("Banheiro").Hide();
 		GetNode<Node2D>("SalaDeEstar").Hide();
 		GetNode<Sprite2D>("FundoEspelho").Hide();
 		GetNode<CanvasItem>("Cozinha").Hide();
-		GetNode<Button>("Comecar").Show();
+		GetNode<Button>("BotaoComecar").Show();
 
-		GetNode<Button>("Botao").Hide();
-		GetNode<Button>("Salaestar").Hide();
-		GetNode<Button>("BotaoVoltar").Hide();
+		GetNode<Button>("IrBanheiro").Hide();
+		GetNode<Button>("IrSala").Hide();
+		GetNode<Button>("VoltarBanheiro").Hide();
 		GetNode<Button>("TarefaEscolar").Hide();
-		GetNode<Button>("VoltarSalaQuarto").Hide();
+		GetNode<Button>("VoltarDaSala").Hide();
 		GetNode<Button>("Espelho").Hide();
 		GetNode<Button>("IrCozinha").Hide();
-		GetNode<Button>("VoltarPSala").Hide();
-		GetNode<Button>("NextDay").Hide();
+		GetNode<Button>("VoltarDaCozinha").Hide();
+		GetNode<Button>("ProximoDia").Hide();
 		GetNode<CanvasLayer>("Dialogo").Hide();
 
 		// Avançar diálogo / fechar a caixa no fim
@@ -90,197 +90,197 @@ public partial class Sala1 : Node2D
 		};
 
 		// Comecar: menu -> quarto
-		GetNode<Button>("Comecar").Pressed += () =>
+		GetNode<Button>("BotaoComecar").Pressed += () =>
 		{
-			GetNode<Sprite2D>("Menu").Hide();
-			GetNode<Button>("Comecar").Hide();
-			GetNode<Sprite2D>("Sprite2D").Show();
-			GetNode<Sprite2D>("Fundo2").Hide();
+			GetNode<Sprite2D>("FundoMenu").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
+			GetNode<Sprite2D>("Quarto").Show();
+			GetNode<Sprite2D>("Banheiro").Hide();
 			GetNode<Node2D>("SalaDeEstar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
 			GetNode<CanvasItem>("Cozinha").Hide();
 
-			GetNode<Button>("Botao").Show();
-			GetNode<Button>("Salaestar").Show();
-			GetNode<Button>("BotaoVoltar").Hide();
+			GetNode<Button>("IrBanheiro").Show();
+			GetNode<Button>("IrSala").Show();
+			GetNode<Button>("VoltarBanheiro").Hide();
 			GetNode<Button>("TarefaEscolar").Hide();
-			GetNode<Button>("VoltarSalaQuarto").Hide();
+			GetNode<Button>("VoltarDaSala").Hide();
 			GetNode<Button>("Espelho").Hide();
 			GetNode<Button>("IrCozinha").Hide();
-			GetNode<Button>("VoltarPSala").Hide();
-			GetNode<Button>("NextDay").Visible = gameState.PossoFinalizarDia();
+			GetNode<Button>("VoltarDaCozinha").Hide();
+			GetNode<Button>("ProximoDia").Visible = gameState.PossoFinalizarDia();
 		};
 
 		// Botao: quarto -> banheiro
-		GetNode<Button>("Botao").Pressed += () =>
+		GetNode<Button>("IrBanheiro").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
-			GetNode<Sprite2D>("Sprite2D").Hide();
+			GetNode<Sprite2D>("Quarto").Hide();
 			GetNode<Node2D>("SalaDeEstar").Hide();
-			GetNode<Sprite2D>("Fundo2").Show();
+			GetNode<Sprite2D>("Banheiro").Show();
 			GetNode<CanvasItem>("Cozinha").Hide();
 
-			GetNode<Button>("Botao").Hide();
-			GetNode<Button>("Salaestar").Hide();
-			GetNode<Button>("BotaoVoltar").Show();
+			GetNode<Button>("IrBanheiro").Hide();
+			GetNode<Button>("IrSala").Hide();
+			GetNode<Button>("VoltarBanheiro").Show();
 			GetNode<Button>("TarefaEscolar").Hide();
-			GetNode<Button>("VoltarSalaQuarto").Hide();
+			GetNode<Button>("VoltarDaSala").Hide();
 			GetNode<Button>("Espelho").Show();
-			GetNode<Button>("NextDay").Hide();
+			GetNode<Button>("ProximoDia").Hide();
 			GetNode<Button>("SairEspelho").Hide();
 			GetNode<Button>("IrCozinha").Hide();
-			GetNode<Button>("VoltarPSala").Hide();
+			GetNode<Button>("VoltarDaCozinha").Hide();
 		};
 
 		// Espelho: banheiro -> espelho (fala do espelho, só na primeira vez do dia)
 		GetNode<Button>("Espelho").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Node2D>("SalaDeEstar").Hide();
-			GetNode<Sprite2D>("Fundo2").Hide();
+			GetNode<Sprite2D>("Banheiro").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Show();
-			GetNode<Sprite2D>("Sprite2D").Hide();
+			GetNode<Sprite2D>("Quarto").Hide();
 			GetNode<CanvasItem>("Cozinha").Hide();
-			GetNode<Button>("VoltarSalaQuarto").Hide();
+			GetNode<Button>("VoltarDaSala").Hide();
 			GetNode<Button>("TarefaEscolar").Hide();
-			GetNode<Button>("BotaoVoltar").Hide();
+			GetNode<Button>("VoltarBanheiro").Hide();
 			GetNode<Button>("SairEspelho").Show();
 			GetNode<Button>("IrCozinha").Hide();
-			GetNode<Button>("VoltarPSala").Hide();
+			GetNode<Button>("VoltarDaCozinha").Hide();
 			TentarFalar("Espelho");
 		};
 
 		// SairEspelho: espelho -> banheiro
 		GetNode<Button>("SairEspelho").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
-			GetNode<Sprite2D>("Sprite2D").Hide();
+			GetNode<Sprite2D>("Quarto").Hide();
 			GetNode<Node2D>("SalaDeEstar").Hide();
-			GetNode<Sprite2D>("Fundo2").Show();
+			GetNode<Sprite2D>("Banheiro").Show();
 			GetNode<CanvasItem>("Cozinha").Hide();
 			GetNode<Button>("SairEspelho").Hide();
 			GetNode<CanvasLayer>("Dialogo").Hide();
 
-			GetNode<Button>("Botao").Hide();
-			GetNode<Button>("Salaestar").Hide();
-			GetNode<Button>("BotaoVoltar").Show();
+			GetNode<Button>("IrBanheiro").Hide();
+			GetNode<Button>("IrSala").Hide();
+			GetNode<Button>("VoltarBanheiro").Show();
 			GetNode<Button>("TarefaEscolar").Hide();
-			GetNode<Button>("VoltarSalaQuarto").Hide();
+			GetNode<Button>("VoltarDaSala").Hide();
 			GetNode<Button>("Espelho").Show();
-			GetNode<Button>("NextDay").Hide();
+			GetNode<Button>("ProximoDia").Hide();
 			GetNode<Button>("IrCozinha").Hide();
-			GetNode<Button>("VoltarPSala").Hide();
+			GetNode<Button>("VoltarDaCozinha").Hide();
 		};
 
 		// BotaoVoltar: banheiro -> quarto
-		GetNode<Button>("BotaoVoltar").Pressed += () =>
+		GetNode<Button>("VoltarBanheiro").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
-			GetNode<Sprite2D>("Fundo2").Hide();
+			GetNode<Sprite2D>("Banheiro").Hide();
 			GetNode<Node2D>("SalaDeEstar").Hide();
-			GetNode<Sprite2D>("Sprite2D").Show();
+			GetNode<Sprite2D>("Quarto").Show();
 			GetNode<CanvasItem>("Cozinha").Hide();
 
 			GetNode<Button>("TarefaEscolar").Hide();
-			GetNode<Button>("BotaoVoltar").Hide();
-			GetNode<Button>("VoltarSalaQuarto").Hide();
-			GetNode<Button>("Botao").Show();
-			GetNode<Button>("Salaestar").Show();
+			GetNode<Button>("VoltarBanheiro").Hide();
+			GetNode<Button>("VoltarDaSala").Hide();
+			GetNode<Button>("IrBanheiro").Show();
+			GetNode<Button>("IrSala").Show();
 			GetNode<Button>("Espelho").Hide();
-			GetNode<Button>("NextDay").Visible = gameState.PossoFinalizarDia();
+			GetNode<Button>("ProximoDia").Visible = gameState.PossoFinalizarDia();
 			GetNode<Button>("IrCozinha").Hide();
-			GetNode<Button>("VoltarPSala").Hide();
+			GetNode<Button>("VoltarDaCozinha").Hide();
 		};
 
 		// Salaestar: quarto -> sala de estar
-		GetNode<Button>("Salaestar").Pressed += () =>
+		GetNode<Button>("IrSala").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
-			GetNode<Sprite2D>("Sprite2D").Hide();
-			GetNode<Sprite2D>("Fundo2").Hide();
+			GetNode<Sprite2D>("Quarto").Hide();
+			GetNode<Sprite2D>("Banheiro").Hide();
 			GetNode<Node2D>("SalaDeEstar").Show();
 			GetNode<CanvasItem>("Cozinha").Hide();
 
-			GetNode<Button>("Salaestar").Hide();
-			GetNode<Button>("Botao").Hide();
-			GetNode<Button>("BotaoVoltar").Hide();
+			GetNode<Button>("IrSala").Hide();
+			GetNode<Button>("IrBanheiro").Hide();
+			GetNode<Button>("VoltarBanheiro").Hide();
 			GetNode<Button>("TarefaEscolar").Visible = gameState.PossoFazerATarefa(GameState.TarefaEscolar);
 			// Pintura: só aparece nos dias em que Pintar está na lista (no dia 1 não está)
 			GetNode<Button>("SalaDeEstar/Cavalete").Visible = gameState.PossoFazerATarefa(GameState.Pintar);
-			GetNode<Button>("VoltarSalaQuarto").Show();
+			GetNode<Button>("VoltarDaSala").Show();
 			GetNode<Button>("Espelho").Hide();
-			GetNode<Button>("NextDay").Hide();
+			GetNode<Button>("ProximoDia").Hide();
 			GetNode<Button>("IrCozinha").Show();
-			GetNode<Button>("VoltarPSala").Hide();
+			GetNode<Button>("VoltarDaCozinha").Hide();
 		};
 
 		// VoltarSalaQuarto: sala de estar -> quarto
-		GetNode<Button>("VoltarSalaQuarto").Pressed += () =>
+		GetNode<Button>("VoltarDaSala").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
 			GetNode<Node2D>("SalaDeEstar").Hide();
-			GetNode<Sprite2D>("Fundo2").Hide();
-			GetNode<Sprite2D>("Sprite2D").Show();
+			GetNode<Sprite2D>("Banheiro").Hide();
+			GetNode<Sprite2D>("Quarto").Show();
 			GetNode<CanvasItem>("Cozinha").Hide();
 
-			GetNode<Button>("VoltarSalaQuarto").Hide();
+			GetNode<Button>("VoltarDaSala").Hide();
 			GetNode<Button>("TarefaEscolar").Hide();
-			GetNode<Button>("BotaoVoltar").Hide();
-			GetNode<Button>("Botao").Show();
-			GetNode<Button>("Salaestar").Show();
+			GetNode<Button>("VoltarBanheiro").Hide();
+			GetNode<Button>("IrBanheiro").Show();
+			GetNode<Button>("IrSala").Show();
 			GetNode<Button>("Espelho").Hide();
-			GetNode<Button>("NextDay").Visible = gameState.PossoFinalizarDia();
+			GetNode<Button>("ProximoDia").Visible = gameState.PossoFinalizarDia();
 			GetNode<Button>("IrCozinha").Hide();
-			GetNode<Button>("VoltarPSala").Hide();
+			GetNode<Button>("VoltarDaCozinha").Hide();
 		};
 
 		// IrCozinha: sala de estar -> cozinha (fala da cozinha, só na primeira vez do dia)
 		GetNode<Button>("IrCozinha").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
-			GetNode<Sprite2D>("Sprite2D").Hide();
-			GetNode<Sprite2D>("Fundo2").Hide();
+			GetNode<Sprite2D>("Quarto").Hide();
+			GetNode<Sprite2D>("Banheiro").Hide();
 			GetNode<Node2D>("SalaDeEstar").Hide();
 			GetNode<CanvasItem>("Cozinha").Show();
 
-			GetNode<Button>("Salaestar").Hide();
-			GetNode<Button>("Botao").Hide();
-			GetNode<Button>("BotaoVoltar").Hide();
+			GetNode<Button>("IrSala").Hide();
+			GetNode<Button>("IrBanheiro").Hide();
+			GetNode<Button>("VoltarBanheiro").Hide();
 			GetNode<Button>("TarefaEscolar").Hide();
-			GetNode<Button>("VoltarSalaQuarto").Hide();
+			GetNode<Button>("VoltarDaSala").Hide();
 			GetNode<Button>("Espelho").Hide();
-			GetNode<Button>("NextDay").Hide();
+			GetNode<Button>("ProximoDia").Hide();
 			GetNode<Button>("IrCozinha").Hide();
-			GetNode<Button>("VoltarPSala").Show();
+			GetNode<Button>("VoltarDaCozinha").Show();
 			TentarFalar("Cozinha");
 		};
 
 		// VoltarPSala: cozinha -> sala de estar
-		GetNode<Button>("VoltarPSala").Pressed += () =>
+		GetNode<Button>("VoltarDaCozinha").Pressed += () =>
 		{
-			GetNode<Button>("Comecar").Hide();
+			GetNode<Button>("BotaoComecar").Hide();
 			GetNode<Sprite2D>("FundoEspelho").Hide();
-			GetNode<Sprite2D>("Sprite2D").Hide();
-			GetNode<Sprite2D>("Fundo2").Hide();
+			GetNode<Sprite2D>("Quarto").Hide();
+			GetNode<Sprite2D>("Banheiro").Hide();
 			GetNode<CanvasItem>("Cozinha").Hide();
 			GetNode<Node2D>("SalaDeEstar").Show();
 			GetNode<CanvasLayer>("Dialogo").Hide();
 
-			GetNode<Button>("Salaestar").Hide();
-			GetNode<Button>("Botao").Hide();
-			GetNode<Button>("BotaoVoltar").Hide();
+			GetNode<Button>("IrSala").Hide();
+			GetNode<Button>("IrBanheiro").Hide();
+			GetNode<Button>("VoltarBanheiro").Hide();
 			GetNode<Button>("Espelho").Hide();
-			GetNode<Button>("NextDay").Hide();
-			GetNode<Button>("VoltarPSala").Hide();
+			GetNode<Button>("ProximoDia").Hide();
+			GetNode<Button>("VoltarDaCozinha").Hide();
 			GetNode<Button>("TarefaEscolar").Visible = gameState.PossoFazerATarefa(GameState.TarefaEscolar);
 			GetNode<Button>("SalaDeEstar/Cavalete").Visible = gameState.PossoFazerATarefa(GameState.Pintar);
-			GetNode<Button>("VoltarSalaQuarto").Show();
+			GetNode<Button>("VoltarDaSala").Show();
 			GetNode<Button>("IrCozinha").Show();
 		};
 
@@ -299,8 +299,8 @@ public partial class Sala1 : Node2D
 		tarefaEscolar.MouseExited += () => textoTarefa.Hide();
 
 		// Próximo dia
-		Button nextDay = GetNode<Button>("NextDay");
-		Label textoNextDay = GetNode<Label>("NextDay/TextoNextDay");
+		Button nextDay = GetNode<Button>("ProximoDia");
+		Label textoNextDay = GetNode<Label>("ProximoDia/TextoNextDay");
 		textoNextDay.Hide();
 		nextDay.MouseEntered += () => textoNextDay.Show();
 		nextDay.MouseExited += () => textoNextDay.Hide();
@@ -365,7 +365,7 @@ public partial class Sala1 : Node2D
 	{
 		GD.Print("Dia mudou para: " + dia);
 		GetNode<CanvasLayer>("Dialogo").Hide();
-		GetNode<Button>("NextDay").Visible = gameState.PossoFinalizarDia();
+		GetNode<Button>("ProximoDia").Visible = gameState.PossoFinalizarDia();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
