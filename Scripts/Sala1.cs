@@ -7,7 +7,7 @@ public partial class Sala1 : Node2D
 	GameState gameState;
 	AudioStreamPlayer2D musica;
 	AudioStreamPlayer2D somDialogo;
-
+	Tween tweenTexto; //para a animação do dialogo
 	Node2D[] comodos;
 
 	// Falas (dia, local).
@@ -55,7 +55,7 @@ public partial class Sala1 : Node2D
 		gameState = GetNode<GameState>("/root/GameState");
 		gameState.DiaMudou += AoDiaMudar;
 		musica = GetNode<AudioStreamPlayer2D>("MusicaPrincipal");
-		//somDialogo = GetNode<AudioStreamPlayer2D>("somDialogo");
+		somDialogo = GetNode<AudioStreamPlayer2D>("somDialogo");
 
 		var menu = GetNode<Node2D>("ComodoMenu");
 		var quarto = GetNode<Node2D>("ComodoQuarto");
@@ -63,7 +63,10 @@ public partial class Sala1 : Node2D
 		var espelho = GetNode<Node2D>("ComodoEspelho");
 		var sala = GetNode<Node2D>("SalaDeEstar");
 		var cozinha = GetNode<Node2D>("ComodoCozinha");
-		comodos = new[] { menu, quarto, banheiro, espelho, sala, cozinha };
+		var mesa = GetNode<Node2D>("ComodoCozinhaMesa");
+		var cozinhar = GetNode<Node2D>("Cozinhar");
+
+		comodos = new[] { menu, quarto, banheiro, espelho, sala, cozinha, mesa, cozinhar };
 
 		MostrarComodo(menu);
 
@@ -77,6 +80,7 @@ public partial class Sala1 : Node2D
 		{
 			MostrarComodo(espelho);
 			TentarFalar("Espelho");
+			GetNode<Button>("%SairEspelho").Show();
 		};
 		GetNode<Button>("%SairEspelho").Pressed += () => MostrarComodo(banheiro);
 
@@ -89,23 +93,38 @@ public partial class Sala1 : Node2D
 			MostrarComodo(cozinha);
 			TentarFalar("Cozinha");
 		};
+		
+		GetNode<Button>("%FogaoCozinhar").Pressed += () => MostrarComodo(cozinhar);
+
 		GetNode<Button>("%VoltarDaCozinha").Pressed += () => MostrarComodo(sala);
+
+
 
 		GetNode<Button>("Dialogo/Caixa/Avancar").Pressed += () =>
 		{
-			if (falasAtuais == null) return;
+			if(falasAtuais == null) return;
+			if(tweenTexto != null && tweenTexto.IsRunning())
+			{
+			tweenTexto.Kill();
+			somDialogo?.Stop();   
 
+			GetNode<Label>("Dialogo/Caixa/Texto").VisibleRatio = 1;
+			return;
+			}
 			falaAtual++;
 
 			if (falaAtual < falasAtuais.Length)
-				MostrarFala(falasAtuais[falaAtual]);
+			MostrarFala(falasAtuais[falaAtual]);
 			else
-				GetNode<CanvasLayer>("Dialogo").Hide();
+			GetNode<CanvasLayer>("Dialogo").Hide();
 		};
+
+		
 
 		Button botaoEspelho = GetNode<Button>("%Espelho");
 		Label textoEspelho = GetNode<Label>("%TextoEspelho");
 		textoEspelho.Hide();
+		// VER ISSO GetNode<Button>("%SairEspelho").Show();
 		botaoEspelho.MouseEntered += () => textoEspelho.Show();
 		botaoEspelho.MouseExited += () => textoEspelho.Hide();
 
@@ -177,11 +196,25 @@ public partial class Sala1 : Node2D
 		MostrarFala(linhas[0]);
 	}
 
+	private void FecharDialogo()
+{
+	tweenTexto?.Kill();
+	somDialogo?.Stop();
+	GetNode<CanvasLayer>("Dialogo").Hide();
+}
+
 	private void MostrarFala(string fala)
 	{
-		GetNode<Label>("Dialogo/Caixa/Texto").Text = fala;
-		GetNode<CanvasLayer>("Dialogo").Show();
-		somDialogo?.Play();
+		Label texto = GetNode<Label>("Dialogo/Caixa/Texto");
+	texto.Text = fala;
+	texto.VisibleRatio = 0;
+	GetNode<CanvasLayer>("Dialogo").Show();
+
+	tweenTexto?.Kill(); //caso exista digitaçao da fala anterior ele cancela e sobrepoe
+	tweenTexto = CreateTween(); //texto aparecendo letra por letra sendo guardado nessa variável e o tamanho da palavra
+	tweenTexto.TweenProperty(texto, "visible_ratio", 1.0, fala.Length * 0.05); //aparece letra por letra e velocidade
+	tweenTexto.Finished += () => somDialogo?.Stop();
+	somDialogo?.Play();
 	}
 
 	public override void _ExitTree()
