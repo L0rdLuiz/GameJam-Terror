@@ -20,8 +20,9 @@ GameState="*uid://dif0k1l5c71bf"
 
 [display]
 
+window/size/viewport_width=1376
+window/size/viewport_height=768
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [dotnet]
 
