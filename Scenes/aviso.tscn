@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dlonlhocvhngj"]
+
+[ext_resource type="Script" uid="uid://cv6ygj37pnqnf" path="res://Scripts/Aviso.cs" id="1_xkrmn"]
+
+[node name="Aviso" type="CanvasLayer" unique_id=1770632406]
+layer = 10
+script = ExtResource("1_xkrmn")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=9155834]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_right = 0.966
+anchor_bottom = 0.671
+offset_left = 308.0
+offset_top = 226.0
+offset_right = -314.83203
+offset_bottom = -97.808014
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=533959905]
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 2

@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bdhwrbiuow5eg" path="res://Art/Ambientes/cozinha.jpg" id="11_pd6y2"]
 [ext_resource type="AudioStream" uid="uid://bgs8xfrokok0s" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
 [ext_resource type="AudioStream" uid="uid://uy0e3p5wnkc5" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
+[ext_resource type="PackedScene" uid="uid://dlonlhocvhngj" path="res://Scenes/aviso.tscn" id="14_qxdo5"]
 
 [node name="Sala1" type="Node2D" unique_id=159072724]
 script = ExtResource("1_kcv01")
@@ -181,22 +182,12 @@ offset_right = 1247.0
 offset_bottom = 388.0
 flat = true
 
-[node name="ProximoDia" type="Button" parent="ComodoQuarto" unique_id=2092149299]
+[node name="ProximoDia" type="Button" parent="ComodoQuarto" unique_id=289025663]
 unique_name_in_owner = true
-offset_left = 436.0
-offset_top = 291.0
-offset_right = 986.0
-offset_bottom = 575.0
-flat = true
-
-[node name="TextoNextDay" type="Label" parent="ComodoQuarto/ProximoDia" unique_id=864835203]
-visible = false
-layout_mode = 0
-offset_left = 189.0
-offset_top = 93.0
-offset_right = 490.0
-offset_bottom = 155.0
-text = "NEXT DAY"
+offset_left = 308.0
+offset_top = 194.0
+offset_right = 1146.0
+offset_bottom = 652.0
 
 [node name="ComodoBanheiro" type="Node2D" parent="." unique_id=107546116]
 
@@ -249,6 +240,7 @@ position = Vector2(556, 320)
 texture = ExtResource("9_vw5l1")
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
+visible = false
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(574, 314)
@@ -262,3 +254,5 @@ offset_top = 322.0
 offset_right = 192.0
 offset_bottom = 454.0
 flat = true
+
+[node name="Aviso" parent="." unique_id=1770632406 instance=ExtResource("14_qxdo5")]

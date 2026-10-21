@@ -120,10 +120,18 @@ public partial class GameState : Node
 		return true;
 	}
 
+	public void PedirAviso(string texto)
+	{
+		EmitSignal(SignalName.AvisoPedido, texto);
+	}
+
 	[Signal]
 	public delegate void DiaMudouEventHandler(int novoDia);
 	
 	[Signal]
 	public delegate void TarefaConcluidaEventHandler(string nomeTarefa);
+
+	[Signal]
+	public delegate void AvisoPedidoEventHandler(string texto);
 
 }
