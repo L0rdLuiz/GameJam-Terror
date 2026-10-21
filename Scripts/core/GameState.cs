@@ -18,6 +18,7 @@ public partial class GameState : Node
 	public const string AjeitarBrinquedos = "ajeitar_brinquedos";
 	public const string BuscarRemedio = "buscar_remedio";
 
+	public const string Pintar = "pintar";
 
 
 	public void NextDay()

@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://ct3fhu1cfs45t" path="res://Scenes/TelaPintura.cs" id="8_vq66k"]
 [ext_resource type="Texture2D" uid="uid://cby34a1jk6eg" path="res://Art/Ambientes/Fundoespelho.jpg" id="9_vw5l1"]
 [ext_resource type="Texture2D" uid="uid://c4kh2m85ohbc6" path="res://Art/Ambientes/Menu.jpg" id="10_0dbmu"]
+[ext_resource type="Texture2D" uid="uid://bdhwrbiuow5eg" path="res://Art/Ambientes/cozinha.jpg" id="11_pd6y2"]
+[ext_resource type="AudioStream" uid="uid://bgs8xfrokok0s" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
+[ext_resource type="AudioStream" uid="uid://uy0e3p5wnkc5" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
 
 [node name="Sala1" type="Node2D" unique_id=159072724]
 script = ExtResource("1_kcv01")
@@ -19,7 +22,6 @@ position = Vector2(571, 315)
 texture = ExtResource("2_ol3of")
 
 [node name="Botao" type="Button" parent="." unique_id=1002927502]
-visible = false
 offset_left = -91.0
 offset_top = 357.0
 offset_right = 44.0
@@ -100,6 +102,7 @@ offset_bottom = 127.0
 text = "Pintar"
 
 [node name="TelaPintura" type="CanvasLayer" parent="SalaDeEstar" unique_id=1640934503]
+visible = false
 script = ExtResource("8_vq66k")
 
 [node name="Fundo" type="ColorRect" parent="SalaDeEstar/TelaPintura" unique_id=1709692004]
@@ -130,7 +133,6 @@ offset_bottom = 388.0
 flat = true
 
 [node name="VoltarSalaQuarto" type="Button" parent="." unique_id=1619023514]
-visible = false
 offset_left = -135.0
 offset_top = 325.0
 offset_right = 79.0
@@ -178,19 +180,20 @@ offset_bottom = 408.0
 text = "Start"
 
 [node name="SairEspelho" type="Button" parent="." unique_id=99884292]
+visible = false
 offset_left = 10.0
 offset_top = -4.0
 offset_right = 99.0
 offset_bottom = 79.0
 text = "X"
+flat = true
 
 [node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
-visible = false
 
 [node name="Caixa" type="Panel" parent="Dialogo" unique_id=732848754]
-offset_left = 6.0
-offset_top = 471.0
-offset_right = 1152.0
+offset_left = -3.0
+offset_top = 473.0
+offset_right = 1157.0
 offset_bottom = 653.0
 
 [node name="Texto" type="Label" parent="Dialogo/Caixa" unique_id=1320008937]
@@ -209,3 +212,31 @@ offset_top = 4.0
 offset_right = 1149.0
 offset_bottom = 179.0
 flat = true
+
+[node name="Cozinha" type="Sprite2D" parent="." unique_id=347393945]
+visible = false
+position = Vector2(574, 314)
+scale = Vector2(0.9840117, 1.0208333)
+texture = ExtResource("11_pd6y2")
+
+[node name="IrCozinha" type="Button" parent="." unique_id=73481082]
+offset_left = 983.0
+offset_top = 335.0
+offset_right = 1359.0
+offset_bottom = 435.0
+flat = true
+
+[node name="VoltarPSala" type="Button" parent="." unique_id=1396863339]
+offset_left = -202.0
+offset_top = 322.0
+offset_right = 192.0
+offset_bottom = 454.0
+flat = true
+
+[node name="MusicaPrincipal" type="AudioStreamPlayer2D" parent="." unique_id=799966107]
+stream = ExtResource("12_0vxn5")
+autoplay = true
+
+[node name="somDialogo" type="AudioStreamPlayer2D" parent="." unique_id=1749233045]
+stream = ExtResource("13_pd6y2")
+volume_db = 21.185
