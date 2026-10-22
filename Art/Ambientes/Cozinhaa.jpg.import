@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dta0bgcxaj5du"
-path="res://.godot/imported/cozinhar.jpg-51291b6cb55f688cc49ae567c55ea4c7.ctex"
+uid="uid://c1o13c6sfyjsa"
+path="res://.godot/imported/Cozinhaa.jpg-ccf284a64a3df76c169a2df226cb1729.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Ambientes/cozinhar.jpg"
-dest_files=["res://.godot/imported/cozinhar.jpg-51291b6cb55f688cc49ae567c55ea4c7.ctex"]
+source_file="res://Art/Ambientes/Cozinhaa.jpg"
+dest_files=["res://.godot/imported/Cozinhaa.jpg-ccf284a64a3df76c169a2df226cb1729.ctex"]
 
 [params]
 
