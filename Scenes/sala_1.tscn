@@ -11,18 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://cby34a1jk6eg" path="res://Art/Ambientes/Fundoespelho.jpg" id="9_vw5l1"]
 [ext_resource type="Texture2D" uid="uid://c4kh2m85ohbc6" path="res://Art/Ambientes/Menu.jpg" id="10_0dbmu"]
 [ext_resource type="Texture2D" uid="uid://bdhwrbiuow5eg" path="res://Art/Ambientes/cozinha.jpg" id="11_pd6y2"]
-<<<<<<< HEAD
-[ext_resource type="AudioStream" uid="uid://bgs8xfrokok0s" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
-[ext_resource type="AudioStream" uid="uid://uy0e3p5wnkc5" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
-[ext_resource type="PackedScene" uid="uid://dlonlhocvhngj" path="res://Scenes/aviso.tscn" id="14_qxdo5"]
-=======
 [ext_resource type="AudioStream" uid="uid://d4bhw0p5cavpq" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
 [ext_resource type="AudioStream" uid="uid://bwbtu5mch8ryq" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
 [ext_resource type="Texture2D" uid="uid://c1isb7tv302cr" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
 [ext_resource type="Texture2D" uid="uid://dta0bgcxaj5du" path="res://Art/Ambientes/cozinhar.jpg" id="15_7rqkd"]
+[ext_resource type="PackedScene" uid="uid://dlonlhocvhngj" path="res://Scenes/aviso.tscn" id="16_aviso"]
 
 [sub_resource type="Theme" id="Theme_qxdo5"]
->>>>>>> 993cd8201c3a80c236fe113456f17ccc44f0bbdf
 
 [node name="Sala1" type="Node2D" unique_id=159072724]
 script = ExtResource("1_kcv01")
@@ -195,12 +190,6 @@ flat = true
 
 [node name="ProximoDia" type="Button" parent="ComodoQuarto" unique_id=289025663]
 unique_name_in_owner = true
-<<<<<<< HEAD
-offset_left = 308.0
-offset_top = 194.0
-offset_right = 1146.0
-offset_bottom = 652.0
-=======
 offset_left = 547.0
 offset_top = 331.0
 offset_right = 1097.0
@@ -215,7 +204,6 @@ offset_top = 93.0
 offset_right = 490.0
 offset_bottom = 155.0
 text = "NEXT DAY"
->>>>>>> 993cd8201c3a80c236fe113456f17ccc44f0bbdf
 
 [node name="ComodoBanheiro" type="Node2D" parent="." unique_id=107546116]
 
@@ -280,9 +268,8 @@ offset_right = 192.0
 offset_bottom = 454.0
 flat = true
 
-<<<<<<< HEAD
-[node name="Aviso" parent="." unique_id=1770632406 instance=ExtResource("14_qxdo5")]
-=======
+[node name="Aviso" parent="." unique_id=1770632406 instance=ExtResource("16_aviso")]
+
 [node name="FogaoCozinhar" type="Button" parent="ComodoCozinha" unique_id=837527133]
 unique_name_in_owner = true
 offset_left = 157.0
@@ -305,4 +292,3 @@ texture = ExtResource("14_qxdo5")
 position = Vector2(712, 375)
 scale = Vector2(0.98255813, 0.9791667)
 texture = ExtResource("15_7rqkd")
->>>>>>> 993cd8201c3a80c236fe113456f17ccc44f0bbdf
