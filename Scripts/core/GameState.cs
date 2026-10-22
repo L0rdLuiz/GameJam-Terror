@@ -26,8 +26,10 @@ public partial class GameState : Node
 		tarefasConcluidas.Clear();
 		Day++;
 		GD.Print("Day: " + Day);
+		PedirAviso("Day: " + Day);
 		EmitSignal(SignalName.DiaMudou, Day);
 	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

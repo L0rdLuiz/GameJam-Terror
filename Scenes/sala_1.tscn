@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cby34a1jk6eg" path="res://Art/Ambientes/Fundoespelho.jpg" id="9_vw5l1"]
 [ext_resource type="Texture2D" uid="uid://c4kh2m85ohbc6" path="res://Art/Ambientes/Menu.jpg" id="10_0dbmu"]
 [ext_resource type="AudioStream" uid="uid://d4bhw0p5cavpq" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
-[ext_resource type="AudioStream" uid="uid://bwbtu5mch8ryq" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
-[ext_resource type="Texture2D" uid="uid://c1isb7tv302cr" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
+[ext_resource type="AudioStream" uid="uid://h581670wqa3o" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
+[ext_resource type="Texture2D" uid="uid://7hcjt17g0ixi" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
 [ext_resource type="Texture2D" uid="uid://dta0bgcxaj5du" path="res://Art/Ambientes/cozinhar.jpg" id="15_7rqkd"]
 
 [sub_resource type="Theme" id="Theme_qxdo5"]
@@ -152,6 +152,7 @@ volume_db = 24.0
 pitch_scale = 0.55
 
 [node name="ComodoMenu" type="Node2D" parent="." unique_id=1624878423]
+visible = false
 
 [node name="FundoMenu" type="Sprite2D" parent="ComodoMenu" unique_id=700997057]
 position = Vector2(688.5, 384.49997)
@@ -196,6 +197,7 @@ offset_left = 547.0
 offset_top = 331.0
 offset_right = 1097.0
 offset_bottom = 615.0
+text = "Next Day"
 flat = true
 
 [node name="TextoNextDay" type="Label" parent="ComodoQuarto/ProximoDia" unique_id=864835203]
@@ -208,6 +210,7 @@ offset_bottom = 155.0
 text = "NEXT DAY"
 
 [node name="ComodoBanheiro" type="Node2D" parent="." unique_id=107546116]
+visible = false
 
 [node name="Banheiro" type="Sprite2D" parent="ComodoBanheiro" unique_id=913591866]
 position = Vector2(687.75, 384)
@@ -243,6 +246,7 @@ offset_bottom = 276.0
 text = "Se olhar no espelho"
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
+visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)
@@ -282,8 +286,7 @@ offset_bottom = 584.0
 text = "COZINHAR
 "
 
-[node name="VoltarDaCozinha" type="Button" parent="ComodoCozinha/FogaoCozinhar" unique_id=1396863339]
-unique_name_in_owner = true
+[node name="VoltarDaCozinha" type="Button" parent="ComodoCozinha/FogaoCozinhar" unique_id=678246553]
 layout_mode = 0
 offset_left = -140.0
 offset_top = -83.0
@@ -291,16 +294,21 @@ offset_bottom = -1.0
 flat = true
 
 [node name="ComodoCozinhaMesa" type="Node2D" parent="." unique_id=365674869]
+visible = false
 
 [node name="Mesa" type="Sprite2D" parent="ComodoCozinhaMesa" unique_id=802430399]
+visible = false
 position = Vector2(689, 384)
 scale = Vector2(1, 0.9973959)
 texture = ExtResource("14_qxdo5")
 
 [node name="Cozinhar" type="Node2D" parent="." unique_id=1771279272]
+visible = false
 
 [node name="Cozinhar" type="Sprite2D" parent="Cozinhar" unique_id=847825352]
 visible = false
 position = Vector2(712, 375)
 scale = Vector2(0.98255813, 0.9791667)
 texture = SubResource("CompressedTexture2D_7rqkd")
+
+[connection signal="pressed" from="ComodoQuarto/ProximoDia" to="." method="OnButtonPressed"]
