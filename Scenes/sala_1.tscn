@@ -263,7 +263,7 @@ visible = false
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 369.00003)
 scale = Vector2(1.0021802, 1.0416666)
-texture = ExtResource("11_pd6y2")
+texture = ExtResource("15_7rqkd")
 
 [node name="VoltarDaCozinha" type="Button" parent="ComodoCozinha" unique_id=1396863339]
 unique_name_in_owner = true
