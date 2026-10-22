@@ -9,6 +9,7 @@ public partial class Sala1 : Node2D
 	AudioStreamPlayer2D somDialogo;
 	Tween tweenTexto; //para a animação do dialogo
 	Node2D[] comodos;
+	private CanvasLayer painelTarefa;
 
 	// Falas (dia, local).
 	Dictionary<(int dia, string local), string[]> falas = new()
@@ -68,6 +69,8 @@ public partial class Sala1 : Node2D
 		var cozinhar = GetNode<Node2D>("Cozinhar");
 
 		comodos = new[] { menu, quarto, banheiro, espelho, sala, cozinha, mesa, cozinhar };
+		painelTarefa = GetNode<CanvasLayer>("PainelTarefa");
+		MostrarComodo(menu);
 
 		MostrarComodo(menu);
 
@@ -164,17 +167,23 @@ public partial class Sala1 : Node2D
 			};
 		};
 	}
-
-	// Mostra só um cômodo e esconde os outros
+	
 	private void MostrarComodo(Node2D comodo)
 	{
 		foreach (var c in comodos)
 			c.Hide();
 
 		comodo.Show();
+
+		// O primeiro cômodo do array é o menu
+		bool estaNoMenu = comodo == comodos[0];
+
+		painelTarefa.Visible = !estaNoMenu;
+
 		GetNode<CanvasLayer>("Dialogo").Hide();
 		AtualizarBotoes();
 	}
+
 
 	private void AtualizarBotoes()
 	{

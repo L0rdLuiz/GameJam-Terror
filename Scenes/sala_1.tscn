@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://h581670wqa3o" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
 [ext_resource type="Texture2D" uid="uid://7hcjt17g0ixi" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
 [ext_resource type="Texture2D" uid="uid://dta0bgcxaj5du" path="res://Art/Ambientes/cozinhar.jpg" id="15_7rqkd"]
+[ext_resource type="Script" uid="uid://d3sm4ib6x6aq5" path="res://Scripts/PainelTarefa.cs" id="15_gwlct"]
 
 [sub_resource type="Theme" id="Theme_qxdo5"]
 
@@ -310,5 +311,27 @@ visible = false
 position = Vector2(712, 375)
 scale = Vector2(0.98255813, 0.9791667)
 texture = SubResource("CompressedTexture2D_7rqkd")
+
+[node name="PainelTarefa" type="CanvasLayer" parent="." unique_id=1328937447]
+script = ExtResource("15_gwlct")
+
+[node name="PanelContainer" type="PanelContainer" parent="PainelTarefa" unique_id=2133346767]
+offset_left = 29.0
+offset_top = 13.0
+offset_right = 269.0
+offset_bottom = 103.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PainelTarefa/PanelContainer" unique_id=1118467659]
+layout_mode = 2
+
+[node name="Titulo" type="Label" parent="PainelTarefa/PanelContainer/VBoxContainer" unique_id=1324449102]
+layout_mode = 2
+text = "PRÓXIMA TAREFA:"
+
+[node name="NomeTarefa" type="Label" parent="PainelTarefa/PanelContainer/VBoxContainer" unique_id=1826614268]
+layout_mode = 2
+
+[node name="Dia" type="Label" parent="PainelTarefa/PanelContainer/VBoxContainer" unique_id=1560849263]
+layout_mode = 2
 
 [connection signal="pressed" from="ComodoQuarto/ProximoDia" to="." method="OnButtonPressed"]
