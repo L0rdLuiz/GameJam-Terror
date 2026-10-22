@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cby34a1jk6eg" path="res://Art/Ambientes/Fundoespelho.jpg" id="9_vw5l1"]
 [ext_resource type="Texture2D" uid="uid://c4kh2m85ohbc6" path="res://Art/Ambientes/Menu.jpg" id="10_0dbmu"]
 [ext_resource type="AudioStream" uid="uid://d4bhw0p5cavpq" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
-[ext_resource type="AudioStream" uid="uid://h581670wqa3o" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
-[ext_resource type="Texture2D" uid="uid://c1o13c6sfyjsa" path="res://Art/Ambientes/Cozinhaa.jpg" id="13_qxdo5"]
-[ext_resource type="Texture2D" uid="uid://7hcjt17g0ixi" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
+[ext_resource type="AudioStream" uid="uid://bwbtu5mch8ryq" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
+[ext_resource type="Texture2D" uid="uid://c1isb7tv302cr" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
+[ext_resource type="Texture2D" uid="uid://dta0bgcxaj5du" path="res://Art/Ambientes/cozinhar.jpg" id="15_7rqkd"]
 
 [sub_resource type="Theme" id="Theme_qxdo5"]
 
@@ -190,7 +190,7 @@ offset_right = 1367.0
 offset_bottom = 460.0
 flat = true
 
-[node name="ProximoDia" type="Button" parent="ComodoQuarto" unique_id=2092149299]
+[node name="ProximoDia" type="Button" parent="ComodoQuarto" unique_id=289025663]
 unique_name_in_owner = true
 offset_left = 547.0
 offset_top = 331.0
@@ -258,11 +258,20 @@ offset_bottom = 100.0
 text = "x"
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
+visible = false
 
-[node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=1755665456]
-position = Vector2(688, 383)
-scale = Vector2(1, 0.9973959)
-texture = ExtResource("13_qxdo5")
+[node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
+position = Vector2(688.5, 369.00003)
+scale = Vector2(1.0021802, 1.0416666)
+texture = ExtResource("11_pd6y2")
+
+[node name="VoltarDaCozinha" type="Button" parent="ComodoCozinha" unique_id=1396863339]
+unique_name_in_owner = true
+offset_left = 12.0
+offset_top = 381.0
+offset_right = 192.0
+offset_bottom = 454.0
+flat = true
 
 [node name="FogaoCozinhar" type="Button" parent="ComodoCozinha" unique_id=837527133]
 unique_name_in_owner = true

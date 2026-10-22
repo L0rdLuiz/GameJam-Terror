@@ -54,6 +54,7 @@ public partial class Sala1 : Node2D
 	{
 		gameState = GetNode<GameState>("/root/GameState");
 		gameState.DiaMudou += AoDiaMudar;
+		gameState.TarefaConcluida += AoTarefaConcluir;
 		musica = GetNode<AudioStreamPlayer2D>("MusicaPrincipal");
 		somDialogo = GetNode<AudioStreamPlayer2D>("somDialogo");
 
@@ -221,6 +222,8 @@ public partial class Sala1 : Node2D
 	{
 		if (gameState != null)
 			gameState.DiaMudou -= AoDiaMudar;
+		if (gameState != null)
+			gameState.TarefaConcluida -= AoTarefaConcluir;
 	}
 
 	private void OnButtonPressed()
@@ -233,6 +236,11 @@ public partial class Sala1 : Node2D
 	{
 		GD.Print("Dia mudou para: " + dia);
 		GetNode<CanvasLayer>("Dialogo").Hide();
+		AtualizarBotoes();
+	}
+
+	private void AoTarefaConcluir(string nomeTarefa)
+	{
 		AtualizarBotoes();
 	}
 
