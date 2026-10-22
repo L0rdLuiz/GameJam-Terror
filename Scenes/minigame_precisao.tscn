@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bcdo12g0ai3ur"]
+
+[ext_resource type="Script" uid="uid://d34ei1icqlvm8" path="res://Scripts/MinigamePrecisao.cs" id="1_qk20m"]
+
+[node name="MinigamePrecisao" type="Node2D" unique_id=16310842]
+script = ExtResource("1_qk20m")
+
+[node name="Barra" type="ColorRect" parent="." unique_id=972961135]
+offset_right = 880.0
+offset_bottom = 24.0
+color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+
+[node name="ZonaVerde" type="ColorRect" parent="." unique_id=11591025]
+offset_left = 155.0
+offset_right = 285.0
+offset_bottom = 24.0
+color = Color(0.21568628, 1, 0.06666667, 1)
+
+[node name="Sinal" type="ColorRect" parent="." unique_id=1327145922]
+offset_right = 5.0
+offset_bottom = 24.0
+color = Color(1, 0.10980392, 0, 1)
