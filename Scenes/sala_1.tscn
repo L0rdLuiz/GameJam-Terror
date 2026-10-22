@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://j8mlca3gg6rs" path="res://Art/Ambientes/quarto.jpg" id="2_ol3of"]
 [ext_resource type="Script" uid="uid://bwhxi7eksbs8t" path="res://Scenes/Botao.cs" id="3_lp7ft"]
 [ext_resource type="Texture2D" uid="uid://7o21tdrqd3r5" path="res://Art/Ambientes/banheiro9.jpg" id="4_drrmx"]
+[ext_resource type="Texture2D" uid="uid://be6wxq6kji5bn" path="res://Art/Ambientes/SalaComFilho.jpg" id="4_gwlct"]
 [ext_resource type="PackedScene" uid="uid://cvwuo2dwfqlbh" path="res://Scenes/debug_tarefas.tscn" id="5_ol3of"]
 [ext_resource type="Script" uid="uid://qfe7dbid0v7b" path="res://Scripts/SalaDeEstar.cs" id="6_dpcyj"]
 [ext_resource type="Texture2D" uid="uid://clkkhjnqdcob8" path="res://Art/Ambientes/SalaDeEstar.jpg" id="7_vq66k"]
@@ -11,10 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://cby34a1jk6eg" path="res://Art/Ambientes/Fundoespelho.jpg" id="9_vw5l1"]
 [ext_resource type="Texture2D" uid="uid://c4kh2m85ohbc6" path="res://Art/Ambientes/Menu.jpg" id="10_0dbmu"]
 [ext_resource type="AudioStream" uid="uid://d4bhw0p5cavpq" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
+[ext_resource type="Texture2D" uid="uid://c1o13c6sfyjsa" path="res://Art/Ambientes/Cozinhaa.jpg" id="13_7rqkd"]
 [ext_resource type="AudioStream" uid="uid://h581670wqa3o" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
 [ext_resource type="Texture2D" uid="uid://7hcjt17g0ixi" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
-[ext_resource type="Texture2D" uid="uid://dta0bgcxaj5du" path="res://Art/Ambientes/cozinhar.jpg" id="15_7rqkd"]
 [ext_resource type="Script" uid="uid://d3sm4ib6x6aq5" path="res://Scripts/PainelTarefa.cs" id="15_gwlct"]
+[ext_resource type="Texture2D" uid="uid://7s3df4e78k6a" path="res://Art/Ambientes/SalaLivro.jpg" id="17_tq52p"]
 
 [sub_resource type="Theme" id="Theme_qxdo5"]
 
@@ -109,13 +111,14 @@ offset_right = 191.0
 offset_bottom = 475.0
 flat = true
 
-[node name="VoltarSalaQuarto2" type="Button" parent="." unique_id=1273043196]
+[node name="Livro" type="Button" parent="SalaDeEstar" unique_id=1423651108]
 unique_name_in_owner = true
-offset_left = -80.0
-offset_top = -6.0
-offset_right = 134.0
-offset_bottom = 82.0
-text = "x"
+offset_left = 406.0
+offset_top = 341.0
+offset_right = 443.0
+offset_bottom = 377.0
+text = "LIVRO
+"
 
 [node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
 
@@ -149,7 +152,7 @@ autoplay = true
 
 [node name="somDialogo" type="AudioStreamPlayer2D" parent="." unique_id=1749233045]
 stream = ExtResource("13_pd6y2")
-volume_db = 24.0
+volume_db = 5.594
 pitch_scale = 0.55
 
 [node name="ComodoMenu" type="Node2D" parent="." unique_id=1624878423]
@@ -169,6 +172,7 @@ offset_bottom = 410.0
 text = "Start"
 
 [node name="ComodoQuarto" type="Node2D" parent="." unique_id=986971920]
+visible = false
 
 [node name="Quarto" type="Sprite2D" parent="ComodoQuarto" unique_id=1881920162]
 position = Vector2(690, 382.5)
@@ -268,7 +272,7 @@ visible = false
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 369.00003)
 scale = Vector2(1.0021802, 1.0416666)
-texture = ExtResource("15_7rqkd")
+texture = ExtResource("13_7rqkd")
 
 [node name="VoltarDaCozinha" type="Button" parent="ComodoCozinha" unique_id=1396863339]
 unique_name_in_owner = true
@@ -298,28 +302,42 @@ flat = true
 visible = false
 
 [node name="Mesa" type="Sprite2D" parent="ComodoCozinhaMesa" unique_id=802430399]
-visible = false
 position = Vector2(689, 384)
 scale = Vector2(1, 0.9973959)
 texture = ExtResource("14_qxdo5")
+
+[node name="IrSalaDaCozinha" type="Button" parent="ComodoCozinhaMesa" unique_id=358387996]
+unique_name_in_owner = true
+offset_left = 19.0
+offset_top = 408.0
+offset_right = 171.0
+offset_bottom = 456.0
 
 [node name="Cozinhar" type="Node2D" parent="." unique_id=1771279272]
 visible = false
 
 [node name="Cozinhar" type="Sprite2D" parent="Cozinhar" unique_id=847825352]
-visible = false
-position = Vector2(712, 375)
-scale = Vector2(0.98255813, 0.9791667)
+position = Vector2(698, 361)
+scale = Vector2(1.002907, 1.015625)
 texture = SubResource("CompressedTexture2D_7rqkd")
+
+[node name="sair" type="Button" parent="Cozinhar/Cozinhar" unique_id=2007032522]
+unique_name_in_owner = true
+offset_left = 524.142
+offset_top = 267.57443
+offset_right = 669.68054
+offset_bottom = 355.40424
+text = "TESTE SAIR
+"
 
 [node name="PainelTarefa" type="CanvasLayer" parent="." unique_id=1328937447]
 script = ExtResource("15_gwlct")
 
 [node name="PanelContainer" type="PanelContainer" parent="PainelTarefa" unique_id=2133346767]
-offset_left = 29.0
-offset_top = 13.0
-offset_right = 269.0
-offset_bottom = 103.0
+offset_left = 172.0
+offset_top = 41.0
+offset_right = 406.0
+offset_bottom = 118.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PainelTarefa/PanelContainer" unique_id=1118467659]
 layout_mode = 2
@@ -333,5 +351,36 @@ layout_mode = 2
 
 [node name="Dia" type="Label" parent="PainelTarefa/PanelContainer/VBoxContainer" unique_id=1560849263]
 layout_mode = 2
+
+[node name="SalaFilho" type="Node2D" parent="." unique_id=2107099407]
+
+[node name="SalaComFilho" type="Sprite2D" parent="SalaFilho" unique_id=2063403871]
+visible = false
+position = Vector2(694, 380.00003)
+scale = Vector2(0.99563956, 0.99479175)
+texture = ExtResource("4_gwlct")
+
+[node name="ComodoLivro" type="Node2D" parent="." unique_id=739139643]
+
+[node name="Livro" type="Sprite2D" parent="ComodoLivro" unique_id=350114294]
+position = Vector2(723, 383.50003)
+scale = Vector2(0.9549419, 1.0013021)
+texture = ExtResource("17_tq52p")
+
+[node name="Passar livro" type="Button" parent="ComodoLivro" unique_id=917218213]
+unique_name_in_owner = true
+offset_left = 508.0
+offset_top = 100.0
+offset_right = 924.0
+offset_bottom = 669.0
+
+[node name="SairLivro" type="Button" parent="ComodoLivro" unique_id=1203189255]
+unique_name_in_owner = true
+offset_left = 223.0
+offset_top = 153.0
+offset_right = 331.0
+offset_bottom = 259.0
+text = "X
+"
 
 [connection signal="pressed" from="ComodoQuarto/ProximoDia" to="." method="OnButtonPressed"]

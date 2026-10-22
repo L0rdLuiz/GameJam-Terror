@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://djeshamm1mww3"]
+
+[ext_resource type="Texture2D" uid="uid://7s3df4e78k6a" path="res://Art/Ambientes/SalaLivro.jpg" id="1_cluiq"]
+
+[node name="Livro" type="Node2D" unique_id=872414770]
+
+[node name="Livro" type="Sprite2D" parent="." unique_id=1636823456]
+position = Vector2(723, 383.50003)
+scale = Vector2(0.9549419, 1.0013021)
+texture = ExtResource("1_cluiq")
+
+[node name="Passar livro" type="Button" parent="." unique_id=545847047]
+offset_left = 508.0
+offset_top = 100.0
+offset_right = 924.0
+offset_bottom = 669.0
+
+[node name="SairLivro" type="Button" parent="." unique_id=420622552]
+offset_left = 220.0
+offset_top = 16.0
+offset_right = 328.0
+offset_bottom = 102.0
+text = "X
+"
