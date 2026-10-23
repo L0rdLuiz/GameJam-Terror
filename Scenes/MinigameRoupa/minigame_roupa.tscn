@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cx500krlxjrq2"]
 
 [ext_resource type="Script" uid="uid://cyp5q3oboe374" path="res://Scripts/MinigameRoupa.cs" id="1_2vyw0"]
+[ext_resource type="Texture2D" uid="uid://c75rgf5c2v0vh" path="res://Art/Ambientes/Roupa1.jpg" id="2_hrrcv"]
+[ext_resource type="Texture2D" uid="uid://cmnlf3iuiaxkn" path="res://Art/Ambientes/Roupa2.jpg" id="3_xmk65"]
+[ext_resource type="Texture2D" uid="uid://bhogjstprwun5" path="res://Art/Ambientes/Roupa3.jpg" id="4_fi4jb"]
+[ext_resource type="Texture2D" uid="uid://cdyhtg28hn2hg" path="res://Art/Ambientes/Roupa4.jpg" id="5_4201n"]
 
 [node name="MinigameRoupa" type="Control" unique_id=1908310820]
 layout_mode = 3
@@ -9,17 +13,26 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_2vyw0")
 
+[node name="FundoRoupa1" type="Sprite2D" parent="." unique_id=2054341214]
+position = Vector2(692, 399)
+texture = ExtResource("2_hrrcv")
+
+[node name="FundoRoupa2" type="Sprite2D" parent="." unique_id=1355698750]
+position = Vector2(694, 403)
+texture = ExtResource("3_xmk65")
+
+[node name="FundoRoupa3" type="Sprite2D" parent="." unique_id=1109724823]
+position = Vector2(693, 402)
+texture = ExtResource("4_fi4jb")
+
+[node name="FundoRoupa4" type="Sprite2D" parent="." unique_id=1596666435]
+position = Vector2(696, 397)
+texture = ExtResource("5_4201n")
+
 [node name="Titulo" type="Label" parent="." unique_id=2106170999]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="AreaRoupa" type="TextureButton" parent="." unique_id=2007563822]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 94.0
-offset_right = 416.0
-offset_bottom = 299.0
 
 [node name="Instrucao" type="Label" parent="." unique_id=1785846239]
 layout_mode = 0
@@ -27,11 +40,18 @@ offset_left = 161.0
 offset_right = 201.0
 offset_bottom = 23.0
 
-[node name="SomDobrar" type="AudioStreamPlayer" parent="." unique_id=215895052]
-
 [node name="TextoConclusao" type="Label" parent="." unique_id=2012547016]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 40.0
 offset_right = 120.0
 offset_bottom = 63.0
+
+[node name="SomDobrar" type="AudioStreamPlayer" parent="." unique_id=215895052]
+
+[node name="AreaRoupa" type="TextureButton" parent="." unique_id=2007563822]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 72.0
+offset_right = 993.0
+offset_bottom = 710.0

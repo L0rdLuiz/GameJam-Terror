@@ -9,6 +9,8 @@ public partial class Sala1 : Node2D
 	AudioStreamPlayer2D somDialogo;
 	Action aoTerminarFala;   // o que acontece quando o diálogo acaba
 	Tween tweenTexto; //para a animação do dialogo
+	bool livroLido = false;
+	bool licaoLiberada = false;
 	Node2D[] comodos;
 	private CanvasLayer painelTarefa;
 
@@ -101,6 +103,92 @@ public partial class Sala1 : Node2D
 				"Cherry glances at the book she had set aside and decides to pick it up."
 			}
 		},
+		{ (1,"Livro"), new[]
+		{
+			"Cherry|Okay, where was I?",
+		"Cherry finds the page and continues reading.",
+		"Cherry reaches a passage that catches her attention. She pauses briefly, keeping her finger between the pages.",
+		"Cherry|Mom was right. This is actually pretty good.",
+		"She smiles slightly and continues reading for a few more moments.",
+		"Cherry glances at the clock and realizes she's spent more time reading than she expected.",
+		"Cherry|I should tell her I'm enjoying it.",
+		"She picks up the phone from the table, looks at the screen for a moment, and puts it back down.",
+		"Cherry|It's been a while since she came over.",
+		"Cherry glances toward Sugarplum's bedroom, where the toys are still scattered around.",
+		"Cherry|Sugarplum would love to see her.",
+		"She considers sending a message for a few seconds, but eventually turns her attention back to the book.",
+		"Cherry|Maybe I'll call her later.",
+		"Cherry goes back to reading.",
+		"Cherry finally closes the book and stretches her arms, letting out a small sigh.",
+		"Cherry|All right, that's enough reading for now.",
+		"She leaves the book on the table and gets up.",
+		"Cherry notices the clothes that need folding and walks over to them.",
+		"Cherry|Oh, right. The laundry.",
+		"Cherry gathers the clothes and finds some space in the living room to start folding them."
+		}
+			
+		},
+		
+{ (1, "PosDobrarRoupa"), new[]
+	{
+		"Cherry|There. Much better.",
+		"Cherry|I really need to get him to put his clothes away.",
+		"Cherry|And these art supplies... I'll leave those for later.",
+		"She looks around, satisfied with the tidiness.",
+		"Cherry|All right. Dinner next."
+	}
+},
+
+{ (1, "Licao"), new[]
+	{
+		"Sugarplum|Here it is!",
+		"Cherry|Let's see... Oh, that's not too bad.",
+		"Sugarplum|Can you help me?",
+		"Cherry|Of course. Let's do it together."
+	}
+},
+
+{ (1, "PosLicao"), new[]
+	{
+		"Cherry closes the notebook and sets it aside.",
+		"Sugarplum starts putting his pencils away."
+	}
+},{ (1, "PrepararJantar"), new[]
+{
+    "Cherry|All right, dinner time.",
+    "Cherry|Let's see what we've got...",
+    "Cherry|This should do."
+}
+},
+
+{ (1, "PensamentosJantar"), new[]
+{
+    "Cherry|I hope he's hungry.",
+    "Cherry|There we go."
+}
+},
+
+{ (1, "JantarPronto"), new[]
+{
+    "Cherry|Dinner's ready!"
+}
+},
+
+{ (1, "MesaJantar"), new[]
+{
+    "Cherry|There you go. Careful, it's hot.",
+    "Sugarplum|I know, I know!",
+    "Sugarplum|Mmm! This is good!",
+    "Cherry|Glad you like it.",
+    "Sugarplum|Can I have more?",
+    "Cherry|You haven't even finished that yet!",
+    "Sugarplum|But I'm hungry!",
+    "Cherry|All right, all right. Finish that first, and I'll get you some more."
+}
+},
+
+
+
 
 		// Exemplo de dia 2:
 		// { (2, "Espelho"), new[] { "Another day...", "I hope today goes smoothly." } },
@@ -148,7 +236,7 @@ public partial class Sala1 : Node2D
 		var salafilho = GetNode<Node2D>("SalaFilho");
 		var livro = GetNode<Node2D>("ComodoLivro");
 
-		comodos = new[] { menu, quarto, banheiro, espelho, sala, cozinha, mesa, cozinhar, salafilho, livro };
+		comodos = new[] { menu, quarto, banheiro, espelho, sala, cozinha, mesa, cozinhar, salafilho, livro};
 		painelTarefa = GetNode<CanvasLayer>("PainelTarefa");
 
 		MostrarComodo(menu);
@@ -182,11 +270,32 @@ public partial class Sala1 : Node2D
 		};
 		GetNode<Button>("%SairEspelho").Pressed += () => MostrarComodo(banheiro);
 
-		GetNode<Button>("%IrSala").Pressed += () => MostrarComodo(sala);
+		GetNode<Button>("%IrSala").Pressed += () =>
+{
+    MostrarComodo(sala);
+
+    if (gameState.PossoFazerATarefa(GameState.TarefaEscolar)
+        && !licaoLiberada)
+    {
+        TentarFalar("Licao", () =>
+        {
+            licaoLiberada = true;
+            AtualizarBotoes();
+        });
+    }
+};
 		GetNode<Button>("%VoltarDaSala").Pressed += () => MostrarComodo(quarto);
 
 		// Livro: sala -> livro -> sala
-		GetNode<Button>("%Livro").Pressed += () => MostrarComodo(livro);
+		GetNode<Button>("%Livro").Pressed += () =>
+		{
+		MostrarComodo(livro);
+		TentarFalar("Livro", () =>
+		{
+		livroLido = true;
+		AtualizarBotoes();
+		});
+		};
 		GetNode<Button>("%SairLivro").Pressed += () => MostrarComodo(sala);
 
 		// Cozinha: fala só na primeira vez do dia
@@ -199,8 +308,15 @@ public partial class Sala1 : Node2D
 		
 		GetNode<Button>("%IrSalaDaCozinha").Pressed += () =>
 		{
-			MostrarComodo(salafilho);
-			TentarFalar("SalaComFilho", () => TentarFalar("fundosala"));
+    	if (gameState.TarefaEstaFeita(GameState.Janta))
+    	{
+    	    MostrarComodo(sala);
+    	}
+    	else
+    	{
+        MostrarComodo(salafilho);
+        TentarFalar("SalaComFilho", () => TentarFalar("fundosala"));
+   		 }
 		};
 
 		GetNode<Button>("%sair").Pressed += () =>
@@ -297,7 +413,8 @@ public partial class Sala1 : Node2D
     		gameState.DiaCompleto();
 
 		GetNode<Button>("%TarefaEscolar").Visible =
-			gameState.PossoFazerATarefa(GameState.TarefaEscolar);
+    		licaoLiberada &&
+    		gameState.PossoFazerATarefa(GameState.TarefaEscolar);
 
 		GetNode<Button>("%Cavalete").Visible =
 			gameState.PossoFazerATarefa(GameState.Pintar);
@@ -307,8 +424,7 @@ public partial class Sala1 : Node2D
 			|| gameState.PossoFazerATarefa(GameState.Janta);
 
 		GetNode<Button>("%DobrarRoupa").Visible =
-    		gameState.PossoFazerATarefa(GameState.DobrarRoupa);
-
+			livroLido && gameState.PossoFazerATarefa(GameState.DobrarRoupa);
 		GetNode<Button>("%LevarLixo").Visible =
     		gameState.PossoFazerATarefa(GameState.LevarLixo);
 	}
@@ -336,12 +452,29 @@ public partial class Sala1 : Node2D
 
 		Node minigame = cena.Instantiate();
 
-		minigame.TreeExited += () =>
-		{
-			gameState.ConcluirTarefa(tarefaAtual);
-			Show();
-			AtualizarBotoes();
-		};
+minigame.TreeExited += () =>
+{
+    if (!IsInsideTree()) return;
+
+    gameState.ConcluirTarefa(tarefaAtual);
+    Show();
+
+    if (tarefaAtual == GameState.Janta)
+	{	
+    MostrarComodo(GetNode<Node2D>("ComodoCozinha"));
+
+    TentarFalar("JantarPronto", () =>
+    {
+        MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
+        TentarFalar("MesaJantar");
+    });
+	}
+	else
+	{
+    MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
+    TentarFalar("Mesa");
+	}
+	};
 
 		GetTree().Root.AddChild(minigame);
 		Hide();
@@ -365,12 +498,21 @@ public partial class Sala1 : Node2D
 
 		Node minigame = cena.Instantiate();
 
-		minigame.TreeExited += () =>
-		{
-			gameState.ConcluirTarefa(GameState.DobrarRoupa);
-			Show();
-			AtualizarBotoes();
-		};
+		
+	minigame.TreeExited += () =>
+	{
+    if (!IsInsideTree()) return;
+
+    gameState.ConcluirTarefa(GameState.DobrarRoupa);
+
+    Show();
+
+    MostrarComodo(GetNode<Node2D>("SalaDeEstar"));
+
+    AtualizarBotoes();
+
+    TentarFalar("PosDobrarRoupa");
+	};
 
 		GetTree().Root.AddChild(minigame);
 		Hide();
@@ -409,20 +551,22 @@ public partial class Sala1 : Node2D
 
 	// Fala só se existir fala para este dia/local e ainda não foi vista
 	private void TentarFalar(string local, Action aoTerminar = null)
+{
+	var chave = (gameState.Day, local);
+
+	if (!falas.TryGetValue(chave, out var linhas) || falasVistas.Contains(chave))
 	{
-		var chave = (gameState.Day, local);
-
-		if (!falas.TryGetValue(chave, out var linhas)) return;
-		if (falasVistas.Contains(chave)) return;
-
-		falasVistas.Add(chave);
-		falasAtuais = linhas;
-		falaAtual = 0;
-		aoTerminarFala = aoTerminar;
-		MostrarProximaLinha();
+		aoTerminar?.Invoke();
+		return;
 	}
 
-	// Mostra a linha atual. Linhas que começam com "#" são comandos
+	falasVistas.Add(chave);
+	falasAtuais = linhas;
+	falaAtual = 0;
+	aoTerminarFala = aoTerminar;
+	MostrarProximaLinha();
+}
+
 	private void MostrarProximaLinha()
 	{
 		while (falaAtual < falasAtuais.Length && falasAtuais[falaAtual].StartsWith("#"))
@@ -506,11 +650,11 @@ public partial class Sala1 : Node2D
 
 	private void AoDiaMudar(int dia)
 	{
-		GD.Print("Dia mudou para: " + dia);
-		GetNode<CanvasLayer>("Dialogo").Hide();
-		AtualizarBotoes();
+	GD.Print("Dia mudou para: " + dia);
+	livroLido = false;
+	GetNode<CanvasLayer>("Dialogo").Hide();
+	AtualizarBotoes();
 	}
-
 	private void AoTarefaConcluir(string nomeTarefa)
 	{
 		AtualizarBotoes();

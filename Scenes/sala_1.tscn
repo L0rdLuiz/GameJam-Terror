@@ -123,7 +123,6 @@ text = "LIVRO
 [node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
 
 [node name="Caixa" type="Panel" parent="Dialogo" unique_id=732848754]
-visible = false
 offset_left = 152.0
 offset_top = 598.0
 offset_right = 1227.0
@@ -131,7 +130,6 @@ offset_bottom = 763.0
 theme = SubResource("Theme_qxdo5")
 
 [node name="Texto" type="Label" parent="Dialogo/Caixa" unique_id=1320008937]
-visible = false
 custom_minimum_size = Vector2(900, 0)
 layout_mode = 0
 offset_left = 43.0
@@ -141,7 +139,6 @@ offset_bottom = 69.0
 text = "OOOOOOOOOOOOOOOOI"
 
 [node name="Avancar" type="Button" parent="Dialogo/Caixa" unique_id=1941039050]
-visible = false
 layout_mode = 0
 offset_left = -59.0
 offset_top = -39.0
@@ -150,18 +147,15 @@ offset_bottom = 169.0
 flat = true
 
 [node name="MusicaPrincipal" type="AudioStreamPlayer2D" parent="." unique_id=799966107]
-visible = false
 stream = ExtResource("12_0vxn5")
 autoplay = true
 
 [node name="somDialogo" type="AudioStreamPlayer2D" parent="." unique_id=1749233045]
-visible = false
 stream = ExtResource("13_pd6y2")
 volume_db = 5.594
 pitch_scale = 0.55
 
 [node name="ComodoMenu" type="Node2D" parent="." unique_id=1624878423]
-visible = false
 
 [node name="FundoMenu" type="Sprite2D" parent="ComodoMenu" unique_id=700997057]
 position = Vector2(688.5, 384.49997)
@@ -177,7 +171,6 @@ offset_bottom = 410.0
 text = "Start"
 
 [node name="ComodoQuarto" type="Node2D" parent="." unique_id=986971920]
-visible = false
 
 [node name="Quarto" type="Sprite2D" parent="ComodoQuarto" unique_id=1881920162]
 position = Vector2(690, 382.5)
@@ -264,6 +257,7 @@ offset_bottom = 276.0
 text = "Se olhar no espelho"
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
+visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)
@@ -279,6 +273,7 @@ offset_bottom = 100.0
 text = "x"
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
+visible = false
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 369.00003)
@@ -368,7 +363,6 @@ layout_mode = 2
 visible = false
 
 [node name="SalaComFilho" type="Sprite2D" parent="SalaFilho" unique_id=2063403871]
-visible = false
 position = Vector2(694, 380.00003)
 scale = Vector2(0.99563956, 0.99479175)
 texture = ExtResource("4_gwlct")
@@ -377,28 +371,26 @@ texture = ExtResource("4_gwlct")
 visible = false
 
 [node name="Livro" type="Sprite2D" parent="ComodoLivro" unique_id=350114294]
-visible = false
 position = Vector2(709, 389)
 scale = Vector2(0.9549419, 1.0013021)
 texture = ExtResource("17_tq52p")
 
-[node name="PassarLivro" type="Button" parent="ComodoLivro" unique_id=917218213]
-unique_name_in_owner = true
-visible = false
-offset_left = 493.0
-offset_top = 100.0
-offset_right = 909.0
-offset_bottom = 669.0
-flat = true
-
 [node name="SairLivro" type="Button" parent="ComodoLivro" unique_id=1203189255]
 unique_name_in_owner = true
-visible = false
 offset_left = 223.0
 offset_top = 153.0
 offset_right = 331.0
 offset_bottom = 259.0
 text = "X
 "
+
+[node name="PassarLivro" type="Button" parent="ComodoLivro/SairLivro" unique_id=917218213]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 270.0
+offset_top = -53.0
+offset_right = 686.0
+offset_bottom = 516.0
+flat = true
 
 [connection signal="pressed" from="ComodoQuarto/ProximoDia" to="." method="OnButtonPressed"]
