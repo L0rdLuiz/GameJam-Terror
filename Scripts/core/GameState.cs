@@ -12,11 +12,12 @@ public partial class GameState : Node
 	public const string DobrarRoupa = "dobrar_roupa";
 	public const string Janta = "janta";
 	public const string TarefaEscolar = "tarefa_escolar";
-	public const string FinalizarDia = "finalizar_dia";
 	public const string LevarLixo = "levar_lixo";
 	public const string Brincar = "brincar";
 	public const string AjeitarBrinquedos = "ajeitar_brinquedos";
 	public const string BuscarRemedio = "buscar_remedio";
+	public const string TomarRemedio = "tomar_remedio";
+	public const string HistoriaFilho = "historia_filho";
 
 	public const string Pintar = "pintar";
 
@@ -37,11 +38,11 @@ public partial class GameState : Node
 
 	private Dictionary<int, List<string>> tarefasDoDia = new Dictionary<int, List<string>>
 	{
-		{ 1, new List<string> { Almoco, DobrarRoupa, Janta, TarefaEscolar, FinalizarDia } },
-		{ 2, new List<string> { Almoco, LevarLixo, Janta, Brincar, FinalizarDia } },
-		{ 3, new List<string> { Almoco, AjeitarBrinquedos, Janta, TarefaEscolar, FinalizarDia } },
-		{ 4, new List<string> { Almoco, LevarLixo, Janta,BuscarRemedio, Brincar, FinalizarDia } },
-		{ 5, new List<string> { Almoco, AjeitarBrinquedos, Janta, TarefaEscolar, FinalizarDia } },
+		{ 1, new List<string> { Almoco, DobrarRoupa, Janta, TarefaEscolar, TomarRemedio, HistoriaFilho } },
+		{ 2, new List<string> { Almoco, LevarLixo, Janta, Brincar, TomarRemedio, HistoriaFilho } },
+		{ 3, new List<string> { Almoco, AjeitarBrinquedos, Janta, TarefaEscolar, TomarRemedio, HistoriaFilho } },
+		{ 4, new List<string> { Almoco, LevarLixo, Janta, BuscarRemedio, Brincar, TomarRemedio, HistoriaFilho } },
+		{ 5, new List<string> { Almoco, AjeitarBrinquedos, Janta, TarefaEscolar, TomarRemedio, HistoriaFilho } },
 	};
 
 	private HashSet<string> tarefasConcluidas = new HashSet<string>();
@@ -74,17 +75,6 @@ public partial class GameState : Node
 		return tarefasDoDiaAtual.All(tarefasConcluidas => TarefaEstaFeita(tarefasConcluidas));
 	}
 
-	public bool PossoFinalizarDia()
-	{
-		foreach (var tarefa in PegarTarefasDoDia())
-		{
-			if (!TarefaEstaFeita(tarefa) && tarefa != FinalizarDia)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
 
 	public void TentarVirarODia()
 	{

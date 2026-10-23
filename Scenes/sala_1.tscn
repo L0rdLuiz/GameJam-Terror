@@ -156,7 +156,6 @@ volume_db = 5.594
 pitch_scale = 0.55
 
 [node name="ComodoMenu" type="Node2D" parent="." unique_id=1624878423]
-visible = false
 
 [node name="FundoMenu" type="Sprite2D" parent="ComodoMenu" unique_id=700997057]
 position = Vector2(688.5, 384.49997)
@@ -172,7 +171,6 @@ offset_bottom = 410.0
 text = "Start"
 
 [node name="ComodoQuarto" type="Node2D" parent="." unique_id=986971920]
-visible = false
 
 [node name="Quarto" type="Sprite2D" parent="ComodoQuarto" unique_id=1881920162]
 position = Vector2(690, 382.5)
@@ -206,7 +204,6 @@ text = "Next Day"
 flat = true
 
 [node name="TextoNextDay" type="Label" parent="ComodoQuarto/ProximoDia" unique_id=864835203]
-visible = false
 layout_mode = 0
 offset_left = 189.0
 offset_top = 93.0
@@ -214,8 +211,16 @@ offset_right = 490.0
 offset_bottom = 155.0
 text = "NEXT DAY"
 
+[node name="DobrarRoupa" type="Button" parent="ComodoQuarto" unique_id=847244565]
+unique_name_in_owner = true
+offset_left = 191.0
+offset_top = 486.0
+offset_right = 384.0
+offset_bottom = 557.0
+text = "Dobrar Roupa
+"
+
 [node name="ComodoBanheiro" type="Node2D" parent="." unique_id=107546116]
-visible = false
 
 [node name="Banheiro" type="Sprite2D" parent="ComodoBanheiro" unique_id=913591866]
 position = Vector2(687.75, 384)
@@ -251,7 +256,6 @@ offset_bottom = 276.0
 text = "Se olhar no espelho"
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
-visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)

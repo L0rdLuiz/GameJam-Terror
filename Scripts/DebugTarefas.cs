@@ -43,29 +43,26 @@ public partial class DebugTarefas : Node2D
     }
 
 	public override void _UnhandledInput(InputEvent @event)
-    {
-        if (@event is InputEventKey tecla && tecla.Pressed)
-        {
-            int indice = (int)tecla.Keycode - (int)Key.Key1;
-            var tarefas = gameState.PegarTarefasDoDia();
-            if (indice >= 0 && indice < tarefas.Count)
-            {
-                if (tarefas[indice] == GameState.FinalizarDia)
+	{
+		if (@event is InputEventKey tecla && tecla.Pressed && !tecla.Echo)
+		{
+			int indice = (int)tecla.Keycode - (int)Key.Key1;
+			var tarefas = gameState.PegarTarefasDoDia();
+
+			if (indice >= 0 && indice < tarefas.Count)
+			{
+				string tarefa = tarefas[indice];
+
+				if (gameState.PossoFazerATarefa(tarefa))
 				{
-					if (!gameState.PossoFinalizarDia())
-					{
-						GD.Print("Você precisa concluir todas as tarefas antes de finalizar o dia.");
-					} else
-					{
-						gameState.ConcluirTarefa(tarefas[indice]);
-					}
+					gameState.ConcluirTarefa(tarefa);
 				}
 				else
 				{
-					gameState.ConcluirTarefa(tarefas[indice]);
+					GD.Print("Você precisa concluir as tarefas anteriores primeiro.");
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 
 }

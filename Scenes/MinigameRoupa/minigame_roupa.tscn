@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cx500krlxjrq2"]
+
+[ext_resource type="Script" uid="uid://cyp5q3oboe374" path="res://Scripts/MinigameRoupa.cs" id="1_2vyw0"]
+
+[node name="MinigameRoupa" type="Control" unique_id=1908310820]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2vyw0")
+
+[node name="Titulo" type="Label" parent="." unique_id=2106170999]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AreaRoupa" type="TextureButton" parent="." unique_id=2007563822]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 94.0
+offset_right = 416.0
+offset_bottom = 299.0
+
+[node name="Instrucao" type="Label" parent="." unique_id=1785846239]
+layout_mode = 0
+offset_left = 161.0
+offset_right = 201.0
+offset_bottom = 23.0
+
+[node name="SomDobrar" type="AudioStreamPlayer" parent="." unique_id=215895052]
+
+[node name="TextoConclusao" type="Label" parent="." unique_id=2012547016]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 120.0
+offset_bottom = 63.0

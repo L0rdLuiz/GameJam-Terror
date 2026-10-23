@@ -44,9 +44,6 @@ public partial class PainelTarefa : CanvasLayer
 
         foreach (string tarefa in tarefas)
         {
-            if (tarefa == GameState.FinalizarDia)
-                continue;
-
             if (!gameState.TarefaEstaFeita(tarefa))
             {
                 nomeTarefa.Text = TraduzirTarefa(tarefa);
@@ -54,7 +51,7 @@ public partial class PainelTarefa : CanvasLayer
             }
         }
 
-        if (gameState.PossoFinalizarDia())
+        if (gameState.DiaCompleto())
         {
             nomeTarefa.Text = "Dia concluído!";
         }

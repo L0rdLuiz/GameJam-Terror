@@ -159,8 +159,15 @@ public partial class Sala1 : Node2D
 			TentarFalar("Cozinha");
 		};
 
-		GetNode<Button>("%BotaoComecar").Pressed += () => MostrarComodo(quarto);
+		Button dobrarRoupa = GetNode<Button>("%DobrarRoupa");
+		dobrarRoupa.Pressed += IniciarMinigameRoupa;
 
+		GetNode<Button>("%BotaoComecar").Pressed += () => 
+		{
+			MostrarComodo(espelho);
+			TentarFalar("Espelho");
+			GetNode<Button>("%SairEspelho").Show();
+		};
 		GetNode<Button>("%IrBanheiro").Pressed += () => MostrarComodo(banheiro);
 		GetNode<Button>("%VoltarBanheiro").Pressed += () => MostrarComodo(quarto);
 
@@ -168,7 +175,6 @@ public partial class Sala1 : Node2D
 		GetNode<Button>("%Espelho").Pressed += () =>
 		{
 			MostrarComodo(espelho);
-			TentarFalar("Espelho");
 			GetNode<Button>("%SairEspelho").Show();
 		};
 		GetNode<Button>("%SairEspelho").Pressed += () => MostrarComodo(banheiro);
@@ -234,7 +240,11 @@ public partial class Sala1 : Node2D
 		// Próximo dia
 		Button nextDay = GetNode<Button>("%ProximoDia");
 		Label textoNextDay = GetNode<Label>("%TextoNextDay");
+
+		nextDay.Visible = gameState.DiaCompleto();
+
 		textoNextDay.Hide();
+
 		nextDay.MouseEntered += () => textoNextDay.Show();
 		nextDay.MouseExited += () => textoNextDay.Hide();
 		nextDay.Pressed += OnButtonPressed;
@@ -281,7 +291,7 @@ public partial class Sala1 : Node2D
 	private void AtualizarBotoes()
 	{
 		GetNode<Button>("%ProximoDia").Visible =
-			gameState.PossoFinalizarDia();
+    		gameState.DiaCompleto();
 
 		GetNode<Button>("%TarefaEscolar").Visible =
 			gameState.PossoFazerATarefa(GameState.TarefaEscolar);
@@ -292,6 +302,9 @@ public partial class Sala1 : Node2D
 		GetNode<Button>("%FogaoCozinhar").Visible =
 			gameState.PossoFazerATarefa(GameState.Almoco)
 			|| gameState.PossoFazerATarefa(GameState.Janta);
+
+		GetNode<Button>("%DobrarRoupa").Visible =
+    		gameState.PossoFazerATarefa(GameState.DobrarRoupa);
 	}
 
 	private void IniciarMinigameCozinha()
@@ -327,6 +340,36 @@ public partial class Sala1 : Node2D
 		GetTree().Root.AddChild(minigame);
 		Hide();
 	}
+
+	
+	private void IniciarMinigameRoupa()
+	{
+		if (!gameState.PossoFazerATarefa(GameState.DobrarRoupa))
+			return;
+
+		PackedScene cena = GD.Load<PackedScene>(
+			"res://Scenes/MinigameRoupa/minigame_roupa.tscn"
+		);
+
+		if (cena == null)
+		{
+			GD.PrintErr("Não foi possível carregar o minigame de roupa.");
+			return;
+		}
+
+		Node minigame = cena.Instantiate();
+
+		minigame.TreeExited += () =>
+		{
+			gameState.ConcluirTarefa(GameState.DobrarRoupa);
+			Show();
+			AtualizarBotoes();
+		};
+
+		GetTree().Root.AddChild(minigame);
+		Hide();
+	}
+
 
 	// Fala só se existir fala para este dia/local e ainda não foi vista
 	private void TentarFalar(string local, Action aoTerminar = null)
@@ -422,7 +465,6 @@ public partial class Sala1 : Node2D
 
 	private void OnButtonPressed()
 	{
-		gameState.ConcluirTarefa(GameState.FinalizarDia);
 		gameState.TentarVirarODia();
 	}
 
