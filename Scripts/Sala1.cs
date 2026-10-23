@@ -153,6 +153,12 @@ public partial class Sala1 : Node2D
 
 		MostrarComodo(menu);
 
+		GetNode<Button>("%IrCozinha").Pressed += () =>
+		{
+			MostrarComodo(cozinha);
+			TentarFalar("Cozinha");
+		};
+
 		GetNode<Button>("%BotaoComecar").Pressed += () => MostrarComodo(quarto);
 
 		GetNode<Button>("%IrBanheiro").Pressed += () => MostrarComodo(banheiro);
@@ -172,16 +178,12 @@ public partial class Sala1 : Node2D
 
 		// Livro: sala -> livro -> sala
 		GetNode<Button>("%Livro").Pressed += () => MostrarComodo(livro);
-		GetNode<Button>("%VoltarDoLivro").Pressed += () => MostrarComodo(sala);
+		GetNode<Button>("%SairLivro").Pressed += () => MostrarComodo(sala);
 
 		// Cozinha: fala só na primeira vez do dia
-		GetNode<Button>("%IrCozinha").Pressed += () =>
-		{
-			MostrarComodo(cozinha);
-			TentarFalar("Cozinha");
-		};
+		
 
-		GetNode<Button>("%FogaoCozinhar").Pressed += () => MostrarComodo(cozinhar);
+		GetNode<Button>("%FogaoCozinhar").Pressed += IniciarMinigameCozinha;
 
 		GetNode<Button>("%VoltarDaCozinha").Pressed += () => MostrarComodo(sala);
 
@@ -278,9 +280,52 @@ public partial class Sala1 : Node2D
 
 	private void AtualizarBotoes()
 	{
-		GetNode<Button>("%ProximoDia").Visible = gameState.PossoFinalizarDia();
-		GetNode<Button>("%TarefaEscolar").Visible = gameState.PossoFazerATarefa(GameState.TarefaEscolar);
-		GetNode<Button>("%Cavalete").Visible = gameState.PossoFazerATarefa(GameState.Pintar);
+		GetNode<Button>("%ProximoDia").Visible =
+			gameState.PossoFinalizarDia();
+
+		GetNode<Button>("%TarefaEscolar").Visible =
+			gameState.PossoFazerATarefa(GameState.TarefaEscolar);
+
+		GetNode<Button>("%Cavalete").Visible =
+			gameState.PossoFazerATarefa(GameState.Pintar);
+
+		GetNode<Button>("%FogaoCozinhar").Visible =
+			gameState.PossoFazerATarefa(GameState.Almoco)
+			|| gameState.PossoFazerATarefa(GameState.Janta);
+	}
+
+	private void IniciarMinigameCozinha()
+	{
+		string tarefaAtual;
+
+		if (gameState.PossoFazerATarefa(GameState.Almoco))
+			tarefaAtual = GameState.Almoco;
+		else if (gameState.PossoFazerATarefa(GameState.Janta))
+			tarefaAtual = GameState.Janta;
+		else
+			return;
+
+		PackedScene cena = GD.Load<PackedScene>(
+			"res://Scenes/minigame_precisao.tscn"
+		);
+
+		if (cena == null)
+		{
+			GD.PrintErr("Não foi possível carregar o minigame.");
+			return;
+		}
+
+		Node minigame = cena.Instantiate();
+
+		minigame.TreeExited += () =>
+		{
+			gameState.ConcluirTarefa(tarefaAtual);
+			Show();
+			AtualizarBotoes();
+		};
+
+		GetTree().Root.AddChild(minigame);
+		Hide();
 	}
 
 	// Fala só se existir fala para este dia/local e ainda não foi vista

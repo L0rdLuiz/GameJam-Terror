@@ -1,169 +1,173 @@
-
 using Godot;
 
 public partial class MinigamePrecisao : Node2D
 {
-	private float posicao = 0f;
-	private float velocidade = 200f;
-	private float direcao = 1f;
+    private float posicao = 0f;
+    private float velocidade = 200f;
+    private float direcao = 1f;
 
-	private ColorRect barra;
-	private ColorRect zonaVerde;
-	private ColorRect sinal;
+    private ColorRect barra;
+    private ColorRect zonaVerde;
+    private ColorRect sinal;
 
-	private bool finalizado = false;
+    private bool finalizado = false;
+    private int acertos = 0;
+    private int erros = 0;
 
-	private int acertos = 0;
-	private int erros = 0;
+    private RandomNumberGenerator rng = new RandomNumberGenerator();
 
-	private RandomNumberGenerator rng = new RandomNumberGenerator();
+    public override void _Ready()
+    {
+        barra = GetNode<ColorRect>("Barra");
+        zonaVerde = GetNode<ColorRect>("ZonaVerde");
+        sinal = GetNode<ColorRect>("Sinal");
 
-	public override void _Ready()
-	{
-		barra = GetNode<ColorRect>("Barra");
-		zonaVerde = GetNode<ColorRect>("ZonaVerde");
-		sinal = GetNode<ColorRect>("Sinal");
+        rng.Randomize();
+        PosicionarZonaVerdeAleatoria();
+        AtualizarPosicaoVisual();
+    }
 
-		rng.Randomize();
+    public override void _Process(double delta)
+    {
+        if (finalizado)
+            return;
 
-		PosicionarZonaVerdeAleatoria();
-		AtualizarPosicaoVisual();
-	}
+        float tempoRestante = (float)delta;
+        float limiteEsquerdo = 0f;
+        float limiteDireito = barra.Size.X - sinal.Size.X;
 
-	public override void _Process(double delta)
-	{
-		if (finalizado)
-			return;
+        while (tempoRestante > 0f)
+        {
+            float limiteAtual;
+            float distanciaAteBorda;
 
-		float tempoRestante = (float)delta;
+            if (direcao > 0f)
+            {
+                limiteAtual = limiteDireito;
+                distanciaAteBorda = limiteAtual - posicao;
+            }
+            else
+            {
+                limiteAtual = limiteEsquerdo;
+                distanciaAteBorda = posicao - limiteAtual;
+            }
 
-		float limiteEsquerdo = 0f;
-		float limiteDireito = barra.Size.X - sinal.Size.X;
+            if (distanciaAteBorda <= 0.001f)
+            {
+                posicao = limiteAtual;
+                direcao *= -1f;
+                continue;
+            }
 
-		while (tempoRestante > 0f)
-		{
-			float limiteAtual;
-			float distanciaAteBorda;
+            float tempoAteBorda = distanciaAteBorda / velocidade;
 
-			if (direcao > 0f)
-			{
-				limiteAtual = limiteDireito;
-				distanciaAteBorda = limiteAtual - posicao;
-			}
-			else
-			{
-				limiteAtual = limiteEsquerdo;
-				distanciaAteBorda = posicao - limiteAtual;
-			}
+            if (tempoRestante < tempoAteBorda)
+            {
+                posicao += velocidade * direcao * tempoRestante;
+                tempoRestante = 0f;
+            }
+            else
+            {
+                posicao = limiteAtual;
+                tempoRestante -= tempoAteBorda;
+                direcao *= -1f;
+            }
+        }
 
-			if (distanciaAteBorda <= 0.001f)
-			{
-				posicao = limiteAtual;
-				direcao *= -1f;
-				continue;
-			}
+        AtualizarPosicaoVisual();
+    }
 
-			float tempoAteBorda = distanciaAteBorda / velocidade;
+    private void AtualizarPosicaoVisual()
+    {
+        sinal.Position = new Vector2(
+            barra.Position.X + posicao,
+            sinal.Position.Y
+        );
+    }
 
-			if (tempoRestante < tempoAteBorda)
-			{
-				posicao += velocidade * direcao * tempoRestante;
-				tempoRestante = 0f;
-			}
-			else
-			{
-				posicao = limiteAtual;
-				tempoRestante -= tempoAteBorda;
-				direcao *= -1f;
-			}
-		}
+    private void PosicionarZonaVerdeAleatoria()
+    {
+        float minimo = barra.Position.X;
+        float maximo = barra.Position.X + barra.Size.X - zonaVerde.Size.X;
 
-		AtualizarPosicaoVisual();
-	}
+        float novaPosicao = rng.RandfRange(minimo, maximo);
 
-	private void AtualizarPosicaoVisual()
-	{
-		sinal.Position = new Vector2(
-			barra.Position.X + posicao,
-			sinal.Position.Y
-		);
-	}
+        zonaVerde.Position = new Vector2(
+            novaPosicao,
+            zonaVerde.Position.Y
+        );
+    }
 
-	private void PosicionarZonaVerdeAleatoria()
-	{
-		float minimo = barra.Position.X;
-		float maximo = barra.Position.X
-			+ barra.Size.X
-			- zonaVerde.Size.X;
+    public override void _Input(InputEvent @event)
+    {
+        // Sair do minigame apertando Esc.
+        if (@event is InputEventKey tecla &&
+            tecla.Pressed &&
+            !tecla.Echo &&
+            tecla.Keycode == Key.Escape)
+        {
+            QueueFree();
+            return;
+        }
 
-		float novaPosicao = rng.RandfRange(minimo, maximo);
+        if (finalizado)
+            return;
 
-		zonaVerde.Position = new Vector2(
-			novaPosicao,
-			zonaVerde.Position.Y
-		);
-	}
+        if (@event is InputEventMouseButton mouseButton &&
+            mouseButton.Pressed &&
+            mouseButton.ButtonIndex == MouseButton.Left)
+        {
+            VerificarAcerto();
+        }
+    }
 
-	public override void _Input(InputEvent @event)
-	{
-		if (finalizado)
-			return;
+    private void VerificarAcerto()
+    {
+        float centroSinal =
+            barra.Position.X + posicao + sinal.Size.X / 2f;
 
-		if (@event is InputEventMouseButton mouseButton
-			&& mouseButton.Pressed
-			&& mouseButton.ButtonIndex == MouseButton.Left)
-		{
-			VerificarAcerto();
-		}
-	}
+        float inicioZona = zonaVerde.Position.X;
+        float fimZona = inicioZona + zonaVerde.Size.X;
 
-	private void VerificarAcerto()
-	{
-		float centroSinal = barra.Position.X
-			+ posicao
-			+ sinal.Size.X / 2f;
+        if (centroSinal >= inicioZona && centroSinal <= fimZona)
+        {
+            acertos++;
 
-		float inicioZona = zonaVerde.Position.X;
-		float fimZona = inicioZona + zonaVerde.Size.X;
+            GD.Print($"ACERTOU! {acertos}/4 acertos.");
 
-		if (centroSinal >= inicioZona && centroSinal <= fimZona)
-		{
-			acertos++;
-
-			GD.Print($"ACERTOU! {acertos}/4 acertos.");
-
-			if (acertos >= 4)
-			{
-				finalizado = true;
+            if (acertos >= 4)
+            {
+                finalizado = true;
 				GD.Print("VITÓRIA! Você completou o minigame!");
+				QueueFree();
 				return;
-			}
+            }
 
-			// Diminui a zona verde em 15 pixels.
-			float novaLargura = Mathf.Max(
-				35f,
-				zonaVerde.Size.X - 15f
-			);
+            float novaLargura = Mathf.Max(
+                35f,
+                zonaVerde.Size.X - 15f
+            );
 
-			zonaVerde.Size = new Vector2(
-				novaLargura,
-				zonaVerde.Size.Y
-			);
+            zonaVerde.Size = new Vector2(
+                novaLargura,
+                zonaVerde.Size.Y
+            );
 
-			// Sorteia uma nova posição para a zona verde.
-			PosicionarZonaVerdeAleatoria();
-		}
-		else
-		{
-			erros++;
+            PosicionarZonaVerdeAleatoria();
+        }
+        else
+        {
+            erros++;
 
-			GD.Print($"ERROU! {erros}/3 erros.");
+            GD.Print($"ERROU! {erros}/3 erros.");
 
-			if (erros >= 3)
-			{
-				finalizado = true;
-				GD.Print("DERROTA! Você errou 3 vezes.");
-			}
-		}
-	}
+            if (erros >= 3)
+            {
+                finalizado = true;
+                GD.Print("DERROTA! Você errou 3 vezes.");
+				QueueFree();
+    			return;
+            }
+        }
+    }
 }
