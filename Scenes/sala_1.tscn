@@ -256,6 +256,7 @@ offset_bottom = 276.0
 text = "Se olhar no espelho"
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
+visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)
@@ -271,6 +272,7 @@ offset_bottom = 100.0
 text = "x"
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
+visible = false
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 369.00003)
@@ -357,7 +359,6 @@ layout_mode = 2
 [node name="SalaFilho" type="Node2D" parent="." unique_id=2107099407]
 
 [node name="SalaComFilho" type="Sprite2D" parent="SalaFilho" unique_id=2063403871]
-visible = false
 position = Vector2(694, 380.00003)
 scale = Vector2(0.99563956, 0.99479175)
 texture = ExtResource("4_gwlct")
@@ -365,28 +366,26 @@ texture = ExtResource("4_gwlct")
 [node name="ComodoLivro" type="Node2D" parent="." unique_id=739139643]
 
 [node name="Livro" type="Sprite2D" parent="ComodoLivro" unique_id=350114294]
-visible = false
 position = Vector2(709, 389)
 scale = Vector2(0.9549419, 1.0013021)
 texture = ExtResource("17_tq52p")
 
-[node name="PassarLivro" type="Button" parent="ComodoLivro" unique_id=917218213]
-unique_name_in_owner = true
-visible = false
-offset_left = 493.0
-offset_top = 100.0
-offset_right = 909.0
-offset_bottom = 669.0
-flat = true
-
 [node name="SairLivro" type="Button" parent="ComodoLivro" unique_id=1203189255]
 unique_name_in_owner = true
-visible = false
 offset_left = 223.0
 offset_top = 153.0
 offset_right = 331.0
 offset_bottom = 259.0
 text = "X
 "
+
+[node name="PassarLivro" type="Button" parent="ComodoLivro/SairLivro" unique_id=917218213]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 270.0
+offset_top = -53.0
+offset_right = 686.0
+offset_bottom = 516.0
+flat = true
 
 [connection signal="pressed" from="ComodoQuarto/ProximoDia" to="." method="OnButtonPressed"]
