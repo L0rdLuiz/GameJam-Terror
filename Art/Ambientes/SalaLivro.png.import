@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://defbgko78td5x"
-path="res://.godot/imported/imagemlivro.png-e28060feac6fd1f49f6b0ee3039603a0.ctex"
+uid="uid://c8rx7npbmhfgo"
+path="res://.godot/imported/SalaLivro.png-141961aadb91264c29324f6426033380.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Ambientes/imagemlivro.png"
-dest_files=["res://.godot/imported/imagemlivro.png-e28060feac6fd1f49f6b0ee3039603a0.ctex"]
+source_file="res://Art/Ambientes/SalaLivro.png"
+dest_files=["res://.godot/imported/SalaLivro.png-141961aadb91264c29324f6426033380.ctex"]
 
 [params]
 

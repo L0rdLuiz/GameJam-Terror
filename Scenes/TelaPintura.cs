@@ -15,9 +15,11 @@ public partial class TelaPintura : CanvasLayer
 	private int _raioPincel = 6;
 	public GameState gameState;
 
+	// Avisa o Sala1 quando o jogador fecha a pintura
+	public event Action PinturaFechada;
+
 	public override void _Ready()
 	{
-		
 		_tela = GetNode<TextureRect>("Tela");
 		Control fundo = GetNode<Control>("Fundo");
 
@@ -44,13 +46,19 @@ public partial class TelaPintura : CanvasLayer
 		_textura = ImageTexture.CreateFromImage(_imagem);
 		_tela.Texture = _textura;
 
-
 		GetNode<Button>("FecharPintura").Pressed += () =>
 		{
 			Hide();
-			gameState.ConcluirTarefa(GameState.Brincar);
+			PinturaFechada?.Invoke();   // quem decide a tarefa é o Sala1
 		};
+	}
 
+	// Apaga o desenho (usado quando começa um novo dia)
+	public void Limpar()
+	{
+		if (_imagem == null) return;
+		_imagem.Fill(Colors.White);
+		_textura.Update(_imagem);
 	}
 
 	public override void _Process(double delta)

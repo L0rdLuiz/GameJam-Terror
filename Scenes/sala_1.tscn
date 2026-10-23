@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://j8mlca3gg6rs" path="res://Art/Ambientes/quarto.jpg" id="2_ol3of"]
 [ext_resource type="Script" uid="uid://bwhxi7eksbs8t" path="res://Scenes/Botao.cs" id="3_lp7ft"]
 [ext_resource type="Texture2D" uid="uid://7o21tdrqd3r5" path="res://Art/Ambientes/banheiro9.jpg" id="4_drrmx"]
-[ext_resource type="Texture2D" uid="uid://be6wxq6kji5bn" path="res://Art/Ambientes/SalaComFilho.jpg" id="4_gwlct"]
+[ext_resource type="Texture2D" uid="uid://cwlqy7blvlkfj" path="res://Art/Ambientes/SalaComFilho.jpg" id="4_gwlct"]
 [ext_resource type="PackedScene" uid="uid://cvwuo2dwfqlbh" path="res://Scenes/debug_tarefas.tscn" id="5_ol3of"]
 [ext_resource type="Script" uid="uid://qfe7dbid0v7b" path="res://Scripts/SalaDeEstar.cs" id="6_dpcyj"]
 [ext_resource type="Texture2D" uid="uid://clkkhjnqdcob8" path="res://Art/Ambientes/SalaDeEstar.jpg" id="7_vq66k"]
@@ -16,7 +16,8 @@
 [ext_resource type="AudioStream" uid="uid://h581670wqa3o" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
 [ext_resource type="Texture2D" uid="uid://7hcjt17g0ixi" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
 [ext_resource type="Script" uid="uid://d3sm4ib6x6aq5" path="res://Scripts/PainelTarefa.cs" id="15_gwlct"]
-[ext_resource type="Texture2D" uid="uid://7s3df4e78k6a" path="res://Art/Ambientes/SalaLivro.jpg" id="17_tq52p"]
+[ext_resource type="Texture2D" uid="uid://c8rx7npbmhfgo" path="res://Art/Ambientes/SalaLivro.png" id="17_tq52p"]
+[ext_resource type="Texture2D" uid="uid://clsvlf0lbqd4x" path="res://Art/Ambientes/AreaEx.jpg" id="18_vg7ux"]
 
 [sub_resource type="Theme" id="Theme_qxdo5"]
 
@@ -238,6 +239,15 @@ text = "
 "
 flat = true
 
+[node name="TomarRemedio" type="Button" parent="ComodoBanheiro/VoltarBanheiro" unique_id=800776601]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -1134.0
+offset_top = 103.0
+offset_right = -835.0
+offset_bottom = 268.0
+text = "Remédio "
+
 [node name="Espelho" type="Button" parent="ComodoBanheiro/VoltarBanheiro" unique_id=1669714090]
 unique_name_in_owner = true
 layout_mode = 0
@@ -255,6 +265,13 @@ offset_top = 228.0
 offset_right = 457.0
 offset_bottom = 276.0
 text = "Se olhar no espelho"
+
+[node name="IrAreaExterna" type="Button" parent="ComodoBanheiro" unique_id=2102984584]
+unique_name_in_owner = true
+offset_left = -62.0
+offset_top = 387.0
+offset_right = 194.0
+offset_bottom = 447.0
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
 
@@ -274,8 +291,8 @@ text = "x"
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
-position = Vector2(688.5, 369.00003)
-scale = Vector2(1.0021802, 1.0416666)
+position = Vector2(688.5, 384.5)
+scale = Vector2(1.0021802, 1.0013021)
 texture = ExtResource("13_7rqkd")
 
 [node name="VoltarDaCozinha" type="Button" parent="ComodoCozinha" unique_id=1396863339]
@@ -320,8 +337,8 @@ offset_bottom = 456.0
 [node name="Cozinhar" type="Node2D" parent="." unique_id=1771279272]
 
 [node name="Cozinhar" type="Sprite2D" parent="Cozinhar" unique_id=847825352]
-position = Vector2(687.00006, 377)
-scale = Vector2(1.002907, 1.015625)
+position = Vector2(687.00006, 382.5)
+scale = Vector2(1.002907, 1.0013021)
 texture = SubResource("CompressedTexture2D_7rqkd")
 
 [node name="sair" type="Button" parent="Cozinhar/Cozinhar" unique_id=2007032522]
@@ -386,5 +403,12 @@ offset_top = -53.0
 offset_right = 686.0
 offset_bottom = 516.0
 flat = true
+
+[node name="AreaExterna" type="Node2D" parent="." unique_id=1880917434]
+
+[node name="LadoDeFora" type="Sprite2D" parent="AreaExterna" unique_id=1310036413]
+position = Vector2(686.50006, 380.5)
+scale = Vector2(0.9963663, 0.9934896)
+texture = ExtResource("18_vg7ux")
 
 [connection signal="pressed" from="ComodoQuarto/ProximoDia" to="." method="OnButtonPressed"]
