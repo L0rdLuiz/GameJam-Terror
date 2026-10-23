@@ -162,6 +162,9 @@ public partial class Sala1 : Node2D
 		Button dobrarRoupa = GetNode<Button>("%DobrarRoupa");
 		dobrarRoupa.Pressed += IniciarMinigameRoupa;
 
+		Button levarLixo = GetNode<Button>("%LevarLixo");
+		levarLixo.Pressed += IniciarMinigameLixo;
+
 		GetNode<Button>("%BotaoComecar").Pressed += () => 
 		{
 			MostrarComodo(espelho);
@@ -305,6 +308,9 @@ public partial class Sala1 : Node2D
 
 		GetNode<Button>("%DobrarRoupa").Visible =
     		gameState.PossoFazerATarefa(GameState.DobrarRoupa);
+
+		GetNode<Button>("%LevarLixo").Visible =
+    		gameState.PossoFazerATarefa(GameState.LevarLixo);
 	}
 
 	private void IniciarMinigameCozinha()
@@ -362,6 +368,36 @@ public partial class Sala1 : Node2D
 		minigame.TreeExited += () =>
 		{
 			gameState.ConcluirTarefa(GameState.DobrarRoupa);
+			Show();
+			AtualizarBotoes();
+		};
+
+		GetTree().Root.AddChild(minigame);
+		Hide();
+	}
+
+	
+	
+	private void IniciarMinigameLixo()
+	{
+		if (!gameState.PossoFazerATarefa(GameState.LevarLixo))
+			return;
+
+		PackedScene cena = GD.Load<PackedScene>(
+			"res://Scenes/MinigameLixo/minigame_lixo.tscn"
+		);
+
+		if (cena == null)
+		{
+			GD.PrintErr("Não foi possível carregar o minigame do lixo.");
+			return;
+		}
+
+		Node minigame = cena.Instantiate();
+
+		minigame.TreeExited += () =>
+		{
+			gameState.ConcluirTarefa(GameState.LevarLixo);
 			Show();
 			AtualizarBotoes();
 		};
