@@ -13,6 +13,7 @@ public partial class TelaPintura : CanvasLayer
 	//cor e tamanho do pincel
 	private Color _corAtual = Colors.Black;
 	private int _raioPincel = 6;
+	public GameState gameState;
 
 	public override void _Ready()
 	{
@@ -47,6 +48,7 @@ public partial class TelaPintura : CanvasLayer
 		GetNode<Button>("FecharPintura").Pressed += () =>
 		{
 			Hide();
+			gameState.ConcluirTarefa(GameState.Brincar);
 		};
 
 	}

@@ -73,7 +73,6 @@ public partial class PainelTarefa : CanvasLayer
             GameState.Brincar => "Brincar com Sugarplum",
             GameState.AjeitarBrinquedos => "Arrumar os brinquedos",
             GameState.BuscarRemedio => "Buscar o remédio",
-            GameState.Pintar => "Pintar",
             _ => tarefa
         };
     }

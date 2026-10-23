@@ -297,6 +297,12 @@ public partial class Sala1 : Node2D
 		Button levarLixo = GetNode<Button>("%LevarLixo");
 		levarLixo.Pressed += IniciarMinigameLixo;
 
+		Button fazerLicao = GetNode<Button>("%TarefaEscolar");
+		fazerLicao.Pressed += IniciarMinigameLicao;
+
+		Button cavalete = GetNode<Button>("%Cavalete");
+		cavalete.Pressed += IniciarPintura;
+
 		GetNode<Button>("%BotaoComecar").Pressed += () =>
 		{
 			MostrarComodo(espelho);
@@ -340,6 +346,7 @@ public partial class Sala1 : Node2D
 			{
 				livroLido = true;
 				AtualizarBotoes();
+				gameState.ConcluirTarefa(GameState.LerLivro);
 			});
 		};
 		GetNode<Button>("%SairLivro").Pressed += () => MostrarComodo(sala);
@@ -384,20 +391,18 @@ public partial class Sala1 : Node2D
 			MostrarProximaLinha();
 		};
 
+		GetNode<Button>("FecharPintura").Pressed += () =>
+		{
+			Hide();
+			gameState.ConcluirTarefa(GameState.Brincar);
+			AtualizarBotoes();
+		};
+
 		Button botaoEspelho = GetNode<Button>("%Espelho");
 		Label textoEspelho = GetNode<Label>("%TextoEspelho");
 		textoEspelho.Hide();
 		botaoEspelho.MouseEntered += () => textoEspelho.Show();
 		botaoEspelho.MouseExited += () => textoEspelho.Hide();
-
-		// TarefaEscolar
-		Button tarefaEscolar = GetNode<Button>("%TarefaEscolar");
-		Label textoTarefa = GetNode<Label>("%TextoTarefaEscolar");
-		textoTarefa.MouseFilter = Control.MouseFilterEnum.Ignore;
-		textoTarefa.Hide();
-		tarefaEscolar.MouseEntered += () => textoTarefa.Show();
-		tarefaEscolar.MouseExited += () => textoTarefa.Hide();
-		tarefaEscolar.VisibilityChanged += () => textoTarefa.Hide();
 
 		// Próximo dia
 		Button nextDay = GetNode<Button>("%ProximoDia");
@@ -411,36 +416,7 @@ public partial class Sala1 : Node2D
 		nextDay.MouseExited += () => textoNextDay.Hide();
 		nextDay.Pressed += OnButtonPressed;
 
-		tarefaEscolar.Pressed += () =>
-		{
-			if (!gameState.PossoFazerATarefa(GameState.TarefaEscolar))
-			{
-				GD.Print("Não pode fazer a tarefa escolar ainda!");
-				return;
-			}
-
-			PackedScene tarefaEscolarScene = GD.Load<PackedScene>("res://Scenes/MinigameLicao/minigame_licao.tscn");
-			if (tarefaEscolarScene == null)
-			{
-				GD.PrintErr("Não foi possível carregar o minigame da lição.");
-				return;
-			}
-			Node tarefaEscolarInstance = tarefaEscolarScene.Instantiate();
-			GetTree().Root.AddChild(tarefaEscolarInstance);
-			Hide();
-
-			tarefaEscolarInstance.TreeExited += () =>
-			{
-				if (!IsInsideTree()) return;
-
-				if (gameState.PossoFazerATarefa(GameState.TarefaEscolar))
-					gameState.ConcluirTarefa(GameState.TarefaEscolar);
-
-				Show();
-				MostrarComodo(GetNode<Node2D>("SalaDeEstar"));
-				TentarFalar("PosLicao", SequenciaDormir);
-			};
-		};
+		
 	}
 
 	// Depois do jantar: vai pra sala e libera o botão da lição
@@ -500,7 +476,7 @@ public partial class Sala1 : Node2D
 			gameState.PossoFazerATarefa(GameState.TarefaEscolar);
 
 		GetNode<Button>("%Cavalete").Visible =
-			gameState.PossoFazerATarefa(GameState.Pintar);
+			gameState.PossoFazerATarefa(GameState.Brincar);
 
 		GetNode<Button>("%FogaoCozinhar").Visible =
 			gameState.PossoFazerATarefa(GameState.Almoco)
@@ -508,8 +484,15 @@ public partial class Sala1 : Node2D
 
 		GetNode<Button>("%DobrarRoupa").Visible =
 			livroLido && gameState.PossoFazerATarefa(GameState.DobrarRoupa);
+
 		GetNode<Button>("%LevarLixo").Visible =
 			gameState.PossoFazerATarefa(GameState.LevarLixo);
+
+		GetNode<Button>("%TarefaEscolar").Visible =
+			gameState.PossoFazerATarefa(GameState.TarefaEscolar);
+
+		GetNode<Button>("%Cavalete").Visible =
+    		gameState.PossoFazerATarefa(GameState.Brincar);
 	}
 
 	private void IniciarMinigameCozinha()
@@ -625,6 +608,47 @@ public partial class Sala1 : Node2D
 
 		GetTree().Root.AddChild(minigame);
 		Hide();
+	}
+
+	private void IniciarMinigameLicao()
+	{
+		if (!gameState.PossoFazerATarefa(GameState.TarefaEscolar))
+			return;
+
+		PackedScene cena = GD.Load<PackedScene>(
+			"res://Scenes/MinigameLicao/minigame_licao.tscn"
+		);
+
+		if (cena == null)
+		{
+			GD.PrintErr("Não foi possível carregar o minigame de lição.");
+			return;
+		}
+
+		Node minigame = cena.Instantiate();
+
+		minigame.TreeExited += () =>
+		{
+			if (!IsInsideTree()) return;
+
+			gameState.ConcluirTarefa(GameState.TarefaEscolar);
+
+			Show();
+
+			AtualizarBotoes();
+
+			TentarFalar("PosLicao");
+		};
+
+		GetTree().Root.AddChild(minigame);
+		Hide();
+	}
+
+	private void IniciarPintura()
+	{
+		TelaPintura telaPintura = GetNode<TelaPintura>("%TelaPintura");
+		telaPintura.gameState = gameState;
+		telaPintura.Show();
 	}
 
 	// Fala só se existir fala para este dia/local e ainda não foi vista

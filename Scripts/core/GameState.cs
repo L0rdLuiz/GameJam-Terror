@@ -18,8 +18,7 @@ public partial class GameState : Node
 	public const string BuscarRemedio = "buscar_remedio";
 	public const string TomarRemedio = "tomar_remedio";
 	public const string HistoriaFilho = "historia_filho";
-
-	public const string Pintar = "pintar";
+	public const string LerLivro = "ler_livro";
 
 
 	public void NextDay()
@@ -38,7 +37,7 @@ public partial class GameState : Node
 
 	private Dictionary<int, List<string>> tarefasDoDia = new Dictionary<int, List<string>>
 	{
-		{ 1, new List<string> { Almoco, DobrarRoupa, Janta, TarefaEscolar, TomarRemedio, HistoriaFilho } },
+		{ 1, new List<string> { Almoco, LerLivro, DobrarRoupa, Janta, TarefaEscolar, TomarRemedio, HistoriaFilho } },
 		{ 2, new List<string> { Almoco, LevarLixo, Janta, Brincar, TomarRemedio, HistoriaFilho } },
 		{ 3, new List<string> { Almoco, AjeitarBrinquedos, Janta, TarefaEscolar, TomarRemedio, HistoriaFilho } },
 		{ 4, new List<string> { Almoco, LevarLixo, Janta, BuscarRemedio, Brincar, TomarRemedio, HistoriaFilho } },

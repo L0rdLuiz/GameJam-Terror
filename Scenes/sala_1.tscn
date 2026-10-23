@@ -56,11 +56,11 @@ flat = true
 
 [node name="TextoPintar" type="Label" parent="SalaDeEstar/Cavalete" unique_id=655184521]
 layout_mode = 0
-offset_left = 34.0
-offset_top = 104.0
-offset_right = 81.0
-offset_bottom = 127.0
-text = "Pintar"
+offset_left = -21.0
+offset_top = 93.0
+offset_right = 110.0
+offset_bottom = 116.0
+text = "Brincar Pintando"
 
 [node name="TelaPintura" type="CanvasLayer" parent="SalaDeEstar" unique_id=1640934503]
 visible = false
@@ -82,6 +82,7 @@ offset_bottom = 935.0
 stretch_mode = 2
 
 [node name="FecharPintura" type="Button" parent="SalaDeEstar/TelaPintura" unique_id=257490273]
+unique_name_in_owner = true
 offset_right = 93.0
 offset_bottom = 73.0
 text = "X"
@@ -256,7 +257,6 @@ offset_bottom = 276.0
 text = "Se olhar no espelho"
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
-visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)
@@ -272,7 +272,6 @@ offset_bottom = 100.0
 text = "x"
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
-visible = false
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 369.00003)
