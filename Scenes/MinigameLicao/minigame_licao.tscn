@@ -9,6 +9,7 @@
 [node name="MinigameLicao" type="Node2D" unique_id=1578077356]
 
 [node name="Pagina1" type="Sprite2D" parent="." unique_id=1649921076]
+visible = false
 position = Vector2(610, 319)
 texture = ExtResource("1_7ieon")
 script = ExtResource("2_7ieon")
@@ -48,7 +49,6 @@ offset_right = 117.5
 offset_bottom = 156.0
 
 [node name="Pagina2" type="Sprite2D" parent="." unique_id=52156623]
-visible = false
 position = Vector2(584, 317)
 texture = ExtResource("3_dqia5")
 script = ExtResource("4_648mb")

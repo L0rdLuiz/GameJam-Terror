@@ -41,17 +41,18 @@ public partial class GameState : Node
                     TomarRemedio, HistoriaFilho
                 }
             },
+            // Dia 4: almoço -> lixo (e remédio) -> livro -> janta -> desenho -> remédio -> história
             { 4, new List<string>
                 {
-                    Almoco, LevarLixo, Janta, BuscarRemedio,
+                    Almoco, LevarLixo, LerLivro, Janta,
                     Brincar, TomarRemedio, HistoriaFilho
                 }
             },
             { 5, new List<string>
-                {
-                    Almoco, AjeitarBrinquedos, Janta,
-                    TarefaEscolar, TomarRemedio, HistoriaFilho
-                }
+             {
+              Almoco, AjeitarBrinquedos, LerLivro, Janta,
+             TarefaEscolar, TomarRemedio, HistoriaFilho
+            }
             }
         };
 
