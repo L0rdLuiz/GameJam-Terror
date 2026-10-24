@@ -11,13 +11,19 @@
 [ext_resource type="Script" uid="uid://ct3fhu1cfs45t" path="res://Scenes/TelaPintura.cs" id="8_vq66k"]
 [ext_resource type="Texture2D" uid="uid://cby34a1jk6eg" path="res://Art/Ambientes/Fundoespelho.jpg" id="9_vw5l1"]
 [ext_resource type="Texture2D" uid="uid://c4kh2m85ohbc6" path="res://Art/Ambientes/Menu.jpg" id="10_0dbmu"]
-[ext_resource type="AudioStream" uid="uid://d4bhw0p5cavpq" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
+[ext_resource type="Texture2D" uid="uid://rnug3mwsi2fb" path="res://Art/Ambientes/MeninoOlho.jpg" id="10_ekxcg"]
+[ext_resource type="Texture2D" uid="uid://cikvwgpwvnjcr" path="res://Art/Ambientes/MeninoCama.png" id="11_w0sf2"]
+[ext_resource type="AudioStream" uid="uid://nahqr0xjakql" path="res://Audio/Feliz.mp3" id="12_0vxn5"]
 [ext_resource type="Texture2D" uid="uid://c1o13c6sfyjsa" path="res://Art/Ambientes/Cozinhaa.jpg" id="13_7rqkd"]
 [ext_resource type="AudioStream" uid="uid://h581670wqa3o" path="res://Audio/Dialogo.mp3" id="13_pd6y2"]
+[ext_resource type="Texture2D" uid="uid://dumsvwl7vdg0l" path="res://Art/Ambientes/MulherSozinha.jpg" id="13_rteav"]
 [ext_resource type="Texture2D" uid="uid://7hcjt17g0ixi" path="res://Art/Ambientes/CozinhaMesa.jpg" id="14_qxdo5"]
+[ext_resource type="Texture2D" uid="uid://cfpxgcpffoqvn" path="res://Art/Ambientes/FundoCansada.jpg" id="15_cucga"]
 [ext_resource type="Script" uid="uid://d3sm4ib6x6aq5" path="res://Scripts/PainelTarefa.cs" id="15_gwlct"]
+[ext_resource type="Texture2D" uid="uid://brcwdwbnnu7c6" path="res://Art/Ambientes/MesaOlho.jpg" id="16_7d4t2"]
 [ext_resource type="Texture2D" uid="uid://c8rx7npbmhfgo" path="res://Art/Ambientes/SalaLivro.png" id="17_tq52p"]
 [ext_resource type="Texture2D" uid="uid://clsvlf0lbqd4x" path="res://Art/Ambientes/AreaEx.jpg" id="18_vg7ux"]
+[ext_resource type="AudioStream" uid="uid://bc67bjdknaxqo" path="res://Audio/Musica45.mp3" id="24_5lv1v"]
 
 [sub_resource type="Theme" id="Theme_qxdo5"]
 
@@ -131,9 +137,9 @@ text = "Tidy up the toys"
 [node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
 
 [node name="Caixa" type="Panel" parent="Dialogo" unique_id=732848754]
-offset_left = 152.0
+offset_left = 155.0
 offset_top = 598.0
-offset_right = 1227.0
+offset_right = 1208.0
 offset_bottom = 763.0
 theme = SubResource("Theme_qxdo5")
 
@@ -156,6 +162,7 @@ flat = true
 
 [node name="MusicaPrincipal" type="AudioStreamPlayer2D" parent="." unique_id=799966107]
 stream = ExtResource("12_0vxn5")
+volume_db = -0.2
 autoplay = true
 
 [node name="somDialogo" type="AudioStreamPlayer2D" parent="." unique_id=1749233045]
@@ -184,6 +191,11 @@ text = "Start"
 position = Vector2(690, 382.5)
 scale = Vector2(1.0029069, 0.9960937)
 texture = ExtResource("2_ol3of")
+
+[node name="MeninoOlho" type="Sprite2D" parent="ComodoQuarto" unique_id=312930760]
+position = Vector2(697.50006, 387)
+scale = Vector2(0.81179273, 0.8196372)
+texture = ExtResource("10_ekxcg")
 
 [node name="IrBanheiro" type="Button" parent="ComodoQuarto" unique_id=1002927502]
 unique_name_in_owner = true
@@ -219,6 +231,16 @@ offset_right = 384.0
 offset_bottom = 557.0
 text = "Fold the laundry
 "
+
+[node name="MeninoQuarto" type="Sprite2D" parent="ComodoQuarto" unique_id=1611409809]
+position = Vector2(692.25, 381.75)
+scale = Vector2(0.8156641, 0.8244397)
+texture = ExtResource("11_w0sf2")
+
+[node name="MulherSozinha" type="Sprite2D" parent="ComodoQuarto" unique_id=1602251106]
+position = Vector2(692.5, 403)
+scale = Vector2(1.0123546, 0.9921875)
+texture = ExtResource("13_rteav")
 
 [node name="ComodoBanheiro" type="Node2D" parent="." unique_id=107546116]
 
@@ -269,6 +291,7 @@ offset_left = -62.0
 offset_top = 387.0
 offset_right = 194.0
 offset_bottom = 447.0
+flat = true
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
 
@@ -284,6 +307,11 @@ offset_top = 4.0
 offset_right = 152.0
 offset_bottom = 100.0
 text = "x"
+
+[node name="FundoCansada" type="Sprite2D" parent="ComodoEspelho" unique_id=924363846]
+position = Vector2(695.5, 387)
+scale = Vector2(0.9920058, 0.9947917)
+texture = ExtResource("15_cucga")
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
 
@@ -330,8 +358,15 @@ offset_left = 19.0
 offset_top = 408.0
 offset_right = 171.0
 offset_bottom = 456.0
+flat = true
+
+[node name="MesaOlho" type="Sprite2D" parent="ComodoCozinhaMesa" unique_id=1506335878]
+position = Vector2(687.50006, 388)
+scale = Vector2(1.0079942, 1.015625)
+texture = ExtResource("16_7d4t2")
 
 [node name="Cozinhar" type="Node2D" parent="." unique_id=1771279272]
+visible = false
 
 [node name="Cozinhar" type="Sprite2D" parent="Cozinhar" unique_id=847825352]
 position = Vector2(687.00006, 382.5)
@@ -389,6 +424,7 @@ offset_bottom = 28.0
 text = "House Chore"
 
 [node name="SalaFilho" type="Node2D" parent="." unique_id=2107099407]
+visible = false
 
 [node name="SalaComFilho" type="Sprite2D" parent="SalaFilho" unique_id=2063403871]
 position = Vector2(694, 380.00003)
@@ -396,6 +432,7 @@ scale = Vector2(0.99563956, 0.99479175)
 texture = ExtResource("4_gwlct")
 
 [node name="ComodoLivro" type="Node2D" parent="." unique_id=739139643]
+visible = false
 
 [node name="Livro" type="Sprite2D" parent="ComodoLivro" unique_id=350114294]
 position = Vector2(709, 389)
@@ -421,10 +458,14 @@ offset_bottom = 516.0
 flat = true
 
 [node name="AreaExterna" type="Node2D" parent="." unique_id=1880917434]
+visible = false
 
 [node name="LadoDeFora" type="Sprite2D" parent="AreaExterna" unique_id=1310036413]
 position = Vector2(686.50006, 380.5)
 scale = Vector2(0.9963663, 0.9934896)
 texture = ExtResource("18_vg7ux")
+
+[node name="Musica45" type="AudioStreamPlayer2D" parent="." unique_id=1169165513]
+stream = ExtResource("24_5lv1v")
 
 [connection signal="pressed" from="ComodoQuarto/ProximoDia" to="." method="OnButtonPressed"]

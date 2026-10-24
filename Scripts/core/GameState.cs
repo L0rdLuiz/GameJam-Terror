@@ -52,8 +52,8 @@ public partial class GameState : Node
              {
               Almoco, AjeitarBrinquedos, LerLivro, Janta,
              TarefaEscolar, TomarRemedio, HistoriaFilho
-            }
-            }
+        }
+}
         };
 
     private readonly HashSet<string> tarefasConcluidas = new();

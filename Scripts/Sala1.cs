@@ -17,7 +17,30 @@ public partial class Sala1 : Node2D
     Node2D[] comodos;
     private CanvasLayer painelTarefa;
 
+    // Sprites que mudam durante o jogo
+    CanvasItem meninoQuarto;
+    CanvasItem meninoOlho;
+    CanvasItem mulherSozinha;
+    CanvasItem mesaSprite;
+    CanvasItem mesaRostoSprite;
+    bool meninoNaCama = true;
+    bool olhoAtivo = false;
+    bool rostoAtivo = false;
+    bool sozinhaAtiva = false;
+    bool fimDeJogoChamado = false;
+
+    // Nó AudioStreamPlayer2D chamado "Musica45" na cena (com o arquivo de música já atribuído e Autoplay desligado).
+    AudioStreamPlayer2D musica45;
+
+    // Espelho: a partir do Dia 4 troca FundoEspelho por FundoCansada e fica assim até o fim do jogo.
+    CanvasItem fundoEspelho;
+    CanvasItem fundoCansada;
+    bool espelhoCansada = false;
+
     // Falas organizadas por dia e local. Linhas iniciadas com # são comandos internos.
+    // Comandos: #sala #quarto #espelho #cozinha (trocam de cômodo)
+    //           #olho / #menino (MeninoOlho <-> MeninoQuarto)   #rosto / #mesa (MesaRosto <-> Mesa)
+    //           #sozinha (troca MeninoQuarto por MulherSozinha e chama o fim de jogo após 7s)
     Dictionary<(int dia, string local), string[]> falas = new()
     {
         // DIA 1
@@ -287,6 +310,7 @@ public partial class Sala1 : Node2D
 
         // DIA 4 (falas do Sugarplum sem rosto = vazias)
         { (4, "Acordar"), new[] {
+            "#espelho",
             "Cherry|Morning, Cherry.",
             "Cherry|You need to get more pills. But before, let's make Sugarplum's meal, he comes first."
         }},
@@ -339,7 +363,9 @@ public partial class Sala1 : Node2D
             "Sugarplum|It's ok mom, even if I don't make friends at school, I still have you to play with me at home.",
             "Cherry|Oh sweetie, I'm happy to hear this.",
             "Cherry|Is there something I can do to bring up the mood?",
+            "#rosto",
             "Sugarplum|Can we draw together again?",
+            "#mesa",
             "Cherry|Of course.",
             "They both eat dinner, chatting about what to draw."
         }},
@@ -359,6 +385,7 @@ public partial class Sala1 : Node2D
         }},
         { (4, "PreRemedio"), new[] { "Cherry|I did it, I passed through today." }},
         { (4, "Remedio"), new[] {
+            "#cansada",
             "Cherry|I should take another pill, don't wanna risk feeling under the weather again.",
             "Cherry takes her second pill of the day."
         }},
@@ -380,6 +407,7 @@ public partial class Sala1 : Node2D
             "Cherry|The mother shouts for her son, but her voice doesn't come out.",
             "Cherry|Her lungs grasp for air in vain.",
             "Cherry|She can't feel her breath, as if there are hands gripping her neck, tightening every second.",
+            "#olho",
             "Cherry|The mother collapses to the floor, letting go of her child's cold corpse. The impact on the ground forces his eyes open, gazing at her, judging her.",
             "Cherry|'Why did this happen to me?' - The gaze questions.",
             "Cherry|'Why did you let this happen to me?' - The gaze inquires.",
@@ -393,6 +421,7 @@ public partial class Sala1 : Node2D
             "Cherry|STOP",
             "Cherry|The grip in her throat intensifies, air no longer reaching her lungs, her voice no longer coming out of her mouth, her vision becomes blurry.",
             "Yet her son's lifeless eyes still gaze directly at her soul.",
+            "#menino",
             "She feels a small hand grabbing her arm, she slowly turns to look at the origin of that touch...",
             "Sugarplum|Mom, are you ok? You stopped moving all of a sudden.",
             "Her son looks at her with a worried expression on his face.",
@@ -534,6 +563,7 @@ public partial class Sala1 : Node2D
             "Cherry|Goodnight, my little Sugarplum. See you tomorrow.",
             "The camera pulls away, revealing the empty bed and Sugarplum's untouched belongings.",
             "Cherry smooths the blanket on the empty side of the bed.",
+            "#sozinha",
             "Cherry is alone.",
             "She lies down and turns off the light. The clock keeps ticking.",
             "Tomorrow, Cherry will wake up and do it all again.",
@@ -560,6 +590,14 @@ public partial class Sala1 : Node2D
         musica.Play();
     }
 
+    // Do Dia 4 em diante: para a música principal e toca a Musica45 (sem reiniciar se já estiver tocando).
+    private void TocarMusica45()
+    {
+        if (musica45 == null || musica45.Playing) return;
+        musica?.Stop();
+        musica45.Play();
+    }
+
     public override void _Ready()
     {
         gameState = GetNode<GameState>("/root/GameState");
@@ -567,6 +605,8 @@ public partial class Sala1 : Node2D
         gameState.TarefaConcluida += AoTarefaConcluir;
         musica = GetNode<AudioStreamPlayer2D>("MusicaPrincipal");
         somDialogo = GetNode<AudioStreamPlayer2D>("somDialogo");
+        musica45 = FindChild("Musica45", true, false) as AudioStreamPlayer2D;
+        if (musica45 == null) GD.PrintErr("Nó Musica45 não encontrado na cena.");
 
         var menu = GetNode<Node2D>("ComodoMenu");
         var quarto = GetNode<Node2D>("ComodoQuarto");
@@ -581,6 +621,24 @@ public partial class Sala1 : Node2D
         var areaExterna = GetNode<Node2D>("AreaExterna");
 
         comodos = new[] { menu, quarto, banheiro, espelho, sala, cozinha, mesa, cozinhar, salafilho, livro, areaExterna };
+
+        // Sprites que trocam durante o jogo (procura pelo nome em qualquer lugar da cena)
+        meninoQuarto = FindChild("MeninoQuarto", true, false) as CanvasItem;
+        meninoOlho = FindChild("MeninoOlho", true, false) as CanvasItem;
+        mulherSozinha = FindChild("MulherSozinha", true, false) as CanvasItem;
+        mesaSprite = FindChild("Mesa", true, false) as CanvasItem;
+        // Aceita os dois nomes possíveis do sprite do rosto branco na mesa.
+        mesaRostoSprite = (FindChild("MesaRosto", true, false) ?? FindChild("MesaOlho", true, false)) as CanvasItem;
+        if (meninoQuarto == null) GD.PrintErr("Nó MeninoQuarto não encontrado na cena.");
+        if (meninoOlho == null) GD.PrintErr("Nó MeninoOlho não encontrado na cena (ainda não criado?).");
+        if (mulherSozinha == null) GD.PrintErr("Nó MulherSozinha não encontrado na cena.");
+        if (mesaSprite == null) GD.PrintErr("Nó Mesa não encontrado na cena.");
+        if (mesaRostoSprite == null) GD.PrintErr("Nó MesaRosto (ou MesaOlho) não encontrado na cena.");
+
+        fundoEspelho = FindChild("FundoEspelho", true, false) as CanvasItem;
+        fundoCansada = FindChild("FundoCansada", true, false) as CanvasItem;
+        if (fundoEspelho == null) GD.PrintErr("Nó FundoEspelho não encontrado na cena.");
+        if (fundoCansada == null) GD.PrintErr("Nó FundoCansada não encontrado na cena.");
 
         // Segurança: se sobrou um nó "SalaPinceis" na cena (versão antiga), esconde para não aparecer por cima do menu.
         GetNodeOrNull<Node2D>("SalaPinceis")?.Hide();
@@ -641,7 +699,7 @@ public partial class Sala1 : Node2D
             if (gameState.Day != 1 || gameState.TarefaEstaFeita(GameState.Janta)) MostrarComodo(sala);
             else { MostrarComodo(salafilho); TentarFalar("SalaComFilho", () => TentarFalar("fundosala")); }
         };
-        GetNode<Button>("%sair").Pressed += () => { MostrarComodo(mesa); TentarFalar("Mesa"); };
+        GetNode<Button>("%sair").Pressed += () => { MostrarComodo(mesa); TentarFalar("Mesa", SairParaEscola); };
 
         GetNode<Button>("Dialogo/Caixa/Avancar").Pressed += AvancarDialogo;
 
@@ -667,6 +725,8 @@ public partial class Sala1 : Node2D
         nextDay.MouseEntered += () => textoNextDay.Show();
         nextDay.MouseExited += () => textoNextDay.Hide();
         nextDay.Pressed += OnButtonPressed;
+
+        if (gameState.Day >= 4) TocarMusica45();
     }
 
     private void JogarLixo()
@@ -718,10 +778,19 @@ public partial class Sala1 : Node2D
         ContarHistoria();
     }
 
+    // O Sugarplum sai para a escola depois do almoço: o quarto volta ao normal (sem ele na cama).
+    private void SairParaEscola()
+    {
+        meninoNaCama = false;
+        olhoAtivo = false;
+        AtualizarMenino();
+    }
+
     private void ContarHistoria()
     {
         if (historiaContada) return;
         GD.Print("Objetivo: contar a história.");
+        meninoNaCama = true;
         MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
         TentarFalar("HistoriaUrsos", AoFimDaHistoria);
     }
@@ -731,6 +800,28 @@ public partial class Sala1 : Node2D
         MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
         if (remedioTomado && !historiaContada && gameState.PossoFazerATarefa(GameState.HistoriaFilho))
             ContarHistoria();
+    }
+
+    private void AtualizarMenino()
+    {
+        bool noQuarto = comodos != null && comodos[1].Visible;
+        if (meninoQuarto != null) meninoQuarto.Visible = meninoNaCama && !olhoAtivo && !sozinhaAtiva && noQuarto;
+        if (meninoOlho != null) meninoOlho.Visible = meninoNaCama && olhoAtivo && !sozinhaAtiva && noQuarto;
+        if (mulherSozinha != null) mulherSozinha.Visible = sozinhaAtiva && noQuarto;
+    }
+
+    // MesaRosto é só uma camada por cima do Mesa: o Mesa nunca é escondido.
+    // Só aparece no Dia 4, e só enquanto rostoAtivo estiver ligado (um diálogo, via #rosto / #mesa).
+    private void AtualizarMesa()
+    {
+        if (mesaRostoSprite != null)
+            mesaRostoSprite.Visible = rostoAtivo && gameState != null && gameState.Day == 4;
+    }
+
+    private void AtualizarEspelho()
+    {
+        if (fundoEspelho != null) fundoEspelho.Visible = !espelhoCansada;
+        if (fundoCansada != null) fundoCansada.Visible = espelhoCansada;
     }
 
     private void AoFimDaHistoria()
@@ -746,13 +837,56 @@ public partial class Sala1 : Node2D
             GD.Print("Dia " + gameState.Day + " concluído. Avançando.");
             gameState.TentarVirarODia();
         }
-        else GD.Print("Fim do jogo."); // Dia 5: coloque aqui a tela final
+        else GD.Print("Fim do jogo."); // Dia 5: a tela final é chamada pelo comando #sozinha
+    }
+
+    private void MostrarFimDeJogo()
+    {
+        if (fimDeJogoChamado || !IsInsideTree()) return;
+        fimDeJogoChamado = true;
+        FecharDialogo();
+
+        var camada = new CanvasLayer { Layer = 100 };
+        var fundo = new ColorRect { Color = Colors.Black, Modulate = new Color(1, 1, 1, 0) };
+        fundo.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        camada.AddChild(fundo);
+
+        var caixa = new VBoxContainer();
+        caixa.SetAnchorsPreset(Control.LayoutPreset.Center);
+        caixa.GrowHorizontal = Control.GrowDirection.Both;
+        caixa.GrowVertical = Control.GrowDirection.Both;
+        caixa.Alignment = BoxContainer.AlignmentMode.Center;
+        caixa.AddThemeConstantOverride("separation", 20);
+        fundo.AddChild(caixa);
+
+        var titulo = new Label { Text = "FIM DE JOGO", HorizontalAlignment = HorizontalAlignment.Center };
+        titulo.AddThemeFontSizeOverride("font_size", 64);
+        caixa.AddChild(titulo);
+
+        var reiniciar = new Button { Text = "Jogar novamente", CustomMinimumSize = new Vector2(240, 50) };
+        reiniciar.Pressed += () => GetTree().ReloadCurrentScene();
+        caixa.AddChild(reiniciar);
+
+        var sair = new Button { Text = "Sair", CustomMinimumSize = new Vector2(240, 50) };
+        sair.Pressed += () => GetTree().Quit();
+        caixa.AddChild(sair);
+
+        AddChild(camada);
+        CreateTween().TweenProperty(fundo, "modulate:a", 1.0, 1.5);
     }
 
     private void MostrarComodo(Node2D comodo, bool fecharDialogo = true)
     {
         foreach (var c in comodos) c.Hide();
         comodo.Show();
+        if (fecharDialogo)
+        {
+            olhoAtivo = false;
+            rostoAtivo = false;
+        }
+        AtualizarMenino();
+        AtualizarMesa();
+        AtualizarEspelho();
         painelTarefa.Visible = comodo != comodos[0];
         if (fecharDialogo) GetNode<CanvasLayer>("Dialogo").Hide();
         AtualizarBotoes();
@@ -815,7 +949,7 @@ public partial class Sala1 : Node2D
                 TentarFalar("AlmocoPronto", () =>
                 {
                     MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
-                    TentarFalar("MesaAlmoco", IniciarArrumarPinceis);
+                    TentarFalar("MesaAlmoco", () => { SairParaEscola(); IniciarArrumarPinceis(); });
                 });
             }
             else if (gameState.Day == 4)
@@ -824,7 +958,7 @@ public partial class Sala1 : Node2D
                 TentarFalar("AlmocoPronto", () =>
                 {
                     MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
-                    TentarFalar("MesaAlmoco", () => MostrarComodo(GetNode<Node2D>("SalaDeEstar")));
+                    TentarFalar("MesaAlmoco", () => { SairParaEscola(); MostrarComodo(GetNode<Node2D>("SalaDeEstar")); });
                 });
             }
             else if (gameState.Day == 3)
@@ -833,19 +967,32 @@ public partial class Sala1 : Node2D
                 TentarFalar("AlmocoPronto", () =>
                 {
                     MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
-                    TentarFalar("MesaAlmoco", IniciarArrumarPinceis);
+                    TentarFalar("MesaAlmoco", () => { SairParaEscola(); IniciarArrumarPinceis(); });
                 });
             }
             else if (gameState.Day == 2)
             {
                 MostrarComodo(GetNode<Node2D>("ComodoCozinha"));
-                TentarFalar("AlmocoPronto", () => { MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa")); TentarFalar("MesaAlmoco", () => { MostrarComodo(GetNode<Node2D>("SalaDeEstar")); TentarFalar("Mensagem"); }); });
+                TentarFalar("AlmocoPronto", () =>
+                {
+                    MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
+                    TentarFalar("MesaAlmoco", () =>
+                    {
+                        SairParaEscola();
+                        MostrarComodo(GetNode<Node2D>("SalaDeEstar"));
+                        TentarFalar("Mensagem");
+                    });
+                });
             }
             else
             {
                 // Dia 1: almoço pronto na cozinha, depois a conversa na mesa.
                 MostrarComodo(GetNode<Node2D>("ComodoCozinha"));
-                TentarFalar("AlmocoPronto", () => { MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa")); TentarFalar("Mesa"); });
+                TentarFalar("AlmocoPronto", () =>
+                {
+                    MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
+                    TentarFalar("Mesa", SairParaEscola);
+                });
             }
         };
         GetTree().Root.AddChild(minigame);
@@ -951,6 +1098,16 @@ public partial class Sala1 : Node2D
         {
             case "#sala": MostrarComodo(GetNode<Node2D>("SalaDeEstar"), false); break;
             case "#quarto": MostrarComodo(GetNode<Node2D>("ComodoQuarto"), false); break;
+            case "#olho": olhoAtivo = true; AtualizarMenino(); break;
+            case "#menino": olhoAtivo = false; AtualizarMenino(); break;
+            case "#rosto": rostoAtivo = true; AtualizarMesa(); break;
+            case "#mesa": rostoAtivo = false; AtualizarMesa(); break;
+            case "#cansada": espelhoCansada = true; AtualizarEspelho(); break;
+            case "#sozinha":
+                sozinhaAtiva = true;
+                AtualizarMenino();
+                GetTree().CreateTimer(7.0).Timeout += MostrarFimDeJogo;
+                break;
             case "#espelho":
                 MostrarComodo(GetNode<Node2D>("ComodoEspelho"), false);
                 GetNode<Button>("%SairEspelho").Hide(); // evita quebrar o diálogo ao clicar em sair
@@ -962,6 +1119,8 @@ public partial class Sala1 : Node2D
     private void FimDoDialogo()
     {
         GetNode<CanvasLayer>("Dialogo").Hide();
+        // Volta a mostrar o botão de sair se estiver no espelho (o comando #espelho o esconde durante a fala)
+        if (comodos[3].Visible) GetNode<Button>("%SairEspelho").Show();
         var acao = aoTerminarFala; aoTerminarFala = null; acao?.Invoke();
     }
 
@@ -970,9 +1129,11 @@ public partial class Sala1 : Node2D
         tweenTexto?.Kill(); somDialogo?.Stop(); GetNode<CanvasLayer>("Dialogo").Hide();
     }
 
-    
     private void MostrarFala(string fala)
     {
+        // Durante o diálogo o botão de sair do espelho fica escondido para não quebrar a fala.
+        if (comodos[3].Visible) GetNode<Button>("%SairEspelho").Hide();
+
         Label texto = GetNode<Label>("Dialogo/Caixa/Texto");
 
         string personagem = "";
@@ -1009,7 +1170,6 @@ public partial class Sala1 : Node2D
         somDialogo?.Play();
     }
 
-
     public override void _ExitTree()
     {
         if (gameState != null) gameState.DiaMudou -= AoDiaMudar;
@@ -1021,6 +1181,12 @@ public partial class Sala1 : Node2D
     private void AoDiaMudar(int dia)
     {
         GD.Print("Dia mudou para: " + dia);
+        meninoNaCama = true;
+        olhoAtivo = false;
+        rostoAtivo = false;
+        sozinhaAtiva = false;
+        if (dia >= 4) espelhoCansada = true; // do Dia 4 em diante o espelho fica FundoCansada
+        if (dia >= 4) TocarMusica45();
         livroLido = false; licaoLiberada = false; remedioTomado = false; historiaContada = false;
         MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
         if (falas.ContainsKey((dia, "Acordar")))
@@ -1041,7 +1207,7 @@ public partial class Sala1 : Node2D
     }
 
     private void AoTarefaConcluir(string nomeTarefa) { AtualizarBotoes(); }
-    
+
     private void AvancarDialogo()
     {
         if (falasAtuais == null)
@@ -1079,5 +1245,21 @@ public partial class Sala1 : Node2D
             // Impede que o clique chegue aos botões por baixo do diálogo.
             GetViewport().SetInputAsHandled();
         }
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton { Pressed: true }) GD.Print("MOUSE CLICADO!");
+        if (OS.IsDebugBuild() && @event is InputEventKey { Pressed: true, Echo: false } tecla)
+        {
+            if (tecla.Keycode == Key.F1) PularDiaDebug();
+            else if (tecla.Keycode == Key.F2) gameState.DebugConcluirTarefasDoDia();
+        }
+    }
+
+    private void PularDiaDebug()
+    {
+        tweenTexto?.Kill(); somDialogo?.Stop(); falasAtuais = null; aoTerminarFala = null;
+        gameState.DebugPularDia();
     }
 }
