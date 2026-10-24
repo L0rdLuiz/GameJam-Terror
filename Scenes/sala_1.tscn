@@ -28,8 +28,10 @@ load_path = "res://.godot/imported/cozinhar.jpg-51291b6cb55f688cc49ae567c55ea4c7
 script = ExtResource("1_kcv01")
 
 [node name="DebugTarefas" parent="." unique_id=1808093141 instance=ExtResource("5_ol3of")]
+visible = false
 
 [node name="SalaDeEstar" type="Node2D" parent="." unique_id=1768652451]
+visible = false
 script = ExtResource("6_dpcyj")
 
 [node name="fundosala" type="Sprite2D" parent="SalaDeEstar" unique_id=1972275669]
@@ -123,6 +125,7 @@ text = "LIVRO
 "
 
 [node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
+visible = false
 
 [node name="Caixa" type="Panel" parent="Dialogo" unique_id=732848754]
 offset_left = 152.0
@@ -158,6 +161,7 @@ volume_db = 5.594
 pitch_scale = 0.55
 
 [node name="ComodoMenu" type="Node2D" parent="." unique_id=1624878423]
+visible = false
 
 [node name="FundoMenu" type="Sprite2D" parent="ComodoMenu" unique_id=700997057]
 position = Vector2(688.5, 384.49997)
@@ -173,6 +177,7 @@ offset_bottom = 410.0
 text = "Start"
 
 [node name="ComodoQuarto" type="Node2D" parent="." unique_id=986971920]
+visible = false
 
 [node name="Quarto" type="Sprite2D" parent="ComodoQuarto" unique_id=1881920162]
 position = Vector2(690, 382.5)
@@ -204,14 +209,6 @@ offset_right = 1097.0
 offset_bottom = 615.0
 text = "Next Day"
 flat = true
-
-[node name="TextoNextDay" type="Label" parent="ComodoQuarto/ProximoDia" unique_id=864835203]
-layout_mode = 0
-offset_left = 189.0
-offset_top = 93.0
-offset_right = 490.0
-offset_bottom = 155.0
-text = "NEXT DAY"
 
 [node name="DobrarRoupa" type="Button" parent="ComodoQuarto" unique_id=847244565]
 unique_name_in_owner = true
@@ -274,6 +271,7 @@ offset_right = 194.0
 offset_bottom = 447.0
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
+visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)
@@ -289,6 +287,7 @@ offset_bottom = 100.0
 text = "x"
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
+visible = false
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 384.5)
@@ -321,6 +320,7 @@ offset_bottom = 584.0
 text = "Levar Lixo"
 
 [node name="ComodoCozinhaMesa" type="Node2D" parent="." unique_id=365674869]
+visible = false
 
 [node name="Mesa" type="Sprite2D" parent="ComodoCozinhaMesa" unique_id=802430399]
 position = Vector2(689, 384)
@@ -335,6 +335,7 @@ offset_right = 171.0
 offset_bottom = 456.0
 
 [node name="Cozinhar" type="Node2D" parent="." unique_id=1771279272]
+visible = false
 
 [node name="Cozinhar" type="Sprite2D" parent="Cozinhar" unique_id=847825352]
 position = Vector2(687.00006, 382.5)
@@ -351,6 +352,7 @@ text = "TESTE SAIR
 "
 
 [node name="PainelTarefa" type="CanvasLayer" parent="." unique_id=1328937447]
+visible = false
 script = ExtResource("15_gwlct")
 
 [node name="PanelContainer" type="PanelContainer" parent="PainelTarefa" unique_id=2133346767]
@@ -373,6 +375,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SalaFilho" type="Node2D" parent="." unique_id=2107099407]
+visible = false
 
 [node name="SalaComFilho" type="Sprite2D" parent="SalaFilho" unique_id=2063403871]
 position = Vector2(694, 380.00003)
@@ -380,6 +383,7 @@ scale = Vector2(0.99563956, 0.99479175)
 texture = ExtResource("4_gwlct")
 
 [node name="ComodoLivro" type="Node2D" parent="." unique_id=739139643]
+visible = false
 
 [node name="Livro" type="Sprite2D" parent="ComodoLivro" unique_id=350114294]
 position = Vector2(709, 389)
@@ -405,8 +409,10 @@ offset_bottom = 516.0
 flat = true
 
 [node name="AreaExterna" type="Node2D" parent="." unique_id=1880917434]
+visible = false
 
 [node name="LadoDeFora" type="Sprite2D" parent="AreaExterna" unique_id=1310036413]
+visible = false
 position = Vector2(686.50006, 380.5)
 scale = Vector2(0.9963663, 0.9934896)
 texture = ExtResource("18_vg7ux")

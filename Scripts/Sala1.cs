@@ -233,6 +233,23 @@ public partial class Sala1 : Node2D
             MostrarProximaLinha();
         };
 
+        GetNode<Button>("%TomarRemedio").Pressed += () =>
+        {
+            if (!gameState.PossoFazerATarefa(GameState.TomarRemedio))
+                return;
+
+            GetNode<Button>("%TomarRemedio").Hide();
+
+            TentarFalar("Remedio", () =>
+            {
+                remedioTomado = true;
+                gameState.ConcluirTarefa(GameState.TomarRemedio);
+
+                // Atualiza os botões após concluir a tarefa.
+                AtualizarBotoes();
+            });
+        };
+
         Button botaoEspelho = GetNode<Button>("%Espelho");
         Label textoEspelho = GetNode<Label>("%TextoEspelho");
         textoEspelho.Hide();
@@ -250,9 +267,18 @@ public partial class Sala1 : Node2D
 
     private void JogarLixo()
     {
-        if (!gameState.PossoFazerATarefa(GameState.LevarLixo)) return;
+        if (!gameState.PossoFazerATarefa(GameState.LevarLixo))
+            return;
+
         gameState.ConcluirTarefa(GameState.LevarLixo);
-        TentarFalar("LixoPensamento", () => { MostrarComodo(GetNode<Node2D>("SalaDeEstar")); TentarFalar("PosLixo"); });
+
+        AtualizarBotoes(); // Atualiza os botões imediatamente
+
+        TentarFalar("LixoPensamento", () =>
+        {
+            MostrarComodo(GetNode<Node2D>("SalaDeEstar"));
+            TentarFalar("PosLixo");
+        });
     }
 
     private void AposJantar()
@@ -327,10 +353,18 @@ public partial class Sala1 : Node2D
         GetNode<Button>("%TarefaEscolar").Visible = licaoLiberada && gameState.PossoFazerATarefa(GameState.TarefaEscolar);
         GetNode<Button>("%FogaoCozinhar").Visible = gameState.PossoFazerATarefa(GameState.Almoco) || gameState.PossoFazerATarefa(GameState.Janta);
         GetNode<Button>("%DobrarRoupa").Visible = livroLido && gameState.PossoFazerATarefa(GameState.DobrarRoupa);
-        GetNode<Button>("%LevarLixo").Visible = false;
-        GetNode<Button>("%IrAreaExterna").Visible = gameState.PossoFazerATarefa(GameState.LevarLixo);
         GetNode<Button>("%Livro").Visible = gameState.PossoFazerATarefa(GameState.LerLivro);
-        if (botaoJogarLixo != null) botaoJogarLixo.Visible = gameState.PossoFazerATarefa(GameState.LevarLixo);
+        GetNode<Button>("%Cavalete").Visible = gameState.PossoFazerATarefa(GameState.Brincar);
+        GetNode<Button>("%TomarRemedio").Visible = gameState.PossoFazerATarefa(GameState.TomarRemedio);
+
+        //Jogar lixo
+        bool podeLevarLixo = gameState.PossoFazerATarefa(GameState.LevarLixo);
+
+        GetNode<Button>("%IrAreaExterna").Visible = podeLevarLixo;
+        GetNode<Button>("%LevarLixo").Visible = podeLevarLixo;
+
+        if (botaoJogarLixo != null)
+            botaoJogarLixo.Visible = podeLevarLixo;
     }
 
     private void IniciarMinigameCozinha()
@@ -385,7 +419,12 @@ public partial class Sala1 : Node2D
         PackedScene cena = GD.Load<PackedScene>("res://Scenes/MinigameLixo/minigame_lixo.tscn");
         if (cena == null) { GD.PrintErr("Não foi possível carregar o minigame do lixo."); return; }
         Node minigame = cena.Instantiate();
-        minigame.TreeExited += () => { if (!IsInsideTree()) return; gameState.ConcluirTarefa(GameState.LevarLixo); Show(); AtualizarBotoes(); };
+        minigame.TreeExited += () => 
+        { 
+            if (!IsInsideTree()) return;
+            gameState.ConcluirTarefa(GameState.LevarLixo); 
+            Show(); AtualizarBotoes(); 
+        };
         GetTree().Root.AddChild(minigame); Hide();
     }
 
