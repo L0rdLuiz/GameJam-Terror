@@ -77,10 +77,10 @@ public partial class Sala1 : Node2D
             "She glances toward Sugarplum's toys.", "Cherry|Sugarplum would love to see her.",
             "Cherry considers sending a message but returns to her book.", "Cherry|Maybe I'll call her later.",
             "She closes the book and notices the laundry basket.", "Cherry|Oh, right. The laundry.",
-            "Cherry places the basket on the couch and starts folding the clothes.",
-            "Cherry|How does such a little boy make so much laundry?", "Cherry|At least these are clean."
         }},
         { (1, "PosDobrarRoupa"), new[] {
+            "Cherry places the basket on the couch and starts folding the clothes.",
+            "Cherry|How does such a little boy make so much laundry?", "Cherry|At least these are clean.",
             "Cherry|There. Much better.",
             "She takes the clothes to the bedroom and spots a toy near the bed.",
             "Cherry|I really need to get him to put his clothes away.",
@@ -643,18 +643,7 @@ public partial class Sala1 : Node2D
         };
         GetNode<Button>("%sair").Pressed += () => { MostrarComodo(mesa); TentarFalar("Mesa"); };
 
-        GetNode<Button>("Dialogo/Caixa/Avancar").Pressed += () =>
-        {
-            if (falasAtuais == null) return;
-            if (tweenTexto != null && tweenTexto.IsRunning())
-            {
-                tweenTexto.Kill(); somDialogo?.Stop();
-                GetNode<Label>("Dialogo/Caixa/Texto").VisibleRatio = 1;
-                return;
-            }
-            falaAtual++;
-            MostrarProximaLinha();
-        };
+        GetNode<Button>("Dialogo/Caixa/Avancar").Pressed += AvancarDialogo;
 
         GetNode<Button>("%TomarRemedio").Pressed += () =>
         {
@@ -981,17 +970,45 @@ public partial class Sala1 : Node2D
         tweenTexto?.Kill(); somDialogo?.Stop(); GetNode<CanvasLayer>("Dialogo").Hide();
     }
 
+    
     private void MostrarFala(string fala)
     {
         Label texto = GetNode<Label>("Dialogo/Caixa/Texto");
+
         string personagem = "";
-        if (fala.Contains('|')) { var partes = fala.Split('|', 2); personagem = partes[0]; fala = partes[1]; }
-        Color cor = coresPersonagem.TryGetValue(personagem, out var c) ? c : corPadrao;
+
+        if (fala.Contains('|'))
+        {
+            var partes = fala.Split('|', 2);
+            personagem = partes[0];
+            fala = partes[1];
+        }
+
+        Color cor = coresPersonagem.TryGetValue(personagem, out var c)
+            ? c
+            : corPadrao;
+
+        texto.AutowrapMode = TextServer.AutowrapMode.Word;
         texto.AddThemeColorOverride("font_color", cor);
-        texto.Text = fala; texto.VisibleRatio = 0; GetNode<CanvasLayer>("Dialogo").Show();
-        tweenTexto?.Kill(); tweenTexto = CreateTween(); tweenTexto.TweenProperty(texto, "visible_ratio", 1.0, fala.Length * 0.05);
-        tweenTexto.Finished += () => somDialogo?.Stop(); somDialogo?.Play();
+        texto.Text = fala;
+        texto.VisibleRatio = 0;
+
+        GetNode<CanvasLayer>("Dialogo").Show();
+
+        tweenTexto?.Kill();
+        tweenTexto = CreateTween();
+
+        tweenTexto.TweenProperty(
+            texto,
+            "visible_ratio",
+            1.0,
+            fala.Length * 0.05
+        );
+
+        tweenTexto.Finished += () => somDialogo?.Stop();
+        somDialogo?.Play();
     }
+
 
     public override void _ExitTree()
     {
@@ -1024,20 +1041,43 @@ public partial class Sala1 : Node2D
     }
 
     private void AoTarefaConcluir(string nomeTarefa) { AtualizarBotoes(); }
-
-    public override void _UnhandledInput(InputEvent @event)
+    
+    private void AvancarDialogo()
     {
-        if (@event is InputEventMouseButton { Pressed: true }) GD.Print("MOUSE CLICADO!");
-        if (OS.IsDebugBuild() && @event is InputEventKey { Pressed: true, Echo: false } tecla)
+        if (falasAtuais == null)
+            return;
+
+        // Se o texto ainda está aparecendo, revela tudo primeiro.
+        if (tweenTexto != null && tweenTexto.IsRunning())
         {
-            if (tecla.Keycode == Key.F1) PularDiaDebug();
-            else if (tecla.Keycode == Key.F2) gameState.DebugConcluirTarefasDoDia();
+            tweenTexto.Kill();
+            somDialogo?.Stop();
+
+            GetNode<Label>("Dialogo/Caixa/Texto").VisibleRatio = 1;
+            return;
         }
+
+        falaAtual++;
+        MostrarProximaLinha();
     }
 
-    private void PularDiaDebug()
+    public override void _Input(InputEvent @event)
     {
-        tweenTexto?.Kill(); somDialogo?.Stop(); falasAtuais = null; aoTerminarFala = null;
-        gameState.DebugPularDia();
+        var dialogo = GetNode<CanvasLayer>("Dialogo");
+
+        if (!dialogo.Visible)
+            return;
+
+        if (@event is InputEventMouseButton
+            {
+                Pressed: true,
+                ButtonIndex: MouseButton.Left
+            })
+        {
+            AvancarDialogo();
+
+            // Impede que o clique chegue aos botões por baixo do diálogo.
+            GetViewport().SetInputAsHandled();
+        }
     }
 }

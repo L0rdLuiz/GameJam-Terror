@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public partial class MinigamePrecisao : Node2D
 {
     private float posicao = 0f;
-    private float velocidade = 200f;
+    private float velocidade = 500f;
     private float direcao = 1f;
 
     private ColorRect barra;

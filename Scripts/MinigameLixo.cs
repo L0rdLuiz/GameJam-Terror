@@ -18,20 +18,20 @@ public partial class MinigameLixo : Control
     private Vector2 posicaoInicial;
     private Vector2 distanciaMouse;
 
-	public bool Concluido { get; private set; } = false;
+    public bool Concluido { get; private set; } = false;
 
     private readonly string[] nomesResiduos =
     {
-        "Jornal",
-        "Garrafa plástica",
-        "Casca de banana"
+        "Newspaper",
+        "Plastic bottle",
+        "Banana peel"
     };
 
     private readonly string[] nomesTipos =
     {
-        "Papel",
-        "Plástico",
-        "Orgânico"
+        "Paper",
+        "Plastic",
+        "Organic"
     };
 
     private Vector2 posicaoResiduo;
@@ -54,7 +54,7 @@ public partial class MinigameLixo : Control
 
         textoConclusao.Hide();
 
-        // Todos os resíduos começam escondidos.
+        // All waste items start hidden.
         foreach (Button residuo in residuos)
         {
             residuo.Hide();
@@ -73,10 +73,10 @@ public partial class MinigameLixo : Control
             return;
         }
 
-        // Escolhe aleatoriamente o tipo do próximo resíduo.
+        // Randomly choose the type of the next waste item.
         tipoAtual = (int)GD.RandRange(0, 2);
 
-        // Escolhe qual botão será usado para representar o resíduo.
+        // Choose which button will represent the waste item.
         int indiceBotao = (int)GD.RandRange(0, 2);
         residuoAtual = residuos[indiceBotao];
 
@@ -89,7 +89,7 @@ public partial class MinigameLixo : Control
         residuoAtual.Text = nomesResiduos[tipoAtual];
         residuoAtual.Show();
 
-        instrucao.Text = $"Resíduos separados: {acertos}/5";
+        instrucao.Text = $"Waste sorted: {acertos}/5";
     }
 
     public override void _Input(InputEvent @event)
@@ -151,16 +151,17 @@ public partial class MinigameLixo : Control
         }
         else
         {
-            // Errou: o resíduo volta ao lugar e continua o mesmo.
+            // Wrong bin: the waste item returns to its original position.
             residuoAtual.Position = posicaoInicial;
             instrucao.Text =
-                $"Lixeira incorreta! Tente novamente. ({acertos}/5)";
+                $"Wrong bin! Try again. ({acertos}/5)";
         }
     }
 
     private async void FinalizarMinigame()
     {
-		Concluido = true;
+        Concluido = true;
+
         foreach (Button residuo in residuos)
         {
             residuo.Hide();
@@ -171,7 +172,7 @@ public partial class MinigameLixo : Control
         lixeiraOrganico.Hide();
 
         instrucao.Hide();
-        textoConclusao.Text = "Lixo separado! Tarefa concluída!";
+        textoConclusao.Text = "Waste sorted! Task completed!";
         textoConclusao.Show();
 
         await ToSignal(
