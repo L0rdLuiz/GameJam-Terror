@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bwhxi7eksbs8t" path="res://Scenes/Botao.cs" id="3_lp7ft"]
 [ext_resource type="Texture2D" uid="uid://7o21tdrqd3r5" path="res://Art/Ambientes/banheiro9.jpg" id="4_drrmx"]
 [ext_resource type="Texture2D" uid="uid://cwlqy7blvlkfj" path="res://Art/Ambientes/SalaComFilho.jpg" id="4_gwlct"]
-[ext_resource type="PackedScene" uid="uid://cvwuo2dwfqlbh" path="res://Scenes/debug_tarefas.tscn" id="5_ol3of"]
+[ext_resource type="PackedScene" uid="uid://cvwuo2dwfqlbh" path="res://Scenes/MinigamePinceis.tscn" id="5_ol3of"]
 [ext_resource type="Script" uid="uid://qfe7dbid0v7b" path="res://Scripts/SalaDeEstar.cs" id="6_dpcyj"]
 [ext_resource type="Texture2D" uid="uid://clkkhjnqdcob8" path="res://Art/Ambientes/SalaDeEstar.jpg" id="7_vq66k"]
 [ext_resource type="Script" uid="uid://ct3fhu1cfs45t" path="res://Scenes/TelaPintura.cs" id="8_vq66k"]

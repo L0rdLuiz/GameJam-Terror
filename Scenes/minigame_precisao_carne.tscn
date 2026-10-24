@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://mbqimrxxmkah"]
+
+[ext_resource type="Script" uid="uid://d34ei1icqlvm8" path="res://Scripts/MinigamePrecisao.cs" id="1_edhhi"]
+[ext_resource type="Texture2D" uid="uid://c1e20si0ba31d" path="res://Art/Ambientes/carne1.png" id="2_mynvk"]
+[ext_resource type="Texture2D" uid="uid://cf6fgcsenxgtv" path="res://Art/Ambientes/carne2.png" id="3_ygapr"]
+[ext_resource type="Texture2D" uid="uid://cgvgr7by55scs" path="res://Art/Ambientes/carne3.png" id="4_3qu8k"]
+
+[node name="MinigamePrecisao" type="Node2D" unique_id=16310842]
+script = ExtResource("1_edhhi")
+
+[node name="carne1" type="Sprite2D" parent="." unique_id=43162766]
+position = Vector2(695, 385)
+scale = Vector2(0.98982555, 0.9947917)
+texture = ExtResource("2_mynvk")
+
+[node name="carne2" type="Sprite2D" parent="." unique_id=880660224]
+position = Vector2(683, 397.5)
+scale = Vector2(1.005814, 0.96484387)
+texture = ExtResource("3_ygapr")
+
+[node name="carne3" type="Sprite2D" parent="." unique_id=1694796191]
+position = Vector2(686, 381)
+scale = Vector2(1.0014535, 0.99999994)
+texture = ExtResource("4_3qu8k")
+
+[node name="Barra" type="ColorRect" parent="." unique_id=972961135]
+offset_right = 880.0
+offset_bottom = 24.0
+color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+
+[node name="ZonaVerde" type="ColorRect" parent="." unique_id=11591025]
+offset_left = 155.0
+offset_right = 285.0
+offset_bottom = 24.0
+color = Color(0.21568628, 1, 0.06666667, 1)
+
+[node name="Sinal" type="ColorRect" parent="." unique_id=1327145922]
+offset_right = 5.0
+offset_bottom = 24.0
+color = Color(1, 0.10980392, 0, 1)

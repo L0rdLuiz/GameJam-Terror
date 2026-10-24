@@ -1,4 +1,3 @@
-
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,10 +34,11 @@ public partial class GameState : Node
                     Pintar, TomarRemedio, HistoriaFilho
                 }
             },
+            // Dia 3: almoço -> arrumar brinquedos -> livro -> janta -> remédio (vazio) -> história
             { 3, new List<string>
                 {
-                    Almoco, AjeitarBrinquedos, Janta,
-                    TarefaEscolar, TomarRemedio, HistoriaFilho
+                    Almoco, AjeitarBrinquedos, LerLivro, Janta,
+                    TomarRemedio, HistoriaFilho
                 }
             },
             { 4, new List<string>

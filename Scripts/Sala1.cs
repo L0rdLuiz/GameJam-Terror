@@ -112,6 +112,102 @@ public partial class Sala1 : Node2D
             "Cherry|She knew how to use all kinds of plants to help others. If someone had a cold, she knew how to prepare a nourishing meal. If someone had trouble sleeping, she knew how to make a tea that would help them rest. And if someone felt anxious, she knew how to make incense to calm their mind.",
             "Sugarplum listens carefully.", "Cherry|Her little cub admired her so much. He often told her that, when he grew up, he wanted to become a healer too.",
             "Cherry|And Berry always told him that if he kept eating his fruit, he'd grow even bigger than her and become a wonderful healer.", "Sugarplum|I'd eat all the plums!", "Cherry chuckles softly.", "Cherry|I bet you would.", "Cherry closes the book and puts it beside the bed.", "Cherry|Goodnight, my little Sugarplum.", "Sugarplum|Goodnight, Mommy.", "The camera slowly pulls back, showing the two of them in the same bed.", "The screen fades to black.", "Day 2 — Complete"
+        }},
+
+        // DIA 3
+        { (3, "Acordar"), new[] {
+            "Cherry wakes up beside Sugarplum. She slowly sits up and looks at the clock before rubbing her tired eyes.",
+            "Cherry|Another day...",
+            "Cherry|I should get up before Sugarplum does. There's still a lot to do.",
+            "#espelho",
+            "Cherry gets out of bed and looks at herself in the mirror. She looks more tired than yesterday.",
+            "Cherry|Have I always looked this exhausted?",
+            "She looks away from the mirror and goes to prepare lunch."
+        }},
+        { (3, "Cozinha"), new[] { "Cherry|Let's see what we have today. I don't feel like trying anything new." }},
+        { (3, "AlmocoPronto"), new[] {
+            "Cherry prepares the ingredients and finishes cooking. The sounds of the kitchen seem normal at first, although some noises linger a little longer than they should.",
+            "Cherry|Lunch is ready!",
+            "Sugarplum comes over and sits at the table. Cherry joins him."
+        }},
+        { (3, "MesaAlmoco"), new[] {
+            "Cherry|So, did you talk to anyone at school yesterday?", "Sugarplum|A little.", "Cherry|Oh? Who did you talk to?",
+            "Sugarplum|Some kids from my class. They were playing together, but I didn't really know what to say.",
+            "Cherry|That's okay. You don't have to become friends with everyone right away.",
+            "Sugarplum|I tried joining them, but they didn't really notice me.",
+            "Cherry|Maybe you could try talking to someone one-on-one. It might be easier.",
+            "Sugarplum|Maybe... I still miss my old school, though.",
+            "Cherry|I know, sweetheart. Starting over isn't easy.",
+            "Sugarplum|Do you think I'll make friends eventually?",
+            "Cherry|Of course you will. Just give it some time.",
+            "Sugarplum nods and continues eating. Cherry smiles at him before returning to her own meal.",
+            "Cherry|Finish getting ready, honey. It's almost time to go.", "Sugarplum|Okay, Mom.",
+            "Cherry|Have a good day. Love you!", "Sugarplum|Love you too!",
+            "Cherry watches Sugarplum leave before turning back toward the kitchen."
+        }},
+        { (3, "Brinquedos"), new[] {
+            "Cherry walks into the room and notices the paintbrushes scattered across the floor.",
+            "Cherry|I should really put these away. It's getting hard to walk around here."
+        }},
+        { (3, "PosBrinquedos"), new[] {
+            "Cherry puts the last brush away. She turns around, only to notice one of the brushes lying on the floor again.",
+            "Cherry|Didn't I just put that away?",
+            "She picks it up and places it back with the others.",
+            "Cherry|I must be more tired than I thought.",
+            "Cherry leaves the room and heads to the living room."
+        }},
+        { (3, "Livro"), new[] {
+            "Cherry sits on the sofa and picks up the book her mother recommended, Hamnet. She tries to continue reading, but keeps losing track of the page.",
+            "Cherry|Where was I again?",
+            "She rereads the same passage before letting out a tired sigh.",
+            "Cherry|I'll try again later.",
+            "Cherry closes the book and leaves it on the sofa. After checking the time, she gets up to prepare dinner."
+        }},
+        { (3, "PrepararJantar"), new[] { "Cherry|Time to make dinner. I hope Sugarplum comes home hungry." }},
+        { (3, "JantarPronto"), new[] {
+            "Cherry cuts the ingredients. The sound of the knife continues for a moment after she stops moving.",
+            "She pauses and looks down at the cutting board. Everything appears normal.",
+            "Cherry|...That's weird.",
+            "Cherry resumes cooking and finishes preparing dinner. She sets the table just as Sugarplum returns home."
+        }},
+        { (3, "MesaJantar"), new[] {
+            "Cherry|Hey, honey. How was school?", "Sugarplum|Fine.", "Cherry|Did you try talking to anyone today?",
+            "Sugarplum|Yeah. I tried talking to some kids, but they were already playing together.",
+            "Cherry|Did you ask if you could join them?", "Sugarplum|No... I didn't want to bother them.",
+            "Cherry|Sweetheart, asking to play isn't bothering anyone.", "Sugarplum|It's easy for you to say.",
+            "Cherry|...You're right. I'm sorry. I know it's not that simple.",
+            "Sugarplum|I just wish I could go back to my old school.",
+            "Cherry|I know you miss it. I wish I could make this easier for you.",
+            "Sugarplum|It's okay, Mom. I still have you.", "Cherry|Always, sweetheart.",
+            "They continue eating. Cherry notices that Sugarplum has barely touched his food.",
+            "Cherry|Are you full already?", "Sugarplum|Yeah. I'm not that hungry.", "Cherry|That's alright. I'll put the rest away.",
+            "#cozinha",
+            "Cherry takes the plates to the kitchen counter. For a brief moment, the food looks spoiled. She blinks, and it appears normal again.",
+            "Cherry|I really need some sleep."
+        }},
+        { (3, "Remedio"), new[] {
+            "Cherry opens the cabinet where she keeps her medication. She searches inside, then checks the container again.",
+            "Cherry|Wait... that's all?", "The container is empty.",
+            "Cherry|I thought I had a few left.", "Cherry|I'll have to get more tomorrow.",
+            "Cherry closes the cabinet and looks at herself in the mirror. She stays there for a few seconds before turning off the light."
+        }},
+        { (3, "HistoriaUrsos"), new[] {
+            "Cherry returns to the bedroom, where Sugarplum is already in bed. She lies down beside him and reaches for the bedtime storybook.",
+            "Sugarplum|Can you read the bear story tonight?", "Cherry|Of course. Where did we leave off?",
+            "Sugarplum|The turtle!", "Cherry|Right. The turtle.",
+            "Cherry|One day, Little Plum began to feel unwell. Berry tried everything she knew to help him feel better, but nothing seemed to work.",
+            "Cherry|Worried, she decided to visit an old turtle who lived deep in the forest. He was known for his wisdom, and Berry hoped he might know what to do.",
+            "Cherry|The old turtle listened carefully before speaking.",
+            "Cherry|'You've done everything you can, Berry. For now, stay by his side and make sure he knows he's loved.'",
+            "Cherry|Berry thanked him and returned home. She decided she would spend as much time with her little cub as she could.",
+            "Sugarplum|Is Little Plum going to get better?", "Cherry|I'm sure Berry hopes so.",
+            "Sugarplum|I hope he does.", "Cherry|Me too, sweetheart.",
+            "Cherry closes the book and places it beside the bed.",
+            "Cherry|That's enough for tonight. We can finish the story tomorrow.",
+            "Sugarplum|Okay. Goodnight, Mommy.", "Cherry|Goodnight, my little Sugarplum. See you tomorrow",
+            "Cherry turns off the light. The room falls silent, except for the faint sound of the clock ticking.",
+            "The image slowly blurs before fading to black.",
+            "Day 3 — Complete"
         }}
     };
 
@@ -155,6 +251,9 @@ public partial class Sala1 : Node2D
         var areaExterna = GetNode<Node2D>("AreaExterna");
 
         comodos = new[] { menu, quarto, banheiro, espelho, sala, cozinha, mesa, cozinhar, salafilho, livro, areaExterna };
+
+        // Segurança: se sobrou um nó "SalaPinceis" na cena (versão antiga), esconde para não aparecer por cima do menu.
+        GetNodeOrNull<Node2D>("SalaPinceis")?.Hide();
         painelTarefa = GetNode<CanvasLayer>("PainelTarefa");
         MostrarComodo(menu);
 
@@ -183,7 +282,7 @@ public partial class Sala1 : Node2D
             {
                 TentarFalar("Remedio", () => { remedioTomado = true; gameState.ConcluirTarefa(GameState.TomarRemedio); });
             }
-            else if (gameState.Day == 2 && gameState.PossoFazerATarefa(GameState.TomarRemedio) && !remedioTomado)
+            else if (gameState.Day >= 2 && gameState.PossoFazerATarefa(GameState.TomarRemedio) && !remedioTomado)
             {
                 SeguirParaORemedio();
             }
@@ -206,7 +305,7 @@ public partial class Sala1 : Node2D
                 livroLido = true;
                 gameState.ConcluirTarefa(GameState.LerLivro);
                 AtualizarBotoes();
-                if (gameState.Day == 2) { MostrarComodo(cozinha); TentarFalar("PrepararJantar"); }
+                if (gameState.Day >= 2) { MostrarComodo(cozinha); TentarFalar("PrepararJantar"); }
             });
         };
         GetNode<Button>("%SairLivro").Pressed += () => MostrarComodo(sala);
@@ -233,23 +332,6 @@ public partial class Sala1 : Node2D
             MostrarProximaLinha();
         };
 
-        GetNode<Button>("%TomarRemedio").Pressed += () =>
-        {
-            if (!gameState.PossoFazerATarefa(GameState.TomarRemedio))
-                return;
-
-            GetNode<Button>("%TomarRemedio").Hide();
-
-            TentarFalar("Remedio", () =>
-            {
-                remedioTomado = true;
-                gameState.ConcluirTarefa(GameState.TomarRemedio);
-
-                // Atualiza os botões após concluir a tarefa.
-                AtualizarBotoes();
-            });
-        };
-
         Button botaoEspelho = GetNode<Button>("%Espelho");
         Label textoEspelho = GetNode<Label>("%TextoEspelho");
         textoEspelho.Hide();
@@ -267,27 +349,20 @@ public partial class Sala1 : Node2D
 
     private void JogarLixo()
     {
-        if (!gameState.PossoFazerATarefa(GameState.LevarLixo))
-            return;
-
+        if (!gameState.PossoFazerATarefa(GameState.LevarLixo)) return;
         gameState.ConcluirTarefa(GameState.LevarLixo);
-
-        AtualizarBotoes(); // Atualiza os botões imediatamente
-
-        TentarFalar("LixoPensamento", () =>
-        {
-            MostrarComodo(GetNode<Node2D>("SalaDeEstar"));
-            TentarFalar("PosLixo");
-        });
+        TentarFalar("LixoPensamento", () => { MostrarComodo(GetNode<Node2D>("SalaDeEstar")); TentarFalar("PosLixo"); });
     }
 
+    // Dia 2 e 3: depois do jantar segue direto para o remédio.
     private void AposJantar()
     {
-        if (gameState.Day == 2) { SeguirParaORemedio(); return; }
+        if (gameState.Day >= 2) { SeguirParaORemedio(); return; }
         LiberarLicao();
     }
 
     // Dia 2: pintura ignorada; o remédio acontece automaticamente na narrativa.
+    // Dia 3: não existe "PreRemedio", então cai direto no "Remedio" (cartela vazia).
     private void SeguirParaORemedio()
     {
         MostrarComodo(GetNode<Node2D>("ComodoEspelho"));
@@ -305,7 +380,7 @@ public partial class Sala1 : Node2D
         if (remedioTomado) return;
         remedioTomado = true;
         gameState.ConcluirTarefa(GameState.TomarRemedio);
-        if (gameState.Day == 2) ContarHistoria();
+        if (gameState.Day >= 2) ContarHistoria();
     }
 
     private void ContarHistoria()
@@ -319,7 +394,7 @@ public partial class Sala1 : Node2D
     private void IrParaOQuarto()
     {
         MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
-        if (gameState.Day == 2 && remedioTomado && !historiaContada && gameState.PossoFazerATarefa(GameState.HistoriaFilho))
+        if (gameState.Day >= 2 && remedioTomado && !historiaContada && gameState.PossoFazerATarefa(GameState.HistoriaFilho))
             ContarHistoria();
     }
 
@@ -331,9 +406,9 @@ public partial class Sala1 : Node2D
         GD.Print("História contada.");
         GD.Print("Cherry e Sugarplum vão dormir.");
         FecharDialogo();
-        if (gameState.Day == 2)
+        if (gameState.Day == 2 || gameState.Day == 3)
         {
-            GD.Print("Dia 2 concluído. Avançando para o Dia 3.");
+            GD.Print("Dia " + gameState.Day + " concluído. Avançando.");
             gameState.TentarVirarODia();
         }
     }
@@ -353,18 +428,10 @@ public partial class Sala1 : Node2D
         GetNode<Button>("%TarefaEscolar").Visible = licaoLiberada && gameState.PossoFazerATarefa(GameState.TarefaEscolar);
         GetNode<Button>("%FogaoCozinhar").Visible = gameState.PossoFazerATarefa(GameState.Almoco) || gameState.PossoFazerATarefa(GameState.Janta);
         GetNode<Button>("%DobrarRoupa").Visible = livroLido && gameState.PossoFazerATarefa(GameState.DobrarRoupa);
+        GetNode<Button>("%LevarLixo").Visible = false;
+        GetNode<Button>("%IrAreaExterna").Visible = gameState.PossoFazerATarefa(GameState.LevarLixo);
         GetNode<Button>("%Livro").Visible = gameState.PossoFazerATarefa(GameState.LerLivro);
-        GetNode<Button>("%Cavalete").Visible = gameState.PossoFazerATarefa(GameState.Brincar);
-        GetNode<Button>("%TomarRemedio").Visible = gameState.PossoFazerATarefa(GameState.TomarRemedio);
-
-        //Jogar lixo
-        bool podeLevarLixo = gameState.PossoFazerATarefa(GameState.LevarLixo);
-
-        GetNode<Button>("%IrAreaExterna").Visible = podeLevarLixo;
-        GetNode<Button>("%LevarLixo").Visible = podeLevarLixo;
-
-        if (botaoJogarLixo != null)
-            botaoJogarLixo.Visible = podeLevarLixo;
+        if (botaoJogarLixo != null) botaoJogarLixo.Visible = gameState.PossoFazerATarefa(GameState.LevarLixo);
     }
 
     private void IniciarMinigameCozinha()
@@ -374,7 +441,17 @@ public partial class Sala1 : Node2D
         else if (gameState.PossoFazerATarefa(GameState.Janta)) tarefaAtual = GameState.Janta;
         else return;
 
-        PackedScene cena = GD.Load<PackedScene>("res://Scenes/minigame_precisao.tscn");
+        // Almoço e jantar usam o minigame de precisão. No jantar do Dia 3 usa a cópia com as imagens da carne.
+        string caminhoCena = "res://Scenes/minigame_precisao_carne.tscn";
+        if (tarefaAtual == GameState.Janta && gameState.Day == 3)
+        {
+            string caminhoCarne = AcharCena(
+                "res://Scenes/minigame_precisao_carne.tscn",
+                "res://Scenes/MinigamePrecisaoCarne.tscn");
+            if (caminhoCarne != null) caminhoCena = caminhoCarne;
+            else GD.PrintErr("Cena minigame_precisao_carne.tscn não encontrada em res://Scenes/. Usando o minigame de precisão normal.");
+        }
+        PackedScene cena = GD.Load<PackedScene>(caminhoCena);
         if (cena == null) { GD.PrintErr("Não foi possível carregar o minigame."); return; }
         Node minigame = cena.Instantiate();
         minigame.TreeExited += () =>
@@ -387,6 +464,15 @@ public partial class Sala1 : Node2D
                 MostrarComodo(GetNode<Node2D>("ComodoCozinha"));
                 TentarFalar("JantarPronto", () => { MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa")); TentarFalar("MesaJantar", AposJantar); });
             }
+            else if (gameState.Day == 3)
+            {
+                MostrarComodo(GetNode<Node2D>("ComodoCozinha"));
+                TentarFalar("AlmocoPronto", () =>
+                {
+                    MostrarComodo(GetNode<Node2D>("ComodoCozinhaMesa"));
+                    TentarFalar("MesaAlmoco", IniciarArrumarPinceis);
+                });
+            }
             else if (gameState.Day == 2)
             {
                 MostrarComodo(GetNode<Node2D>("ComodoCozinha"));
@@ -396,6 +482,14 @@ public partial class Sala1 : Node2D
         };
         GetTree().Root.AddChild(minigame);
         Hide();
+    }
+
+    // Devolve o primeiro caminho que existir (evita erro por diferença de maiúsculas/minúsculas no nome).
+    private static string AcharCena(params string[] caminhos)
+    {
+        foreach (var c in caminhos)
+            if (ResourceLoader.Exists(c)) return c;
+        return null;
     }
 
     private void IniciarMinigameRoupa()
@@ -419,12 +513,7 @@ public partial class Sala1 : Node2D
         PackedScene cena = GD.Load<PackedScene>("res://Scenes/MinigameLixo/minigame_lixo.tscn");
         if (cena == null) { GD.PrintErr("Não foi possível carregar o minigame do lixo."); return; }
         Node minigame = cena.Instantiate();
-        minigame.TreeExited += () => 
-        { 
-            if (!IsInsideTree()) return;
-            gameState.ConcluirTarefa(GameState.LevarLixo); 
-            Show(); AtualizarBotoes(); 
-        };
+        minigame.TreeExited += () => { if (!IsInsideTree()) return; gameState.ConcluirTarefa(GameState.LevarLixo); Show(); AtualizarBotoes(); };
         GetTree().Root.AddChild(minigame); Hide();
     }
 
@@ -440,6 +529,37 @@ public partial class Sala1 : Node2D
             gameState.ConcluirTarefa(GameState.TarefaEscolar); Show(); AtualizarBotoes(); TentarFalar("PosLicao");
         };
         GetTree().Root.AddChild(minigame); Hide();
+    }
+
+    // Dia 3: arrumar os pincéis. Fala inicial no quarto, depois abre a cena do minigame (mesma lógica da roupa).
+    private void IniciarArrumarPinceis()
+    {
+        if (!gameState.PossoFazerATarefa(GameState.AjeitarBrinquedos)) return;
+        MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
+        TentarFalar("Brinquedos", IniciarMinigamePinceis);
+    }
+
+    private void IniciarMinigamePinceis()
+    {
+        string caminho = AcharCena(
+            "res://Scenes/MinigamePinceis/MinigamePinceis.tscn",
+            "res://Scenes/MinigamePinceis/Minigamepinceis.tscn",
+            "res://Scenes/MinigamePinceis/minigame_pinceis.tscn",
+            "res://Scenes/ArrumarPinceis/ArrumarPinceis.tscn",
+            "res://Scenes/ArrumarPinceis/Arrumarpinceis.tscn");
+        PackedScene cena = caminho != null ? GD.Load<PackedScene>(caminho) : null;
+        if (cena == null) { GD.PrintErr("Cena de pincéis não encontrada (confira os caminhos em IniciarMinigamePinceis)."); AoFimPinceis(); return; }
+        Node minigame = cena.Instantiate();
+        minigame.TreeExited += () => { if (!IsInsideTree()) return; AoFimPinceis(); };
+        GetTree().Root.AddChild(minigame); Hide();
+    }
+
+    private void AoFimPinceis()
+    {
+        gameState.ConcluirTarefa(GameState.AjeitarBrinquedos);
+        Show();
+        MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
+        TentarFalar("PosBrinquedos", () => { MostrarComodo(GetNode<Node2D>("SalaDeEstar")); AtualizarBotoes(); });
     }
 
     private void TentarFalar(string local, Action aoTerminar = null)
@@ -463,6 +583,11 @@ public partial class Sala1 : Node2D
         {
             case "#sala": MostrarComodo(GetNode<Node2D>("SalaDeEstar"), false); break;
             case "#quarto": MostrarComodo(GetNode<Node2D>("ComodoQuarto"), false); break;
+            case "#espelho":
+                MostrarComodo(GetNode<Node2D>("ComodoEspelho"), false);
+                GetNode<Button>("%SairEspelho").Hide(); // evita quebrar o diálogo ao clicar em sair
+                break;
+            case "#cozinha": MostrarComodo(GetNode<Node2D>("ComodoCozinha"), false); break;
         }
     }
 
@@ -507,6 +632,13 @@ public partial class Sala1 : Node2D
             GetTree().CreateTimer(2.5).Timeout += () =>
             {
                 if (!IsInsideTree()) return;
+                if (dia == 3)
+                {
+                    // Dia 3: acorda no quarto, passa pelo espelho (#espelho) e termina na cozinha.
+                    MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
+                    TentarFalar("Acordar", () => { MostrarComodo(GetNode<Node2D>("ComodoCozinha")); TentarFalar("Cozinha"); });
+                    return;
+                }
                 MostrarComodo(GetNode<Node2D>("ComodoEspelho")); GetNode<Button>("%SairEspelho").Show(); TentarFalar("Acordar");
             };
         }
