@@ -28,10 +28,8 @@ load_path = "res://.godot/imported/cozinhar.jpg-51291b6cb55f688cc49ae567c55ea4c7
 script = ExtResource("1_kcv01")
 
 [node name="DebugTarefas" parent="." unique_id=1808093141 instance=ExtResource("5_ol3of")]
-visible = false
 
 [node name="SalaDeEstar" type="Node2D" parent="." unique_id=1768652451]
-visible = false
 script = ExtResource("6_dpcyj")
 
 [node name="fundosala" type="Sprite2D" parent="SalaDeEstar" unique_id=1972275669]
@@ -63,10 +61,9 @@ offset_left = -21.0
 offset_top = 93.0
 offset_right = 110.0
 offset_bottom = 116.0
-text = "Brincar Pintando"
+text = "Paint"
 
 [node name="TelaPintura" type="CanvasLayer" parent="SalaDeEstar" unique_id=1640934503]
-visible = false
 script = ExtResource("8_vq66k")
 
 [node name="Fundo" type="ColorRect" parent="SalaDeEstar/TelaPintura" unique_id=1709692004]
@@ -104,8 +101,7 @@ offset_left = -11.0
 offset_top = 62.0
 offset_right = 114.0
 offset_bottom = 111.0
-text = "Fazer tarefa
-"
+text = "Homework"
 
 [node name="VoltarDaSala" type="Button" parent="SalaDeEstar" unique_id=1619023514]
 unique_name_in_owner = true
@@ -121,11 +117,9 @@ offset_left = 406.0
 offset_top = 341.0
 offset_right = 443.0
 offset_bottom = 377.0
-text = "LIVRO
-"
+text = "Book"
 
 [node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
-visible = false
 
 [node name="Caixa" type="Panel" parent="Dialogo" unique_id=732848754]
 offset_left = 152.0
@@ -161,7 +155,6 @@ volume_db = 5.594
 pitch_scale = 0.55
 
 [node name="ComodoMenu" type="Node2D" parent="." unique_id=1624878423]
-visible = false
 
 [node name="FundoMenu" type="Sprite2D" parent="ComodoMenu" unique_id=700997057]
 position = Vector2(688.5, 384.49997)
@@ -177,7 +170,6 @@ offset_bottom = 410.0
 text = "Start"
 
 [node name="ComodoQuarto" type="Node2D" parent="." unique_id=986971920]
-visible = false
 
 [node name="Quarto" type="Sprite2D" parent="ComodoQuarto" unique_id=1881920162]
 position = Vector2(690, 382.5)
@@ -216,7 +208,7 @@ offset_left = 191.0
 offset_top = 486.0
 offset_right = 384.0
 offset_bottom = 557.0
-text = "Dobrar Roupa
+text = "Fold the laundry
 "
 
 [node name="ComodoBanheiro" type="Node2D" parent="." unique_id=107546116]
@@ -243,7 +235,7 @@ offset_left = -1134.0
 offset_top = 103.0
 offset_right = -835.0
 offset_bottom = 268.0
-text = "Remédio "
+text = "Medicine"
 
 [node name="Espelho" type="Button" parent="ComodoBanheiro/VoltarBanheiro" unique_id=1669714090]
 unique_name_in_owner = true
@@ -255,13 +247,12 @@ offset_bottom = 161.0
 flat = true
 
 [node name="TextoEspelho" type="Label" parent="ComodoBanheiro/VoltarBanheiro/Espelho" unique_id=1052165683]
-visible = false
 layout_mode = 0
 offset_left = 72.0
 offset_top = 228.0
 offset_right = 457.0
 offset_bottom = 276.0
-text = "Se olhar no espelho"
+text = "Look in the mirror"
 
 [node name="IrAreaExterna" type="Button" parent="ComodoBanheiro" unique_id=2102984584]
 unique_name_in_owner = true
@@ -271,7 +262,6 @@ offset_right = 194.0
 offset_bottom = 447.0
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
-visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)
@@ -287,7 +277,6 @@ offset_bottom = 100.0
 text = "x"
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
-visible = false
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 384.5)
@@ -308,7 +297,7 @@ offset_left = 157.0
 offset_top = 481.0
 offset_right = 493.0
 offset_bottom = 584.0
-text = "COZINHAR
+text = "Cook
 "
 
 [node name="LevarLixo" type="Button" parent="ComodoCozinha" unique_id=577651070]
@@ -317,10 +306,9 @@ offset_left = 969.0
 offset_top = 481.0
 offset_right = 1189.0
 offset_bottom = 584.0
-text = "Levar Lixo"
+text = "Take out the trash"
 
 [node name="ComodoCozinhaMesa" type="Node2D" parent="." unique_id=365674869]
-visible = false
 
 [node name="Mesa" type="Sprite2D" parent="ComodoCozinhaMesa" unique_id=802430399]
 position = Vector2(689, 384)
@@ -335,7 +323,6 @@ offset_right = 171.0
 offset_bottom = 456.0
 
 [node name="Cozinhar" type="Node2D" parent="." unique_id=1771279272]
-visible = false
 
 [node name="Cozinhar" type="Sprite2D" parent="Cozinhar" unique_id=847825352]
 position = Vector2(687.00006, 382.5)
@@ -348,34 +335,51 @@ offset_left = 524.142
 offset_top = 267.57443
 offset_right = 669.68054
 offset_bottom = 355.40424
-text = "TESTE SAIR
+text = "Leave
 "
 
 [node name="PainelTarefa" type="CanvasLayer" parent="." unique_id=1328937447]
-visible = false
 script = ExtResource("15_gwlct")
 
-[node name="PanelContainer" type="PanelContainer" parent="PainelTarefa" unique_id=2133346767]
-offset_left = 172.0
-offset_top = 41.0
-offset_right = 406.0
-offset_bottom = 118.0
+[node name="AreaTarefa" type="Control" parent="PainelTarefa" unique_id=1980212106]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1227.0
+offset_top = 5.0
+offset_right = 1327.0
+offset_bottom = 45.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PainelTarefa/PanelContainer" unique_id=1118467659]
+[node name="PanelContainer" type="PanelContainer" parent="PainelTarefa/AreaTarefa" unique_id=2133346767]
+layout_mode = 0
+offset_left = -233.0
+offset_top = 40.0
+offset_right = 1.0
+offset_bottom = 117.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PainelTarefa/AreaTarefa/PanelContainer" unique_id=1118467659]
 layout_mode = 2
 
-[node name="Titulo" type="Label" parent="PainelTarefa/PanelContainer/VBoxContainer" unique_id=1324449102]
+[node name="Titulo" type="Label" parent="PainelTarefa/AreaTarefa/PanelContainer/VBoxContainer" unique_id=1324449102]
 layout_mode = 2
-text = "PRÓXIMA TAREFA:"
+text = "NEXT CHORE:"
 
-[node name="NomeTarefa" type="Label" parent="PainelTarefa/PanelContainer/VBoxContainer" unique_id=1826614268]
+[node name="NomeTarefa" type="Label" parent="PainelTarefa/AreaTarefa/PanelContainer/VBoxContainer" unique_id=1826614268]
 layout_mode = 2
 
-[node name="Dia" type="Label" parent="PainelTarefa/PanelContainer/VBoxContainer" unique_id=1560849263]
+[node name="Dia" type="Label" parent="PainelTarefa/AreaTarefa/PanelContainer/VBoxContainer" unique_id=1560849263]
 layout_mode = 2
+
+[node name="BotaoTarefa" type="Button" parent="PainelTarefa/AreaTarefa/PanelContainer" unique_id=554788549]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PainelTarefa" unique_id=1388824865]
+offset_left = 1227.0
+offset_top = 5.0
+offset_right = 1327.0
+offset_bottom = 28.0
+text = "House Chore"
 
 [node name="SalaFilho" type="Node2D" parent="." unique_id=2107099407]
-visible = false
 
 [node name="SalaComFilho" type="Sprite2D" parent="SalaFilho" unique_id=2063403871]
 position = Vector2(694, 380.00003)
@@ -383,7 +387,6 @@ scale = Vector2(0.99563956, 0.99479175)
 texture = ExtResource("4_gwlct")
 
 [node name="ComodoLivro" type="Node2D" parent="." unique_id=739139643]
-visible = false
 
 [node name="Livro" type="Sprite2D" parent="ComodoLivro" unique_id=350114294]
 position = Vector2(709, 389)
@@ -409,10 +412,8 @@ offset_bottom = 516.0
 flat = true
 
 [node name="AreaExterna" type="Node2D" parent="." unique_id=1880917434]
-visible = false
 
 [node name="LadoDeFora" type="Sprite2D" parent="AreaExterna" unique_id=1310036413]
-visible = false
 position = Vector2(686.50006, 380.5)
 scale = Vector2(0.9963663, 0.9934896)
 texture = ExtResource("18_vg7ux")
