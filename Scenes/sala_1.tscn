@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bwhxi7eksbs8t" path="res://Scenes/Botao.cs" id="3_lp7ft"]
 [ext_resource type="Texture2D" uid="uid://7o21tdrqd3r5" path="res://Art/Ambientes/banheiro9.jpg" id="4_drrmx"]
 [ext_resource type="Texture2D" uid="uid://cwlqy7blvlkfj" path="res://Art/Ambientes/SalaComFilho.jpg" id="4_gwlct"]
-[ext_resource type="PackedScene" uid="uid://cvwuo2dwfqlbh" path="res://Scenes/MinigamePinceis.tscn" id="5_ol3of"]
+[ext_resource type="PackedScene" uid="uid://c13xaml2i4ihh" path="res://Scenes/MinigamePinceis.tscn" id="5_ol3of"]
 [ext_resource type="Script" uid="uid://qfe7dbid0v7b" path="res://Scripts/SalaDeEstar.cs" id="6_dpcyj"]
 [ext_resource type="Texture2D" uid="uid://clkkhjnqdcob8" path="res://Art/Ambientes/SalaDeEstar.jpg" id="7_vq66k"]
 [ext_resource type="Script" uid="uid://ct3fhu1cfs45t" path="res://Scenes/TelaPintura.cs" id="8_vq66k"]
@@ -28,6 +28,7 @@ load_path = "res://.godot/imported/cozinhar.jpg-51291b6cb55f688cc49ae567c55ea4c7
 script = ExtResource("1_kcv01")
 
 [node name="DebugTarefas" parent="." unique_id=1808093141 instance=ExtResource("5_ol3of")]
+visible = false
 
 [node name="SalaDeEstar" type="Node2D" parent="." unique_id=1768652451]
 script = ExtResource("6_dpcyj")
@@ -56,6 +57,7 @@ tooltip_text = "
 flat = true
 
 [node name="TextoPintar" type="Label" parent="SalaDeEstar/Cavalete" unique_id=655184521]
+visible = false
 layout_mode = 0
 offset_left = -21.0
 offset_top = 93.0
@@ -64,9 +66,11 @@ offset_bottom = 116.0
 text = "Paint"
 
 [node name="TelaPintura" type="CanvasLayer" parent="SalaDeEstar" unique_id=1640934503]
+visible = false
 script = ExtResource("8_vq66k")
 
 [node name="Fundo" type="ColorRect" parent="SalaDeEstar/TelaPintura" unique_id=1709692004]
+visible = false
 offset_left = -129.0
 offset_top = -65.0
 offset_right = 1266.0
@@ -74,6 +78,7 @@ offset_bottom = 697.0
 color = Color(0, 0, 0, 1)
 
 [node name="Tela" type="TextureRect" parent="SalaDeEstar/TelaPintura" unique_id=1124441378]
+visible = false
 custom_minimum_size = Vector2(513, 513)
 offset_left = -279.0
 offset_top = -65.0
@@ -83,12 +88,14 @@ stretch_mode = 2
 
 [node name="FecharPintura" type="Button" parent="SalaDeEstar/TelaPintura" unique_id=257490273]
 unique_name_in_owner = true
+visible = false
 offset_right = 93.0
 offset_bottom = 73.0
 text = "X"
 
 [node name="TarefaEscolar" type="Button" parent="SalaDeEstar" unique_id=1886817882]
 unique_name_in_owner = true
+visible = false
 offset_left = 249.0
 offset_top = 435.0
 offset_right = 378.0
@@ -96,6 +103,7 @@ offset_bottom = 513.0
 flat = true
 
 [node name="TextoTarefaEscolar" type="Label" parent="SalaDeEstar/TarefaEscolar" unique_id=1163996469]
+visible = false
 layout_mode = 0
 offset_left = -11.0
 offset_top = 62.0
@@ -105,6 +113,7 @@ text = "Homework"
 
 [node name="VoltarDaSala" type="Button" parent="SalaDeEstar" unique_id=1619023514]
 unique_name_in_owner = true
+visible = false
 offset_left = 13.0
 offset_top = 389.0
 offset_right = 191.0
@@ -113,15 +122,26 @@ flat = true
 
 [node name="Livro" type="Button" parent="SalaDeEstar" unique_id=1423651108]
 unique_name_in_owner = true
+visible = false
 offset_left = 406.0
 offset_top = 341.0
 offset_right = 443.0
 offset_bottom = 377.0
 text = "Book"
 
+[node name="AjeitarPinceis" type="Button" parent="SalaDeEstar" unique_id=1733464967]
+unique_name_in_owner = true
+offset_left = 585.0
+offset_top = 435.0
+offset_right = 716.0
+offset_bottom = 466.0
+text = "Tidy up the toys"
+
 [node name="Dialogo" type="CanvasLayer" parent="." unique_id=724890283]
+visible = false
 
 [node name="Caixa" type="Panel" parent="Dialogo" unique_id=732848754]
+visible = false
 offset_left = 152.0
 offset_top = 598.0
 offset_right = 1227.0
@@ -146,15 +166,18 @@ offset_bottom = 169.0
 flat = true
 
 [node name="MusicaPrincipal" type="AudioStreamPlayer2D" parent="." unique_id=799966107]
+visible = false
 stream = ExtResource("12_0vxn5")
 autoplay = true
 
 [node name="somDialogo" type="AudioStreamPlayer2D" parent="." unique_id=1749233045]
+visible = false
 stream = ExtResource("13_pd6y2")
 volume_db = 5.594
 pitch_scale = 0.55
 
 [node name="ComodoMenu" type="Node2D" parent="." unique_id=1624878423]
+visible = false
 
 [node name="FundoMenu" type="Sprite2D" parent="ComodoMenu" unique_id=700997057]
 position = Vector2(688.5, 384.49997)
@@ -170,6 +193,7 @@ offset_bottom = 410.0
 text = "Start"
 
 [node name="ComodoQuarto" type="Node2D" parent="." unique_id=986971920]
+visible = false
 
 [node name="Quarto" type="Sprite2D" parent="ComodoQuarto" unique_id=1881920162]
 position = Vector2(690, 382.5)
@@ -212,6 +236,7 @@ text = "Fold the laundry
 "
 
 [node name="ComodoBanheiro" type="Node2D" parent="." unique_id=107546116]
+visible = false
 
 [node name="Banheiro" type="Sprite2D" parent="ComodoBanheiro" unique_id=913591866]
 position = Vector2(687.75, 384)
@@ -262,6 +287,7 @@ offset_right = 194.0
 offset_bottom = 447.0
 
 [node name="ComodoEspelho" type="Node2D" parent="." unique_id=1818858491]
+visible = false
 
 [node name="FundoEspelho" type="Sprite2D" parent="ComodoEspelho" unique_id=366888220]
 position = Vector2(690, 383.5)
@@ -277,6 +303,7 @@ offset_bottom = 100.0
 text = "x"
 
 [node name="ComodoCozinha" type="Node2D" parent="." unique_id=776777144]
+visible = false
 
 [node name="Cozinha" type="Sprite2D" parent="ComodoCozinha" unique_id=347393945]
 position = Vector2(688.5, 384.5)
@@ -309,6 +336,7 @@ offset_bottom = 584.0
 text = "Take out the trash"
 
 [node name="ComodoCozinhaMesa" type="Node2D" parent="." unique_id=365674869]
+visible = false
 
 [node name="Mesa" type="Sprite2D" parent="ComodoCozinhaMesa" unique_id=802430399]
 position = Vector2(689, 384)
@@ -323,6 +351,7 @@ offset_right = 171.0
 offset_bottom = 456.0
 
 [node name="Cozinhar" type="Node2D" parent="." unique_id=1771279272]
+visible = false
 
 [node name="Cozinhar" type="Sprite2D" parent="Cozinhar" unique_id=847825352]
 position = Vector2(687.00006, 382.5)
@@ -339,6 +368,7 @@ text = "Leave
 "
 
 [node name="PainelTarefa" type="CanvasLayer" parent="." unique_id=1328937447]
+visible = false
 script = ExtResource("15_gwlct")
 
 [node name="AreaTarefa" type="Control" parent="PainelTarefa" unique_id=1980212106]
@@ -380,6 +410,7 @@ offset_bottom = 28.0
 text = "House Chore"
 
 [node name="SalaFilho" type="Node2D" parent="." unique_id=2107099407]
+visible = false
 
 [node name="SalaComFilho" type="Sprite2D" parent="SalaFilho" unique_id=2063403871]
 position = Vector2(694, 380.00003)
@@ -387,6 +418,7 @@ scale = Vector2(0.99563956, 0.99479175)
 texture = ExtResource("4_gwlct")
 
 [node name="ComodoLivro" type="Node2D" parent="." unique_id=739139643]
+visible = false
 
 [node name="Livro" type="Sprite2D" parent="ComodoLivro" unique_id=350114294]
 position = Vector2(709, 389)
@@ -412,6 +444,7 @@ offset_bottom = 516.0
 flat = true
 
 [node name="AreaExterna" type="Node2D" parent="." unique_id=1880917434]
+visible = false
 
 [node name="LadoDeFora" type="Sprite2D" parent="AreaExterna" unique_id=1310036413]
 position = Vector2(686.50006, 380.5)

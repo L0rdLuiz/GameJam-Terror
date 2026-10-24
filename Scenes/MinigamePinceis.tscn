@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cvwuo2dwfqlbh"]
+[gd_scene format=3 uid="uid://c13xaml2i4ihh"]
 
 [ext_resource type="Script" uid="uid://vsgf6ely3kmt" path="res://Scripts/DebugTarefas.cs" id="1_x1xr2"]
 [ext_resource type="PackedScene" uid="uid://dlonlhocvhngj" path="res://Scenes/aviso.tscn" id="2_oyny4"]

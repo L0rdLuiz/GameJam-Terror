@@ -332,6 +332,26 @@ public partial class Sala1 : Node2D
             MostrarProximaLinha();
         };
 
+        GetNode<Button>("%TomarRemedio").Pressed += () =>
+        {
+            if (!gameState.PossoFazerATarefa(GameState.TomarRemedio))
+                return;
+
+            GetNode<Button>("%TomarRemedio").Hide();
+
+            TentarFalar("Remedio", () =>
+            {
+                remedioTomado = true;
+                gameState.ConcluirTarefa(GameState.TomarRemedio);
+
+                // Atualiza os botões após concluir a tarefa.
+                AtualizarBotoes();
+
+            });
+        };
+
+        GetNode<Button>("%AjeitarPinceis").Pressed += IniciarArrumarPinceis;
+
         Button botaoEspelho = GetNode<Button>("%Espelho");
         Label textoEspelho = GetNode<Label>("%TextoEspelho");
         textoEspelho.Hide();
@@ -428,10 +448,19 @@ public partial class Sala1 : Node2D
         GetNode<Button>("%TarefaEscolar").Visible = licaoLiberada && gameState.PossoFazerATarefa(GameState.TarefaEscolar);
         GetNode<Button>("%FogaoCozinhar").Visible = gameState.PossoFazerATarefa(GameState.Almoco) || gameState.PossoFazerATarefa(GameState.Janta);
         GetNode<Button>("%DobrarRoupa").Visible = livroLido && gameState.PossoFazerATarefa(GameState.DobrarRoupa);
-        GetNode<Button>("%LevarLixo").Visible = false;
-        GetNode<Button>("%IrAreaExterna").Visible = gameState.PossoFazerATarefa(GameState.LevarLixo);
         GetNode<Button>("%Livro").Visible = gameState.PossoFazerATarefa(GameState.LerLivro);
-        if (botaoJogarLixo != null) botaoJogarLixo.Visible = gameState.PossoFazerATarefa(GameState.LevarLixo);
+        GetNode<Button>("%Cavalete").Visible = gameState.PossoFazerATarefa(GameState.Brincar);
+        GetNode<Button>("%TomarRemedio").Visible = gameState.PossoFazerATarefa(GameState.TomarRemedio);
+        GetNode<Button>("%AjeitarPinceis").Visible = gameState.PossoFazerATarefa(GameState.AjeitarBrinquedos);
+
+        //Jogar lixo
+        bool podeLevarLixo = gameState.PossoFazerATarefa(GameState.LevarLixo);
+
+        GetNode<Button>("%IrAreaExterna").Visible = podeLevarLixo;
+        GetNode<Button>("%LevarLixo").Visible = podeLevarLixo;
+
+        if (botaoJogarLixo != null)
+            botaoJogarLixo.Visible = podeLevarLixo;
     }
 
     private void IniciarMinigameCozinha()
@@ -531,27 +560,13 @@ public partial class Sala1 : Node2D
         GetTree().Root.AddChild(minigame); Hide();
     }
 
-    // Dia 3: arrumar os pincéis. Fala inicial no quarto, depois abre a cena do minigame (mesma lógica da roupa).
     private void IniciarArrumarPinceis()
     {
-        if (!gameState.PossoFazerATarefa(GameState.AjeitarBrinquedos)) return;
-        MostrarComodo(GetNode<Node2D>("ComodoQuarto"));
-        TentarFalar("Brinquedos", IniciarMinigamePinceis);
-    }
+        if (!gameState.PossoFazerATarefa(GameState.AjeitarBrinquedos))
+            return;
 
-    private void IniciarMinigamePinceis()
-    {
-        string caminho = AcharCena(
-            "res://Scenes/MinigamePinceis/MinigamePinceis.tscn",
-            "res://Scenes/MinigamePinceis/Minigamepinceis.tscn",
-            "res://Scenes/MinigamePinceis/minigame_pinceis.tscn",
-            "res://Scenes/ArrumarPinceis/ArrumarPinceis.tscn",
-            "res://Scenes/ArrumarPinceis/Arrumarpinceis.tscn");
-        PackedScene cena = caminho != null ? GD.Load<PackedScene>(caminho) : null;
-        if (cena == null) { GD.PrintErr("Cena de pincéis não encontrada (confira os caminhos em IniciarMinigamePinceis)."); AoFimPinceis(); return; }
-        Node minigame = cena.Instantiate();
-        minigame.TreeExited += () => { if (!IsInsideTree()) return; AoFimPinceis(); };
-        GetTree().Root.AddChild(minigame); Hide();
+        gameState.ConcluirTarefa(GameState.AjeitarBrinquedos);
+        AtualizarBotoes();
     }
 
     private void AoFimPinceis()
